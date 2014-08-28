@@ -8,19 +8,17 @@
  */
 package interpreter.expressions.arithmetic;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.junit.Test;
 
 import usp.ime.line.ivprog.interpreter.DataFactory;
 import usp.ime.line.ivprog.interpreter.DataObject;
-import usp.ime.line.ivprog.interpreter.error.IVPError;
 import usp.ime.line.ivprog.interpreter.execution.Context;
-import usp.ime.line.ivprog.interpreter.execution.expressions.arithmetic.Addition;
+import usp.ime.line.ivprog.interpreter.execution.expressions.arithmetic.Division;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPNumber;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPValue;
 
@@ -33,35 +31,37 @@ public class CompleteDivisionTest {
 		IVPNumber a = factory.createIVPNumber();
 		IVPNumber b = factory.createIVPNumber();
 		IVPNumber c = factory.createIVPNumber();
-		
+
 		a.setValueType(IVPValue.DOUBLE_TYPE);
 		b.setValueType(IVPValue.INTEGER_TYPE);
 		c.setValueType(IVPValue.INTEGER_TYPE);
+		
 		context.addBigDecimal(a.getUniqueID(), new BigDecimal("3.4313"));
 		context.addBigDecimal(b.getUniqueID(), new BigDecimal("10"));
 		context.addBigDecimal(c.getUniqueID(), new BigDecimal("2"));
-		
-		Addition addition1 = factory.createAddition();
-		addition1.setExpressionA(a.getUniqueID());
-		addition1.setExpressionB(b.getUniqueID());
-		
-		Addition addition2 = factory.createAddition();
-		addition2.setExpressionA(c.getUniqueID());
-		addition2.setExpressionB(addition1.getUniqueID());
-		
+
+		Division division1 = factory.createDivision();
+		division1.setExpressionA(a.getUniqueID());
+		division1.setExpressionB(b.getUniqueID());
+
+		Division division2 = factory.createDivision();
+		division2.setExpressionA(c.getUniqueID());
+		division2.setExpressionB(division1.getUniqueID());
+
 		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
-		map.put(addition1.getUniqueID(), addition1);
-		map.put(addition2.getUniqueID(), addition2);
+		map.put(division1.getUniqueID(), division1);
+		map.put(division2.getUniqueID(), division2);
 		map.put(a.getUniqueID(), a);
 		map.put(b.getUniqueID(), b);
 		map.put(c.getUniqueID(), c);
-		//division2(c / division1(a / b))
-		//c / (a / b)
-		BigDecimal result =  context.getBigDecimal(((DataObject) addition2.evaluate(context, map, factory)).getUniqueID());
-		assertTrue(result.compareTo(new BigDecimal("15.4313")) == 0);
-	
+		// division2(c / division1(a / b))
+		// c / (a / b)
+		
+		IVPNumber result =  (IVPNumber) division2.evaluate(context, map, factory);
+		assertTrue(result.getValueType().equals(IVPValue.DOUBLE_TYPE));
+		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("5.828694663830035")) == 0);
 	}
-	
+
 	@Test
 	public void verifyExpressionWithInteger() {
 		Context context = new Context();
@@ -69,36 +69,36 @@ public class CompleteDivisionTest {
 		IVPNumber a = factory.createIVPNumber();
 		IVPNumber b = factory.createIVPNumber();
 		IVPNumber c = factory.createIVPNumber();
-		
-		
+
 		a.setValueType(IVPValue.INTEGER_TYPE);
 		b.setValueType(IVPValue.INTEGER_TYPE);
 		c.setValueType(IVPValue.INTEGER_TYPE);
-		
+
 		context.addBigDecimal(a.getUniqueID(), new BigDecimal("7"));
 		context.addBigDecimal(b.getUniqueID(), new BigDecimal("10"));
 		context.addBigDecimal(c.getUniqueID(), new BigDecimal("2"));
-		
-		Addition addition1 = factory.createAddition();
-		addition1.setExpressionA(a.getUniqueID());
-		addition1.setExpressionB(b.getUniqueID());
-		
-		Addition addition2 = factory.createAddition();
-		addition2.setExpressionA(c.getUniqueID());
-		addition2.setExpressionB(addition1.getUniqueID());
-		
+
+		Division division1 = factory.createDivision();
+		division1.setExpressionA(a.getUniqueID());
+		division1.setExpressionB(b.getUniqueID());
+
+		Division division2 = factory.createDivision();
+		division2.setExpressionA(c.getUniqueID());
+		division2.setExpressionB(division1.getUniqueID());
+
 		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
-		map.put(addition1.getUniqueID(), addition1);
-		map.put(addition2.getUniqueID(), addition2);
+		map.put(division1.getUniqueID(), division1);
+		map.put(division2.getUniqueID(), division2);
 		map.put(a.getUniqueID(), a);
 		map.put(b.getUniqueID(), b);
 		map.put(c.getUniqueID(), c);
-		//addition2(c / addition1(a / b))
-		//c / (a / b)
-		BigDecimal result =  context.getBigDecimal(((DataObject) addition2.evaluate(context, map, factory)).getUniqueID());
-		assertTrue(result.compareTo(new BigDecimal("19")) == 0);
+		// division2(c / division1(a / b))
+		// c / (a / b)
+		IVPNumber result =  (IVPNumber) division2.evaluate(context, map, factory);
+		assertTrue(result.getValueType().equals(IVPValue.DOUBLE_TYPE));
+		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("2.857142857142857")) == 0);
 	}
-	
+
 	@Test
 	public void verifyExpressionWithExpression() {
 		Context context = new Context();
@@ -107,41 +107,42 @@ public class CompleteDivisionTest {
 		IVPNumber b = factory.createIVPNumber();
 		IVPNumber c = factory.createIVPNumber();
 		IVPNumber d = factory.createIVPNumber();
-		
+
 		a.setValueType(IVPValue.INTEGER_TYPE);
 		b.setValueType(IVPValue.INTEGER_TYPE);
 		c.setValueType(IVPValue.INTEGER_TYPE);
 		d.setValueType(IVPValue.INTEGER_TYPE);
-		
+
 		context.addBigDecimal(a.getUniqueID(), new BigDecimal("7"));
 		context.addBigDecimal(b.getUniqueID(), new BigDecimal("10"));
 		context.addBigDecimal(c.getUniqueID(), new BigDecimal("2"));
 		context.addBigDecimal(d.getUniqueID(), new BigDecimal("2"));
-		
-		Addition addition1 = factory.createAddition();
-		addition1.setExpressionA(a.getUniqueID());
-		addition1.setExpressionB(b.getUniqueID());
-		
-		Addition addition2 = factory.createAddition();
-		addition2.setExpressionA(c.getUniqueID());
-		addition2.setExpressionB(d.getUniqueID());
-		
-		Addition addition3 = factory.createAddition();
-		addition3.setExpressionA(addition1.getUniqueID());
-		addition3.setExpressionB(addition2.getUniqueID());
-		
+
+		Division division1 = factory.createDivision();
+		division1.setExpressionA(a.getUniqueID());
+		division1.setExpressionB(b.getUniqueID());
+
+		Division division2 = factory.createDivision();
+		division2.setExpressionA(c.getUniqueID());
+		division2.setExpressionB(d.getUniqueID());
+
+		Division division3 = factory.createDivision();
+		division3.setExpressionA(division1.getUniqueID());
+		division3.setExpressionB(division2.getUniqueID());
+
 		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
-		map.put(addition1.getUniqueID(), addition1);
-		map.put(addition2.getUniqueID(), addition2);
-		map.put(addition3.getUniqueID(), addition3);
+		map.put(division1.getUniqueID(), division1);
+		map.put(division2.getUniqueID(), division2);
+		map.put(division3.getUniqueID(), division3);
 		map.put(a.getUniqueID(), a);
 		map.put(b.getUniqueID(), b);
 		map.put(c.getUniqueID(), c);
 		map.put(d.getUniqueID(), d);
-		//addition3(addition1(a / b) / addition2(c / d))
-		//((a / b) / (c / d)) 
-		BigDecimal result =  context.getBigDecimal(((DataObject) addition3.evaluate(context, map, factory)).getUniqueID());
-		assertTrue(result.compareTo(new BigDecimal("21")) == 0);
+		// division3(division1(a / b) / division2(c / d))
+		// ((a / b) / (c / d))
+		IVPNumber result =  (IVPNumber) division3.evaluate(context, map, factory);
+		assertTrue(result.getValueType().equals(IVPValue.DOUBLE_TYPE));
+		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("0.7")) == 0);
 	}
 
 }

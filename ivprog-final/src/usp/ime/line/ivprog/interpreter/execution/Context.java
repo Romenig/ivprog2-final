@@ -26,8 +26,7 @@ public class Context implements Cloneable {
 		booleanMap = new HashMap<String, Boolean>();
 	}
 
-	private Context(HashMap<String, BigDecimal> nMap, HashMap<String, String> sMap,
-			HashMap<String, Boolean> bMap) {
+	private Context(HashMap<String, BigDecimal> nMap, HashMap<String, String> sMap, HashMap<String, Boolean> bMap) {
 		bigDecimalMap = nMap;
 		stringMap = sMap;
 		booleanMap = bMap;
@@ -52,7 +51,8 @@ public class Context implements Cloneable {
 	}
 
 	/**
-	 * Get a bigDecimal object (integer or real) from the hashmap of bigDecimals.
+	 * Get a bigDecimal object (integer or real) from the hashmap of
+	 * bigDecimals.
 	 * 
 	 * @param key
 	 * @return IVPError
@@ -170,9 +170,8 @@ public class Context implements Cloneable {
 	 * The clone method will be used only during a recursive call.
 	 */
 	public Object clone() {
-		Context c = new Context((HashMap<String, BigDecimal>) bigDecimalMap.clone(),
-				(HashMap<String, String>) stringMap.clone(),
-				(HashMap<String, Boolean>) booleanMap.clone());
+		Context c = new Context((HashMap<String, BigDecimal>) bigDecimalMap.clone(), (HashMap<String, String>) stringMap.clone(),
+		        (HashMap<String, Boolean>) booleanMap.clone());
 		return c;
 	}
 

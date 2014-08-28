@@ -23,8 +23,7 @@ public class Messages {
 	public static final String ENGLISH = "eng";
 
 	private Messages() {
-		RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME
-				+ currentLanguage);
+		RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME + currentLanguage);
 	}
 
 	/**
@@ -56,8 +55,7 @@ public class Messages {
 	 */
 	public void setLanguage(String lang) {
 		currentLanguage = lang;
-		RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME
-				+ currentLanguage);
+		RESOURCE_BUNDLE = ResourceBundle.getBundle(BUNDLE_NAME + currentLanguage);
 	}
 
 }

@@ -29,10 +29,8 @@ public class ContextCreateAndCloneMethods {
 		IVPError e3 = c.addString("key3", "Hello, world!");
 		IVPError e4 = c.addBoolean("key4", new Boolean("true"));
 
-		assertTrue((new BigDecimal(10)).equals(c.getBigDecimal("key1"))
-				&& (new BigDecimal(11)).equals(c.getBigDecimal("key2"))
-				&& "Hello, world!".equals(c.getString("key3"))
-				&& c.getBoolean("key4"));
+		assertTrue((new BigDecimal(10)).equals(c.getBigDecimal("key1")) && (new BigDecimal(11)).equals(c.getBigDecimal("key2"))
+		        && "Hello, world!".equals(c.getString("key3")) && c.getBoolean("key4"));
 
 	}
 
@@ -47,7 +45,5 @@ public class ContextCreateAndCloneMethods {
 		assertTrue(c.getString("key2").equals(c2.getString("key2")));
 		assertTrue(c.getBigDecimal("key3").equals(c2.getBigDecimal("key3")));
 	}
-
-	
 
 }

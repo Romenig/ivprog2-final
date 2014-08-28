@@ -21,29 +21,31 @@ public abstract class IVPValue extends Expression {
 	public static final String DOUBLE_TYPE = "double";
 	public static final String STRING_TYPE = "String";
 	public static final String BOOLEAN_TYPE = "boolean";
-	
+
 	private String valueType;
-	
+
 	@Override
 	public Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory) {
 		return this;
 	}
-	
+
 	/**
 	 * Get this value primitive type.
+	 * 
 	 * @see usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPValue
 	 * @return
 	 */
 	public String getValueType() {
 		return valueType;
 	}
-	
+
 	/**
 	 * Set the value primitive type.
+	 * 
 	 * @param valueType
 	 */
 	public void setValueType(String valueType) {
 		this.valueType = valueType;
 	}
-	
+
 }

@@ -25,8 +25,7 @@ public class ContextErrorMethods {
 		Context c = new Context();
 		IVPError e1 = c.addBigDecimal("key1", new BigDecimal(10));
 		IVPError e2 = c.addBigDecimal("key1", new BigDecimal(11));
-		assertTrue(e2.getErrorMessage().equals(
-				Messages.getString("Context.keyExists")));
+		assertTrue(e2.getErrorMessage().equals(Messages.getString("Context.keyExists")));
 		assertTrue(e1 == null);
 	}
 
@@ -35,8 +34,7 @@ public class ContextErrorMethods {
 		Context c = new Context();
 		IVPError e1 = c.addString("key1", "Hello, world!");
 		IVPError e2 = c.addString("key1", "Hello, world 2!");
-		assertTrue(e2.getErrorMessage().equals(
-				Messages.getString("Context.keyExists")));
+		assertTrue(e2.getErrorMessage().equals(Messages.getString("Context.keyExists")));
 		assertTrue(e1 == null);
 	}
 
@@ -45,8 +43,7 @@ public class ContextErrorMethods {
 		Context c = new Context();
 		IVPError e1 = c.addBoolean("key1", new Boolean("true"));
 		IVPError e2 = c.addBoolean("key1", new Boolean("true"));
-		assertTrue(e2.getErrorMessage().equals(
-				Messages.getString("Context.keyExists")));
+		assertTrue(e2.getErrorMessage().equals(Messages.getString("Context.keyExists")));
 		assertTrue(e1 == null);
 	}
 

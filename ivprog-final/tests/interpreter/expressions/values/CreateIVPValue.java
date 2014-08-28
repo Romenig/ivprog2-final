@@ -6,7 +6,7 @@
  * Romenig da Silva Ribeiro - romenig@ime.usp.br | romenig@gmail.com
  * @author Romenig
  */
-package interpreter.values;
+package interpreter.expressions.values;
 
 import static org.junit.Assert.*;
 
@@ -34,12 +34,12 @@ public class CreateIVPValue {
 		context.addBigDecimal(number.getUniqueID(), new BigDecimal("1"));
 		number.setValueType(IVPValue.INTEGER_TYPE);
 		number.updateValue(context, new BigDecimal(5));
-		
+
 		assertTrue(number instanceof IVPValue && number instanceof IVPNumber);
 		assertTrue(number.getValueType().equals(IVPValue.INTEGER_TYPE));
-		assertTrue(context.getBigDecimal(number.getUniqueID()).equals(new BigDecimal(5)));
+		assertTrue(context.getBigDecimal(number.getUniqueID()).compareTo(new BigDecimal(5)) == 0);
 	}
-	
+
 	@Test
 	public void createDoubleBigDecimalValue() {
 		Context context = new Context();
@@ -48,12 +48,12 @@ public class CreateIVPValue {
 		context.addBigDecimal(number.getUniqueID(), new BigDecimal("1"));
 		number.setValueType(IVPValue.DOUBLE_TYPE);
 		number.updateValue(context, new BigDecimal(5.0));
-		
+
 		assertTrue(number instanceof IVPValue && number instanceof IVPNumber);
 		assertTrue(number.getValueType().equals(IVPValue.DOUBLE_TYPE));
-		assertTrue(context.getBigDecimal(number.getUniqueID()).equals( new BigDecimal(5.0)));
+		assertTrue(context.getBigDecimal(number.getUniqueID()).compareTo(new BigDecimal(5.0)) == 0);
 	}
-	
+
 	@Test
 	public void createBooleanValue() {
 		Context context = new Context();
@@ -63,25 +63,25 @@ public class CreateIVPValue {
 		bool.setValueType(IVPValue.BOOLEAN_TYPE);
 		context.addBoolean(bool.getUniqueID(), new Boolean("true"));
 		bool.updateValue(context, new Boolean("false"));
-		
+
 		assertTrue(bool instanceof IVPValue && bool instanceof IVPBoolean);
 		assertTrue(bool.getValueType().equals(IVPValue.BOOLEAN_TYPE));
 		assertTrue(context.getBoolean(bool.getUniqueID()).equals(new Boolean("false")));
 	}
-	
+
 	@Test
 	public void createStringValue() {
 		Context context = new Context();
 		DataFactory factory = new DataFactory();
 		IVPString string = factory.createIVPString();
-		
-		context.addString(string.getUniqueID(),"Init value");
+
+		context.addString(string.getUniqueID(), "Init value");
 		string.setValueType(IVPValue.STRING_TYPE);
 		string.updateValue(context, "Alterando o valor da String aqui.");
-		
+
 		assertTrue(string instanceof IVPValue && string instanceof IVPString);
 		assertTrue(string.getValueType().equals(IVPValue.STRING_TYPE));
 		assertTrue(context.getString(string.getUniqueID()).equals("Alterando o valor da String aqui."));
 	}
-
+	
 }

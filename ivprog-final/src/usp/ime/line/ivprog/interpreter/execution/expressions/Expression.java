@@ -11,6 +11,6 @@ package usp.ime.line.ivprog.interpreter.execution.expressions;
 import usp.ime.line.ivprog.interpreter.DataObject;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPValue;
 
-public abstract class Expression extends DataObject{
+public abstract class Expression extends DataObject {
 
 }

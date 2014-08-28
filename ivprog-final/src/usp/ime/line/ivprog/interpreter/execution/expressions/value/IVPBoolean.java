@@ -8,17 +8,43 @@
  */
 package usp.ime.line.ivprog.interpreter.execution.expressions.value;
 
+import usp.ime.line.ivprog.interpreter.DataFactory;
 import usp.ime.line.ivprog.interpreter.execution.Context;
 
 public class IVPBoolean extends IVPValue {
 
 	/**
 	 * Updates the boolean value to the given value inside the given context.
+	 * 
 	 * @param context
 	 * @param bool
 	 */
 	public void updateValue(Context context, Boolean bool) {
 		context.updateBoolean(getUniqueID(), bool);
 	}
+
+	/**
+	 * @param b2
+	 * @return
+	 */
+    public IVPBoolean and(IVPBoolean b2, Context context, DataFactory factory) {
+	    IVPBoolean result = factory.createIVPBoolean();
+	    Boolean res = new Boolean(context.getBoolean(getUniqueID()).booleanValue() && context.getBoolean(b2.getUniqueID()).booleanValue());
+	    context.addBoolean(result.getUniqueID(), res);
+    	return result;
+    }
+
+	/**
+	 * @param b2
+	 * @param c
+	 * @param factory
+	 * @return
+	 */
+    public IVPBoolean or(IVPBoolean b2, Context context, DataFactory factory) {
+    	IVPBoolean result = factory.createIVPBoolean();
+	    Boolean res = new Boolean(context.getBoolean(getUniqueID()).booleanValue() || context.getBoolean(b2.getUniqueID()).booleanValue());
+	    context.addBoolean(result.getUniqueID(), res);
+    	return result;
+    }
 
 }

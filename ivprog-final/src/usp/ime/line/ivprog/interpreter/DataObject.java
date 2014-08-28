@@ -23,7 +23,7 @@ public abstract class DataObject {
 	public void setUniqueID(String uniqueID) {
 		this.uniqueID = uniqueID;
 	}
-	
+
 	public abstract Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory);
-	
+
 }
