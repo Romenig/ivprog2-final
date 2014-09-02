@@ -8,6 +8,10 @@
  */
 package usp.ime.line.ivprog.interpreter.execution.expressions.value;
 
+import java.util.HashMap;
+
+import usp.ime.line.ivprog.interpreter.DataFactory;
+import usp.ime.line.ivprog.interpreter.DataObject;
 import usp.ime.line.ivprog.interpreter.execution.Context;
 
 public class IVPString extends IVPValue {
@@ -22,4 +26,26 @@ public class IVPString extends IVPValue {
 		context.updateString(getUniqueID(), string);
 	}
 
+	/* (non-Javadoc)
+	 * @see usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPValue#ivpEqualTo(usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPValue, usp.ime.line.ivprog.interpreter.execution.Context, java.util.HashMap, usp.ime.line.ivprog.interpreter.DataFactory)
+	 */
+    @Override
+    public IVPBoolean ivpEqualTo(IVPValue v, Context c, HashMap<String, DataObject> map, DataFactory factory) {
+    	IVPBoolean result = factory.createIVPBoolean();
+		Boolean booleanResult = new Boolean(c.getString(getUniqueID()).equals(c.getString(v.getUniqueID())));
+		c.addBoolean(result.getUniqueID(), booleanResult);
+		return result;
+    }
+
+	/* (non-Javadoc)
+	 * @see usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPValue#ivpNotEqualTo(usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPValue, usp.ime.line.ivprog.interpreter.execution.Context, java.util.HashMap, usp.ime.line.ivprog.interpreter.DataFactory)
+	 */
+    @Override
+    public IVPBoolean ivpNotEqualTo(IVPValue v, Context c, HashMap<String, DataObject> map, DataFactory factory) {
+    	IVPBoolean result = factory.createIVPBoolean();
+		Boolean booleanResult = new Boolean(!c.getString(getUniqueID()).equals(c.getString(v.getUniqueID())));
+		c.addBoolean(result.getUniqueID(), booleanResult);
+		return result;
+    }
+    
 }

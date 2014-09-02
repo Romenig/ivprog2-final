@@ -9,6 +9,7 @@
 package usp.ime.line.ivprog.interpreter;
 
 import java.math.BigDecimal;
+import java.util.Random;
 
 import usp.ime.line.ivprog.interpreter.execution.Context;
 import usp.ime.line.ivprog.interpreter.execution.expressions.arithmetic.Addition;
@@ -17,6 +18,12 @@ import usp.ime.line.ivprog.interpreter.execution.expressions.arithmetic.Multipli
 import usp.ime.line.ivprog.interpreter.execution.expressions.arithmetic.Subtraction;
 import usp.ime.line.ivprog.interpreter.execution.expressions.booleans.And;
 import usp.ime.line.ivprog.interpreter.execution.expressions.booleans.Or;
+import usp.ime.line.ivprog.interpreter.execution.expressions.booleans.comparisons.EqualTo;
+import usp.ime.line.ivprog.interpreter.execution.expressions.booleans.comparisons.GreaterThan;
+import usp.ime.line.ivprog.interpreter.execution.expressions.booleans.comparisons.GreaterThanOrEqualTo;
+import usp.ime.line.ivprog.interpreter.execution.expressions.booleans.comparisons.LessThan;
+import usp.ime.line.ivprog.interpreter.execution.expressions.booleans.comparisons.LessThanOrEqualTo;
+import usp.ime.line.ivprog.interpreter.execution.expressions.booleans.comparisons.NotEqualTo;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPBoolean;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPNumber;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPString;
@@ -26,7 +33,15 @@ import usp.ime.line.ivprog.language.Messages;
 
 public class DataFactory {
 
-	private int idCount = 0;
+	private Random r;
+	
+	public DataFactory () {
+		r = new Random();
+	}
+	
+	private String getID(){
+		return Integer.toHexString(r.nextInt());
+	}
 
 	/**
 	 * Get a new IVPNumber for a given context.
@@ -35,8 +50,7 @@ public class DataFactory {
 	 */
 	public IVPNumber createIVPNumber() {
 		IVPNumber number = new IVPNumber();
-		number.setUniqueID("" + idCount);
-		idCount++;
+		number.setUniqueID("" + getID());
 		return number;
 	}
 
@@ -47,8 +61,7 @@ public class DataFactory {
 	 */
 	public IVPString createIVPString() {
 		IVPString string = new IVPString();
-		string.setUniqueID("" + idCount);
-		idCount++;
+		string.setUniqueID("" + getID());
 		return string;
 	}
 
@@ -60,56 +73,51 @@ public class DataFactory {
 	public IVPBoolean createIVPBoolean() {
 		IVPBoolean bool = new IVPBoolean();
 		bool.setValueType(IVPValue.BOOLEAN_TYPE);
-		bool.setUniqueID("" + idCount);
-		idCount++;
+		bool.setUniqueID("" + getID());
 		return bool;
 	}
 
 	/**
-	 * Get a new addition for a given context.
+	 * Get a new addition object.
 	 * 
 	 * @return
 	 */
 	public Addition createAddition() {
 		Addition addition = new Addition();
-		addition.setUniqueID("" + idCount);
-		idCount++;
+		addition.setUniqueID("" + getID());
 		return addition;
 	}
 
 	/**
-	 * Get a new addition for a given context.
+	 * Get a new Multiplication object.
 	 * 
 	 * @return
 	 */
 	public Multiplication createMultiplication() {
 		Multiplication multiplication = new Multiplication();
-		multiplication.setUniqueID("" + idCount);
-		idCount++;
+		multiplication.setUniqueID("" + getID());
 		return multiplication;
 	}
 
 	/**
-	 * Get a new addition for a given context.
+	 * Get a new Subtraction object.
 	 * 
 	 * @return
 	 */
 	public Subtraction createSubtraction() {
 		Subtraction sub = new Subtraction();
-		sub.setUniqueID("" + idCount);
-		idCount++;
+		sub.setUniqueID("" + getID());
 		return sub;
 	}
 
 	/**
-	 * Get a new division for a given context.
+	 * Get a new division object.
 	 * 
 	 * @return
 	 */
 	public Division createDivision() {
 		Division div = new Division();
-		div.setUniqueID("" + idCount);
-		idCount++;
+		div.setUniqueID("" + getID());
 		return div;
 	}
 
@@ -119,31 +127,89 @@ public class DataFactory {
 	 */
     public IVPVariable createIVPVariable() {
 	    IVPVariable v = new IVPVariable();
-	    v.setUniqueID("" + idCount);
-	    idCount++;
+	    v.setUniqueID("" + getID());
 	    return v;
     }
 
     /**
-	 * Get a new And for a given context.
+	 * Get a new And object.
 	 * @return
 	 */
     public And createAnd() {
     	And and = new And();
-    	and.setUniqueID("" + idCount);
-    	idCount++;
+    	and.setUniqueID("" + getID());
 	    return and;
     }
 
     /**
-   	 * Get a new And for a given context.
+   	 * Get a new Or object.
    	 * @return
    	 */
     public Or createOr() {
     	Or or = new Or();
-    	or.setUniqueID("" + idCount);
-    	idCount++;
+    	or.setUniqueID("" + getID());
 	    return or;
     }
+
+	/**
+	 * Get a new EqualTo object.
+	 * @return
+	 */
+    public EqualTo createEqualTo() {
+    	EqualTo eq = new EqualTo();
+    	eq.setUniqueID(getID());
+	    return eq;
+    }
+    
+	/**
+	 * Get a new LessThan object.
+	 * @return
+	 */
+    public LessThan createLessThan() {
+    	LessThan less = new LessThan();
+    	less.setUniqueID(getID());
+	    return less;
+    }
+    
+	/**
+	 * Get a new LessThanOrEqualTo object.
+	 * @return
+	 */
+    public LessThanOrEqualTo createLessThanOrEqualTo() {
+    	LessThanOrEqualTo less = new LessThanOrEqualTo();
+    	less.setUniqueID(getID());
+	    return less;
+    }
+    
+	/**
+	 * Get a new GreaterThan object.
+	 * @return
+	 */
+    public GreaterThan createGreaterThan() {
+    	GreaterThan great = new GreaterThan();
+    	great.setUniqueID(getID());
+	    return great;
+    }
+    
+    /**
+	 * Get a new GreaterThanOrEqualTo object.
+	 * @return
+	 */
+    public GreaterThanOrEqualTo createGreaterThanOrEqualTo() {
+    	GreaterThanOrEqualTo great = new GreaterThanOrEqualTo();
+    	great.setUniqueID(getID());
+	    return great;
+    }
+
+	/**
+	 * Get a new NotQualTo object.
+	 * @return
+	 */
+    public NotEqualTo createNotEqualTo() {
+    	NotEqualTo notEq = new NotEqualTo();
+    	notEq.setUniqueID(getID());
+	    return notEq;
+    }
+
 
 }

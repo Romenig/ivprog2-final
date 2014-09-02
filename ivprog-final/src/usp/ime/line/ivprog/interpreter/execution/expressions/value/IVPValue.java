@@ -31,7 +31,6 @@ public abstract class IVPValue extends Expression {
 
 	/**
 	 * Get this value primitive type.
-	 * 
 	 * @see usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPValue
 	 * @return
 	 */
@@ -41,11 +40,24 @@ public abstract class IVPValue extends Expression {
 
 	/**
 	 * Set the value primitive type.
-	 * 
 	 * @param valueType
 	 */
 	public void setValueType(String valueType) {
 		this.valueType = valueType;
 	}
-
+	
+	/**
+	 * Verify if this object is equal to the given IVPValue v.
+	 * This method returns an IVPBoolean with true or false.
+	 * @return
+	 */
+	public abstract IVPBoolean ivpEqualTo (IVPValue v, Context c, HashMap<String, DataObject> map, DataFactory factory);
+	
+	/**
+	 * Verify if this object is not equal to the given IVPValue v.
+	 * This method returns an IVPBoolean with true or false.
+	 * @return
+	 */
+	public abstract IVPBoolean ivpNotEqualTo (IVPValue v, Context c, HashMap<String, DataObject> map, DataFactory factory);
+	
 }

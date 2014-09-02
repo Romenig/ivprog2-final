@@ -10,19 +10,30 @@ package usp.ime.line.ivprog.interpreter.execution.expressions.value;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.util.HashMap;
 
 import usp.ime.line.ivprog.interpreter.DataFactory;
+import usp.ime.line.ivprog.interpreter.DataObject;
 import usp.ime.line.ivprog.interpreter.execution.Context;
 
 public class IVPNumber extends IVPValue {
 	
 	private static MathContext mathContext = MathContext.DECIMAL64;
+	
+	/**
+	 * Updates the number value to the given value inside the given context.
+	 * 
+	 * @param context
+	 * @param ivpNumber
+	 */
+	public void updateValue(Context context, BigDecimal number) {
+		context.updateBigDecimal(getUniqueID(), number);
+	}
 
 	/**
-	 * Return the addition of this IVPNumber to the given parameter. The method
-	 * resolves the primitive type by itself.
+	 * Return the addition of this IVPNumber to the given parameter. 
 	 * 
-	 * @param value
+	 * @param ivpNumber
 	 * @param context
 	 * @param factory
 	 * @return
@@ -35,10 +46,9 @@ public class IVPNumber extends IVPValue {
 	}
 
 	/**
-	 * Return the multiplication of this IVPNumber to the given parameter. The
-	 * method resolves the primitive type by itself.
+	 * Return the multiplication of this IVPNumber to the given parameter. 
 	 * 
-	 * @param value
+	 * @param ivpNumber
 	 * @param context
 	 * @param factory
 	 * @return
@@ -51,10 +61,9 @@ public class IVPNumber extends IVPValue {
 	}
 
 	/**
-	 * Return the division of this IVPNumber to the given parameter. The method
-	 * resolves the primitive type by itself.
+	 * Return the division of this IVPNumber to the given parameter. 
 	 * 
-	 * @param value
+	 * @param ivpNumber
 	 * @param context
 	 * @param factory
 	 * @return
@@ -67,10 +76,9 @@ public class IVPNumber extends IVPValue {
 	}
 
 	/**
-	 * Return the subtraction of this IVPNumber to the given parameter. The
-	 * method resolves the primitive type by itself.
+	 * Return the subtraction of this IVPNumber to the given parameter. 
 	 * 
-	 * @param value
+	 * @param ivpNumber
 	 * @param context
 	 * @param factory
 	 * @return
@@ -83,10 +91,9 @@ public class IVPNumber extends IVPValue {
 	}
 
 	/**
-	 * Return the rest of this IVPNumber divided by the given parameter. The
-	 * method resolves the primitive type by itself.
+	 * Return the rest of this IVPNumber divided by the given parameter. 
 	 * 
-	 * @param value
+	 * @param ivpNumber
 	 * @param context
 	 * @param factory
 	 * @return
@@ -97,15 +104,89 @@ public class IVPNumber extends IVPValue {
 		context.addBigDecimal(result.getUniqueID(), n);
 		return result;
 	}
-
+	
 	/**
-	 * Updates the number value to the given value inside the given context.
-	 * 
+	 * Verify if this object is less than the given IVPNumber num.
+	 * This method returns an IVPBoolean with true or false.
+	 * @param ivpNumber
 	 * @param context
-	 * @param number
+	 * @param factory
+	 * @return
 	 */
-	public void updateValue(Context context, BigDecimal number) {
-		context.updateBigDecimal(getUniqueID(), number);
+	public IVPBoolean lessThan(IVPNumber num, Context c, HashMap<String, DataObject> map, DataFactory factory){
+		IVPBoolean result = factory.createIVPBoolean();
+		Boolean booleanResult = new Boolean(c.getBigDecimal(getUniqueID()).compareTo(c.getBigDecimal(num.getUniqueID())) < 0);
+		c.addBoolean(result.getUniqueID(), booleanResult);
+		return result;
+	}
+	
+	/**
+	 * Verify if this object is less than or equalt to the given IVPNumber num.
+	 * This method returns an IVPBoolean with true or false.
+	 * @param ivpNumber
+	 * @param context
+	 * @param factory
+	 * @return
+	 */
+	public IVPBoolean lessThanOrEqualTo(IVPNumber num, Context c, HashMap<String, DataObject> map, DataFactory factory){
+		IVPBoolean result = factory.createIVPBoolean();
+		Boolean booleanResult = new Boolean(c.getBigDecimal(getUniqueID()).compareTo(c.getBigDecimal(num.getUniqueID())) <= 0);
+		c.addBoolean(result.getUniqueID(), booleanResult);
+		return result;
+	}
+	
+	/**
+	 * Verify if this object is greater than the given IVPNumber num.
+	 * This method returns an IVPBoolean with true or false.
+	 * @param ivpNumber
+	 * @param context
+	 * @param factory
+	 * @return
+	 */
+	public IVPBoolean greaterThan(IVPNumber num, Context c, HashMap<String, DataObject> map, DataFactory factory){
+		IVPBoolean result = factory.createIVPBoolean();
+		Boolean booleanResult = new Boolean(c.getBigDecimal(getUniqueID()).compareTo(c.getBigDecimal(num.getUniqueID())) > 0);
+		c.addBoolean(result.getUniqueID(), booleanResult);
+		return result;
+	}
+	
+	/**
+	 * Verify if this object is greater than or equal to the given IVPNumber num.
+	 * This method returns an IVPBoolean with true or false.
+	 * @param ivpNumber
+	 * @param context
+	 * @param factory
+	 * @return
+	 */
+	public IVPBoolean greaterThanOrEqualTo(IVPNumber num, Context c, HashMap<String, DataObject> map, DataFactory factory){
+		IVPBoolean result = factory.createIVPBoolean();
+		Boolean booleanResult = new Boolean(c.getBigDecimal(getUniqueID()).compareTo(c.getBigDecimal(num.getUniqueID())) >= 0);
+		c.addBoolean(result.getUniqueID(), booleanResult);
+		return result;
 	}
 
+	/* (non-Javadoc)
+	 * @see usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPValue#ivpEqualTo(usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPValue, usp.ime.line.ivprog.interpreter.execution.Context, java.util.HashMap, usp.ime.line.ivprog.interpreter.DataFactory)
+	 */
+    @Override
+    public IVPBoolean ivpEqualTo(IVPValue v, Context c, HashMap<String, DataObject> map, DataFactory factory) {
+    	IVPBoolean result = factory.createIVPBoolean();
+		Boolean booleanResult = new Boolean(c.getBigDecimal(getUniqueID()).compareTo(c.getBigDecimal(v.getUniqueID())) == 0);
+		c.addBoolean(result.getUniqueID(), booleanResult);
+		return result;
+    }
+
+	/* (non-Javadoc)
+	 * @see usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPValue#ivpNotEqualTo(usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPValue, usp.ime.line.ivprog.interpreter.execution.Context, java.util.HashMap, usp.ime.line.ivprog.interpreter.DataFactory)
+	 */
+    @Override
+    public IVPBoolean ivpNotEqualTo(IVPValue v, Context c, HashMap<String, DataObject> map, DataFactory factory) {
+    	IVPBoolean result = factory.createIVPBoolean();
+		Boolean booleanResult = new Boolean(c.getBigDecimal(getUniqueID()).compareTo(c.getBigDecimal(v.getUniqueID())) != 0);
+		c.addBoolean(result.getUniqueID(), booleanResult);
+		return result;
+    }
+
+	
+	
 }
