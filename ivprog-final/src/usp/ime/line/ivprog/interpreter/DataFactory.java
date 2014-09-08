@@ -24,6 +24,10 @@ import usp.ime.line.ivprog.interpreter.execution.expressions.booleans.comparison
 import usp.ime.line.ivprog.interpreter.execution.expressions.booleans.comparisons.LessThan;
 import usp.ime.line.ivprog.interpreter.execution.expressions.booleans.comparisons.LessThanOrEqualTo;
 import usp.ime.line.ivprog.interpreter.execution.expressions.booleans.comparisons.NotEqualTo;
+import usp.ime.line.ivprog.interpreter.execution.expressions.strings.Concatenation;
+import usp.ime.line.ivprog.interpreter.execution.expressions.strings.Contains;
+import usp.ime.line.ivprog.interpreter.execution.expressions.strings.StringLength;
+import usp.ime.line.ivprog.interpreter.execution.expressions.strings.SubString;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPBoolean;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPNumber;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPString;
@@ -34,12 +38,12 @@ import usp.ime.line.ivprog.language.Messages;
 public class DataFactory {
 
 	private Random r;
-	
-	public DataFactory () {
+
+	public DataFactory() {
 		r = new Random();
 	}
-	
-	private String getID(){
+
+	private String getID() {
 		return Integer.toHexString(r.nextInt());
 	}
 
@@ -61,6 +65,7 @@ public class DataFactory {
 	 */
 	public IVPString createIVPString() {
 		IVPString string = new IVPString();
+		string.setValueType(IVPValue.STRING_TYPE);
 		string.setUniqueID("" + getID());
 		return string;
 	}
@@ -123,93 +128,145 @@ public class DataFactory {
 
 	/**
 	 * Get a new Variable for a given context.
+	 * 
 	 * @return
 	 */
-    public IVPVariable createIVPVariable() {
-	    IVPVariable v = new IVPVariable();
-	    v.setUniqueID("" + getID());
-	    return v;
-    }
+	public IVPVariable createIVPVariable() {
+		IVPVariable v = new IVPVariable();
+		v.setUniqueID("" + getID());
+		return v;
+	}
 
-    /**
+	/**
 	 * Get a new And object.
+	 * 
 	 * @return
 	 */
-    public And createAnd() {
-    	And and = new And();
-    	and.setUniqueID("" + getID());
-	    return and;
-    }
+	public And createAnd() {
+		And and = new And();
+		and.setUniqueID("" + getID());
+		return and;
+	}
 
-    /**
-   	 * Get a new Or object.
-   	 * @return
-   	 */
-    public Or createOr() {
-    	Or or = new Or();
-    	or.setUniqueID("" + getID());
-	    return or;
-    }
+	/**
+	 * Get a new Or object.
+	 * 
+	 * @return
+	 */
+	public Or createOr() {
+		Or or = new Or();
+		or.setUniqueID("" + getID());
+		return or;
+	}
 
 	/**
 	 * Get a new EqualTo object.
+	 * 
 	 * @return
 	 */
-    public EqualTo createEqualTo() {
-    	EqualTo eq = new EqualTo();
-    	eq.setUniqueID(getID());
-	    return eq;
-    }
-    
+	public EqualTo createEqualTo() {
+		EqualTo eq = new EqualTo();
+		eq.setUniqueID(getID());
+		return eq;
+	}
+
 	/**
 	 * Get a new LessThan object.
+	 * 
 	 * @return
 	 */
-    public LessThan createLessThan() {
-    	LessThan less = new LessThan();
-    	less.setUniqueID(getID());
-	    return less;
-    }
-    
+	public LessThan createLessThan() {
+		LessThan less = new LessThan();
+		less.setUniqueID(getID());
+		return less;
+	}
+
 	/**
 	 * Get a new LessThanOrEqualTo object.
+	 * 
 	 * @return
 	 */
-    public LessThanOrEqualTo createLessThanOrEqualTo() {
-    	LessThanOrEqualTo less = new LessThanOrEqualTo();
-    	less.setUniqueID(getID());
-	    return less;
-    }
-    
+	public LessThanOrEqualTo createLessThanOrEqualTo() {
+		LessThanOrEqualTo less = new LessThanOrEqualTo();
+		less.setUniqueID(getID());
+		return less;
+	}
+
 	/**
 	 * Get a new GreaterThan object.
+	 * 
 	 * @return
 	 */
-    public GreaterThan createGreaterThan() {
-    	GreaterThan great = new GreaterThan();
-    	great.setUniqueID(getID());
-	    return great;
-    }
-    
-    /**
+	public GreaterThan createGreaterThan() {
+		GreaterThan great = new GreaterThan();
+		great.setUniqueID(getID());
+		return great;
+	}
+
+	/**
 	 * Get a new GreaterThanOrEqualTo object.
+	 * 
 	 * @return
 	 */
-    public GreaterThanOrEqualTo createGreaterThanOrEqualTo() {
-    	GreaterThanOrEqualTo great = new GreaterThanOrEqualTo();
-    	great.setUniqueID(getID());
-	    return great;
-    }
+	public GreaterThanOrEqualTo createGreaterThanOrEqualTo() {
+		GreaterThanOrEqualTo great = new GreaterThanOrEqualTo();
+		great.setUniqueID(getID());
+		return great;
+	}
 
 	/**
 	 * Get a new NotQualTo object.
+	 * 
 	 * @return
 	 */
-    public NotEqualTo createNotEqualTo() {
-    	NotEqualTo notEq = new NotEqualTo();
-    	notEq.setUniqueID(getID());
-	    return notEq;
+	public NotEqualTo createNotEqualTo() {
+		NotEqualTo notEq = new NotEqualTo();
+		notEq.setUniqueID(getID());
+		return notEq;
+	}
+
+	/**
+	 * Get a new Concatenation object.
+	 * 
+	 * @return
+	 */
+	public Concatenation createConcatenation() {
+		Concatenation concat = new Concatenation();
+		concat.setUniqueID(getID());
+		return concat;
+	}
+
+	/**
+	 * Get a new SubString object.
+	 * 
+	 * @return
+	 */
+	public SubString createSubString() {
+		SubString sub = new SubString();
+		sub.setUniqueID(getID());
+		return sub;
+	}
+
+	/**
+	 * Get a new StringLength object.
+	 * 
+	 * @return
+	 */
+    public StringLength createStringLength() {
+    	StringLength strlen = new StringLength();
+    	strlen.setUniqueID(getID());
+	    return strlen;
     }
 
+	/**
+	 * Get a new Contains object.
+	 * 
+	 * @return
+	 */
+    public Contains createContains() {
+	    Contains contains = new Contains();
+	    contains.setUniqueID(getID());
+	    return contains;
+    }
 
 }
