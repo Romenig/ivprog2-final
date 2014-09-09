@@ -110,7 +110,6 @@ public class StringOperations {
 		map.put(contains.getUniqueID(), contains);
 		
 		IVPNumber result = (IVPNumber) contains.evaluate(c, map, factory);
-		System.out.println(c.getBigDecimal(result.getUniqueID()));
 		assertTrue(c.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("10")) == 0);
 	}
 

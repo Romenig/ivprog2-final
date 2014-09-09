@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 import java.util.Random;
 
 import usp.ime.line.ivprog.interpreter.execution.Context;
+import usp.ime.line.ivprog.interpreter.execution.code.AttributionLine;
 import usp.ime.line.ivprog.interpreter.execution.expressions.arithmetic.Addition;
 import usp.ime.line.ivprog.interpreter.execution.expressions.arithmetic.Division;
 import usp.ime.line.ivprog.interpreter.execution.expressions.arithmetic.Multiplication;
@@ -267,6 +268,17 @@ public class DataFactory {
 	    Contains contains = new Contains();
 	    contains.setUniqueID(getID());
 	    return contains;
+    }
+
+	/**
+	 * Get a new AttributionLine object.
+	 * 
+	 * @return
+	 */
+    public AttributionLine createAttributionLine() {
+    	AttributionLine attLine = new AttributionLine();
+    	attLine.setUniqueID(getID());
+	    return attLine;
     }
 
 }
