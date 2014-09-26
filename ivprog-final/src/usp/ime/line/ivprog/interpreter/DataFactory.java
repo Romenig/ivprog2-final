@@ -34,6 +34,7 @@ import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPNumber;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPString;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPValue;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPVariable;
+import usp.ime.line.ivprog.interpreter.utils.IVPVector;
 import usp.ime.line.ivprog.language.Messages;
 
 public class DataFactory {
@@ -279,6 +280,16 @@ public class DataFactory {
     	AttributionLine attLine = new AttributionLine();
     	attLine.setUniqueID(getID());
 	    return attLine;
+    }
+
+	/**
+	 * Get a new AttributionLine object.
+	 * @return
+	 */
+    public IVPVector createIVPVector() {
+	    IVPVector vector = new IVPVector();
+	    vector.setUniqueID(getID());
+	    return vector;
     }
 
 }
