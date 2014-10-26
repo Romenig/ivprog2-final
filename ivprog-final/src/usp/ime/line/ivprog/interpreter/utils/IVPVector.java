@@ -15,16 +15,16 @@ import java.util.Vector;
 import usp.ime.line.ivprog.interpreter.DataFactory;
 import usp.ime.line.ivprog.interpreter.DataObject;
 import usp.ime.line.ivprog.interpreter.execution.Context;
+import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPBoolean;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPValue;
 
 /**
  * @author Romenig
- *
  */
 public class IVPVector extends DataObject {
 
-	private String size;
-	private String primitiveType;
+	private String sizeID;
+	private String primitiveTypeID;
 	private Vector<String> vectorRepresentation;
 	
 	/* (non-Javadoc)
@@ -37,46 +37,48 @@ public class IVPVector extends DataObject {
 
 	/**
 	 * Set the IVPVector size.
-	 * 
-	 * @param s
+	 * @param sizeID
+	 * @param c
 	 */
-    public void setSize(String s) {
-	    size = s;
-	    vectorRepresentation = new Vector <String>(new Integer(size).intValue()) ;
+    public void setSize(String sizeID, Context c) {
+    	this.sizeID = sizeID;
+	    vectorRepresentation = new Vector <String>(c.getBigDecimal(sizeID).intValue()) ;
     }
 
 	/**
 	 * Set the primitive type.
-	 * 
 	 * @param integerType
 	 */
     public void setType(String t) {
-	    primitiveType = t;
+    	primitiveTypeID = t;
     }
 
 	/**
 	 * Get the primitive type.
-	 * 
 	 * @return
 	 */
     public Object getType() {
-	    return primitiveType;
+	    return primitiveTypeID;
+    }
+    
+
+	/**
+	 * Get the IVPVector sizeID.
+	 * @return
+	 */
+    public String getSize() {
+	    return sizeID;
     }
 
 	/**
-	 * Get the IVPVector size.
-	 * 
+	 * If there is no element in the vector, it returns IVPBoolean false. 
+	 * Returns IVPBoolean true otherwise.
 	 * @return
 	 */
-    public Object getSize() {
-	    return size;
-    }
-
-	/**
-	 * @return
-	 */
-    public boolean isEmpty() {
-	    return vectorRepresentation.isEmpty();
+    public String isEmpty(DataFactory factory, Context c, HashMap<String, DataObject> map) {
+    	IVPBoolean isEmpty = factory.createIVPBoolean();
+    	c.addBoolean(isEmpty.getUniqueID(), new Boolean(vectorRepresentation.isEmpty()));
+	    return isEmpty.getUniqueID();
     }
 
 	/**
@@ -94,8 +96,19 @@ public class IVPVector extends DataObject {
 	 * @param bigDecimal
 	 * @return
 	 */
-    public Object get(BigDecimal bigDecimal) {
+    public Object get(BigDecimal bigDecimal){
 	    return vectorRepresentation.get(bigDecimal.intValue());
+    }
+
+	/**
+	 * 
+	 * @param bigDecimal
+	 * @return
+	 */
+    public String remove(BigDecimal bigDecimal) {
+    	String removed = vectorRepresentation.get(bigDecimal.intValue());
+    	vectorRepresentation.add(bigDecimal.intValue(), IVPValue.NULL);
+	    return removed;
     }
 
 }

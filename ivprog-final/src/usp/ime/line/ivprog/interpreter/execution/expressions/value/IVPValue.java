@@ -21,6 +21,7 @@ public abstract class IVPValue extends Expression {
 	public static final String DOUBLE_TYPE = "double";
 	public static final String STRING_TYPE = "String";
 	public static final String BOOLEAN_TYPE = "boolean";
+	public static final String NULL = "null";
 
 	private String valueType;
 
