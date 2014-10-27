@@ -18,11 +18,8 @@ import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPBoolean;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPNumber;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPValue;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPVariable;
+import usp.ime.line.ivprog.interpreter.execution.utils.IVPVectorReference;
 
-/**
- * @author Romenig
- *
- */
 public class AttributionLine extends CodeComponent {
 	
 	private String variableID;
@@ -33,13 +30,31 @@ public class AttributionLine extends CodeComponent {
 	 */
     @Override
     public Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory) {
-    	IVPVariable variable = (IVPVariable) map.get(variableID);
-    	IVPValue value = (IVPValue) map.get(expressionID).evaluate(c, map, factory);
-    	IVPValue copyOfValue = createCopy(value, c, map, factory);
-    	variable.setValueID(copyOfValue.getUniqueID());
+    	if(map.get(variableID) instanceof IVPVariable){
+    		IVPVariable variable = (IVPVariable) map.get(variableID);
+        	IVPValue value = (IVPValue) map.get(expressionID).evaluate(c, map, factory);
+        	IVPValue copyOfValue = createCopy(value, c, map, factory);
+        	variable.setValueID(copyOfValue.getUniqueID());	
+    	}else if(map.get(variableID) instanceof IVPVectorReference){
+    		IVPVectorReference ref = (IVPVectorReference) map.get(variableID);
+    		IVPValue value = (IVPValue) map.get(expressionID).evaluate(c, map, factory);
+        	IVPValue copyOfValue = createCopy(value, c, map, factory);
+        	ref.setElementIntoVector(copyOfValue.getUniqueID(),c,map,factory);
+    	}
 	    return null;
     }
 
+    /*
+	The copy is needed because of the following:
+        String a, b, c;
+		a = "1";
+		b = "2";
+		c = "3";
+		
+		a = b;
+		b = c;
+		System.out.println(a); // results 2, not 3.
+     */
     private IVPValue createCopy(IVPValue value, Context c, HashMap<String, DataObject> map, DataFactory factory) {
     	IVPValue copy = null;
     	if(value instanceof IVPNumber){
@@ -50,7 +65,7 @@ public class AttributionLine extends CodeComponent {
     		c.addBoolean(copy.getUniqueID(), new Boolean(c.getBoolean(value.getUniqueID()).toString()));
     	}else{
     		copy = factory.createIVPString();
-    		c.addString(copy.getUniqueID(), new String(c.getString(value.getUniqueID()).toString()));
+    		c.addString(copy.getUniqueID(), new String(c.getString(value.getUniqueID())));
     	}
     	copy.setValueType(value.getValueType());
     	map.put(copy.getUniqueID(), copy);

@@ -19,9 +19,10 @@ import usp.ime.line.ivprog.interpreter.DataFactory;
 import usp.ime.line.ivprog.interpreter.DataObject;
 import usp.ime.line.ivprog.interpreter.execution.Context;
 import usp.ime.line.ivprog.interpreter.execution.code.AttributionLine;
+import usp.ime.line.ivprog.interpreter.execution.expressions.arithmetic.Addition;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPNumber;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPValue;
-import usp.ime.line.ivprog.interpreter.utils.IVPVector;
+import usp.ime.line.ivprog.interpreter.execution.utils.IVPVector;
 
 public class IVPVectorTests {
 
@@ -146,27 +147,4 @@ public class IVPVectorTests {
 		assertTrue(vect.get(new BigDecimal(1)).equals(IVPValue.NULL));
 	}
 	
-	@Test
-	public void attributionLineWithVector() {
-		Context context = new Context();
-		DataFactory factory = new DataFactory();
-		IVPNumber a = factory.createIVPNumber();
-		IVPNumber b = factory.createIVPNumber();
-		IVPNumber size = factory.createIVPNumber();
-		
-		a.setValueType(IVPValue.INTEGER_TYPE);
-		b.setValueType(IVPValue.INTEGER_TYPE);
-		size.setValueType(IVPValue.INTEGER_TYPE); 
-		
-		IVPVector vect = factory.createIVPVector();
-		context.addBigDecimal(size.getUniqueID(), new BigDecimal(10));
-		vect.setSize(size.getUniqueID(), context);
-		vect.setType(IVPValue.INTEGER_TYPE);
-		
-		AttributionLine attLine = factory.createAttributionLine();
-		
-		
-		
-	}
-
 }

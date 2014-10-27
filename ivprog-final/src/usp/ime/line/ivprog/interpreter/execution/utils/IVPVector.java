@@ -6,7 +6,7 @@
  * Romenig da Silva Ribeiro - romenig@ime.usp.br | romenig@gmail.com
  * @author Romenig
  */
-package usp.ime.line.ivprog.interpreter.utils;
+package usp.ime.line.ivprog.interpreter.execution.utils;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -18,9 +18,6 @@ import usp.ime.line.ivprog.interpreter.execution.Context;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPBoolean;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPValue;
 
-/**
- * @author Romenig
- */
 public class IVPVector extends DataObject {
 
 	private String sizeID;
@@ -42,7 +39,10 @@ public class IVPVector extends DataObject {
 	 */
     public void setSize(String sizeID, Context c) {
     	this.sizeID = sizeID;
-	    vectorRepresentation = new Vector <String>(c.getBigDecimal(sizeID).intValue()) ;
+	    vectorRepresentation = new Vector <String>() ;
+	    for(int i = 0; i < c.getBigDecimal(sizeID).intValue(); i++){
+	    	vectorRepresentation.add(i, null);
+	    }
     }
 
 	/**
@@ -77,7 +77,14 @@ public class IVPVector extends DataObject {
 	 */
     public String isEmpty(DataFactory factory, Context c, HashMap<String, DataObject> map) {
     	IVPBoolean isEmpty = factory.createIVPBoolean();
-    	c.addBoolean(isEmpty.getUniqueID(), new Boolean(vectorRepresentation.isEmpty()));
+    	boolean test = true;
+    	for(int i = 0; i < vectorRepresentation.size(); i += 1){
+    		if(vectorRepresentation.get(i) != null){ 
+    			test = false;
+    		}
+    		break;
+    	}
+    	c.addBoolean(isEmpty.getUniqueID(), new Boolean(test));
 	    return isEmpty.getUniqueID();
     }
 
@@ -109,6 +116,14 @@ public class IVPVector extends DataObject {
     	String removed = vectorRepresentation.get(bigDecimal.intValue());
     	vectorRepresentation.add(bigDecimal.intValue(), IVPValue.NULL);
 	    return removed;
+    }
+
+	/**
+	 * @param bigDecimal
+	 * @param copyOfValue
+	 */
+    public void addToIndex(BigDecimal bigDecimal, IVPValue copyOfValue) {
+	    
     }
 
 }

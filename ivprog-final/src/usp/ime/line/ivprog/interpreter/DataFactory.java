@@ -13,6 +13,7 @@ import java.util.Random;
 
 import usp.ime.line.ivprog.interpreter.execution.Context;
 import usp.ime.line.ivprog.interpreter.execution.code.AttributionLine;
+import usp.ime.line.ivprog.interpreter.execution.code.While;
 import usp.ime.line.ivprog.interpreter.execution.expressions.arithmetic.Addition;
 import usp.ime.line.ivprog.interpreter.execution.expressions.arithmetic.Division;
 import usp.ime.line.ivprog.interpreter.execution.expressions.arithmetic.Multiplication;
@@ -34,7 +35,8 @@ import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPNumber;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPString;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPValue;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPVariable;
-import usp.ime.line.ivprog.interpreter.utils.IVPVector;
+import usp.ime.line.ivprog.interpreter.execution.utils.IVPVector;
+import usp.ime.line.ivprog.interpreter.execution.utils.IVPVectorReference;
 import usp.ime.line.ivprog.language.Messages;
 
 public class DataFactory {
@@ -290,6 +292,26 @@ public class DataFactory {
 	    IVPVector vector = new IVPVector();
 	    vector.setUniqueID(getID());
 	    return vector;
+    }
+
+	/**
+	 * Get a new IVPVectorReference object.
+	 * @return
+	 */
+    public IVPVectorReference createIVPVectorReference() {
+    	IVPVectorReference ref = new IVPVectorReference();
+    	ref.setUniqueID(getID());
+	    return ref;
+    }
+
+	/**
+	 * Get a new IVPWhile object.
+	 * @return
+	 */
+    public While createWhile() {
+	    While w = new While();
+	    w.setUniqueID(getID());
+	    return w;
     }
 
 }
