@@ -40,19 +40,19 @@ public class ComparisonGreaterThan {
 
 		c.addBigDecimal(a.getUniqueID(), new BigDecimal(30));
 		c.addBigDecimal(b.getUniqueID(), new BigDecimal(3));
-		
+
 		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
 		map.put(a.getUniqueID(), a);
 		map.put(b.getUniqueID(), b);
 		map.put(gt.getUniqueID(), gt);
-		
+
 		IVPBoolean result = (IVPBoolean) gt.evaluate(c, map, factory);
 		assertTrue(c.getBoolean(result.getUniqueID()));
 		b.updateValue(c, new BigDecimal(30));
 		result = (IVPBoolean) gt.evaluate(c, map, factory);
 		assertFalse(c.getBoolean(result.getUniqueID()));
 	}
-	
+
 	@Test
 	public void testEqualForDoubleNumbers() {
 		Context c = new Context();
@@ -68,19 +68,19 @@ public class ComparisonGreaterThan {
 
 		c.addBigDecimal(a.getUniqueID(), new BigDecimal(3.0002));
 		c.addBigDecimal(b.getUniqueID(), new BigDecimal(3.0001));
-		
+
 		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
 		map.put(a.getUniqueID(), a);
 		map.put(b.getUniqueID(), b);
 		map.put(gt.getUniqueID(), gt);
-		
+
 		IVPBoolean result = (IVPBoolean) gt.evaluate(c, map, factory);
 		assertTrue(c.getBoolean(result.getUniqueID()));
 		b.updateValue(c, new BigDecimal(4.0));
 		result = (IVPBoolean) gt.evaluate(c, map, factory);
 		assertFalse(c.getBoolean(result.getUniqueID()));
 	}
-	
+
 	@Test
 	public void testEqualForIntAndDouble() {
 		Context c = new Context();
@@ -96,17 +96,17 @@ public class ComparisonGreaterThan {
 
 		c.addBigDecimal(a.getUniqueID(), new BigDecimal(3.0001));
 		c.addBigDecimal(b.getUniqueID(), new BigDecimal(3));
-		
+
 		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
 		map.put(a.getUniqueID(), a);
 		map.put(b.getUniqueID(), b);
 		map.put(gt.getUniqueID(), gt);
-		
+
 		IVPBoolean result = (IVPBoolean) gt.evaluate(c, map, factory);
 		assertTrue(c.getBoolean(result.getUniqueID()));
 		b.updateValue(c, new BigDecimal(2));
 		result = (IVPBoolean) gt.evaluate(c, map, factory);
 		assertTrue(c.getBoolean(result.getUniqueID()));
 	}
-	
+
 }

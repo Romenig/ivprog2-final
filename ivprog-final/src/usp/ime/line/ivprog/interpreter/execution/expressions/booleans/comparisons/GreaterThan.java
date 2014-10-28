@@ -19,12 +19,13 @@ import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPNumber;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPValue;
 
 public class GreaterThan extends Expression {
-	
+
 	private String expA;
 	private String expB;
 
 	/**
 	 * Set the left expression of and. EqualTo := expressionA == expressionB
+	 * 
 	 * @param expressionA
 	 */
 	public void setExpressionA(String expressionA) {
@@ -33,17 +34,18 @@ public class GreaterThan extends Expression {
 
 	/**
 	 * Set the right expression of and. EqualTo := expressionA == expressionB
+	 * 
 	 * @param expressionB
 	 */
 	public void setExpressionB(String expressionB) {
 		expB = expressionB;
 	}
-	
-    @Override
-    public Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory) {
-    	IVPNumber expressionA = (IVPNumber) map.get(expA).evaluate(c, map, factory);
-    	IVPNumber expressionB = (IVPNumber) map.get(expB).evaluate(c, map, factory);
-	    return expressionA.greaterThan(expressionB, c, map, factory);
-    }
+
+	@Override
+	public Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory) {
+		IVPNumber expressionA = (IVPNumber) map.get(expA).evaluate(c, map, factory);
+		IVPNumber expressionB = (IVPNumber) map.get(expB).evaluate(c, map, factory);
+		return expressionA.greaterThan(expressionB, c, map, factory);
+	}
 
 }

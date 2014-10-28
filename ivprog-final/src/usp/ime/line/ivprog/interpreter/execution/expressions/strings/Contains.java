@@ -25,27 +25,29 @@ public class Contains extends Expression {
 	private String subString;
 
 	/**
-	 * Set the string. 
+	 * Set the string.
+	 * 
 	 * @param str
 	 */
 	public void setString(String str) {
 		string = str;
 	}
-	
+
 	/**
 	 * Set the substring you wish to search for.
+	 * 
 	 * @param sub
 	 */
-    public void setSubString(String sub) {
-	    subString = sub;
-    }
-	
+	public void setSubString(String sub) {
+		subString = sub;
+	}
+
 	@Override
 	public Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory) {
 		IVPString str1 = (IVPString) map.get(string).evaluate(c, map, factory);
 		IVPString sub = (IVPString) map.get(subString).evaluate(c, map, factory);
 		IVPNumber result = str1.searchSubstring(sub, c, factory);
-		return result; 
+		return result;
 	}
 
 }

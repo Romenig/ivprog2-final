@@ -24,18 +24,19 @@ public class StringLength extends Expression {
 	private String string;
 
 	/**
-	 * Set the string. 
+	 * Set the string.
+	 * 
 	 * @param str
 	 */
 	public void setString(String str) {
 		string = str;
 	}
-	
+
 	@Override
 	public Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory) {
 		IVPString str1 = (IVPString) map.get(string).evaluate(c, map, factory);
 		IVPNumber result = str1.strlen(c, factory);
-		return result; 
+		return result;
 	}
 
 }

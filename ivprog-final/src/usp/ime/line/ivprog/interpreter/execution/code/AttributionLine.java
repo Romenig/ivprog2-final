@@ -21,74 +21,76 @@ import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPVariable;
 import usp.ime.line.ivprog.interpreter.execution.utils.IVPVectorReference;
 
 public class AttributionLine extends CodeComponent {
-	
+
 	private String variableID;
 	private String expressionID;
 
-	/* (non-Javadoc)
-	 * @see usp.ime.line.ivprog.interpreter.DataObject#evaluate(usp.ime.line.ivprog.interpreter.execution.Context, java.util.HashMap, usp.ime.line.ivprog.interpreter.DataFactory)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * usp.ime.line.ivprog.interpreter.DataObject#evaluate(usp.ime.line.ivprog
+	 * .interpreter.execution.Context, java.util.HashMap,
+	 * usp.ime.line.ivprog.interpreter.DataFactory)
 	 */
-    @Override
-    public Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory) {
-    	if(map.get(variableID) instanceof IVPVariable){
-    		IVPVariable variable = (IVPVariable) map.get(variableID);
-        	IVPValue value = (IVPValue) map.get(expressionID).evaluate(c, map, factory);
-        	IVPValue copyOfValue = createCopy(value, c, map, factory);
-        	variable.setValueID(copyOfValue.getUniqueID());	
-    	}else if(map.get(variableID) instanceof IVPVectorReference){
-    		IVPVectorReference ref = (IVPVectorReference) map.get(variableID);
-    		IVPValue value = (IVPValue) map.get(expressionID).evaluate(c, map, factory);
-        	IVPValue copyOfValue = createCopy(value, c, map, factory);
-        	ref.setElementIntoVector(copyOfValue.getUniqueID(),c,map,factory);
-    	}
-	    return null;
-    }
+	@Override
+	public Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory) {
+		if (map.get(variableID) instanceof IVPVariable) {
+			IVPVariable variable = (IVPVariable) map.get(variableID);
+			IVPValue value = (IVPValue) map.get(expressionID).evaluate(c, map, factory);
+			IVPValue copyOfValue = createCopy(value, c, map, factory);
+			variable.setValueID(copyOfValue.getUniqueID());
+		} else if (map.get(variableID) instanceof IVPVectorReference) {
+			IVPVectorReference ref = (IVPVectorReference) map.get(variableID);
+			IVPValue value = (IVPValue) map.get(expressionID).evaluate(c, map, factory);
+			IVPValue copyOfValue = createCopy(value, c, map, factory);
+			ref.setElementIntoVector(copyOfValue.getUniqueID(), c, map, factory);
+		}
+		return null;
+	}
 
-    /*
-	The copy is needed because of the following:
-        String a, b, c;
-		a = "1";
-		b = "2";
-		c = "3";
-		
-		a = b;
-		b = c;
-		System.out.println(a); // results 2, not 3.
-     */
-    private IVPValue createCopy(IVPValue value, Context c, HashMap<String, DataObject> map, DataFactory factory) {
-    	IVPValue copy = null;
-    	if(value instanceof IVPNumber){
-    		copy = factory.createIVPNumber();
-    		c.addBigDecimal(copy.getUniqueID(), new BigDecimal(c.getBigDecimal(value.getUniqueID()).toString()));
-    	}else if(value instanceof IVPBoolean){
-    		copy = factory.createIVPNumber();
-    		c.addBoolean(copy.getUniqueID(), new Boolean(c.getBoolean(value.getUniqueID()).toString()));
-    	}else{
-    		copy = factory.createIVPString();
-    		c.addString(copy.getUniqueID(), new String(c.getString(value.getUniqueID())));
-    	}
-    	copy.setValueType(value.getValueType());
-    	map.put(copy.getUniqueID(), copy);
-    	
-	    return copy;
-    }
-
-	/**
-	 * Set the left member of this attribution line.
-	 * attribution line:= variable = expression
-	 * @param uniqueID
+	/*
+	 * The copy is needed because of the following: String a, b, c; a = "1"; b =
+	 * "2"; c = "3";
+	 * 
+	 * a = b; b = c; System.out.println(a); // results 2, not 3.
 	 */
-    public void setVariable(String uniqueID) {
-    	variableID = uniqueID;
-    }
+	private IVPValue createCopy(IVPValue value, Context c, HashMap<String, DataObject> map, DataFactory factory) {
+		IVPValue copy = null;
+		if (value instanceof IVPNumber) {
+			copy = factory.createIVPNumber();
+			c.addBigDecimal(copy.getUniqueID(), new BigDecimal(c.getBigDecimal(value.getUniqueID()).toString()));
+		} else if (value instanceof IVPBoolean) {
+			copy = factory.createIVPNumber();
+			c.addBoolean(copy.getUniqueID(), new Boolean(c.getBoolean(value.getUniqueID()).toString()));
+		} else {
+			copy = factory.createIVPString();
+			c.addString(copy.getUniqueID(), new String(c.getString(value.getUniqueID())));
+		}
+		copy.setValueType(value.getValueType());
+		map.put(copy.getUniqueID(), copy);
+
+		return copy;
+	}
 
 	/**
-	 * Set the right member of this attribution line.
-	 * attribution line:= variable = expression
+	 * Set the left member of this attribution line. attribution line:= variable
+	 * = expression
+	 * 
 	 * @param uniqueID
 	 */
-    public void setExpression(String uniqueID) {
-    	expressionID = uniqueID;
-    }
+	public void setVariable(String uniqueID) {
+		variableID = uniqueID;
+	}
+
+	/**
+	 * Set the right member of this attribution line. attribution line:=
+	 * variable = expression
+	 * 
+	 * @param uniqueID
+	 */
+	public void setExpression(String uniqueID) {
+		expressionID = uniqueID;
+	}
 
 }

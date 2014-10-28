@@ -18,38 +18,40 @@ import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPBoolean;
 public class While extends CodeComposite {
 
 	private String loopConditionID;
-	
-	/**
-	 * @param uniqueID
-	 */
-    public void addChild(String uniqueID) {
-    	children.add(uniqueID);
-    }
 
 	/**
 	 * @param uniqueID
 	 */
-    public void setLoopCondition(String uniqueID) {
-	    loopConditionID = uniqueID;
-    }
+	public void addChild(String uniqueID) {
+		children.add(uniqueID);
+	}
 
-	/* (non-Javadoc)
-	 * @see usp.ime.line.ivprog.interpreter.DataObject#evaluate(usp.ime.line.ivprog.interpreter.execution.Context, java.util.HashMap, usp.ime.line.ivprog.interpreter.DataFactory)
+	/**
+	 * @param uniqueID
 	 */
-    @Override
-    public Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory) {
-    	
-    	IVPBoolean b = (IVPBoolean) map.get(loopConditionID).evaluate(c, map, factory);
-    	while(c.getBoolean(b.getUniqueID())){
-	    	for(int i = 0; i < children.size(); i += 1){
-	    		DataObject component = (DataObject) map.get(children.get(i));
-	    		component.evaluate(c, map, factory);
-	    	}
-	    	b = (IVPBoolean) map.get(loopConditionID).evaluate(c, map, factory);
-    	}
-	    return null;
-    }
-	
-	
+	public void setLoopCondition(String uniqueID) {
+		loopConditionID = uniqueID;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * usp.ime.line.ivprog.interpreter.DataObject#evaluate(usp.ime.line.ivprog
+	 * .interpreter.execution.Context, java.util.HashMap,
+	 * usp.ime.line.ivprog.interpreter.DataFactory)
+	 */
+	@Override
+	public Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory) {
+		IVPBoolean b = (IVPBoolean) map.get(loopConditionID).evaluate(c, map, factory);
+		while (c.getBoolean(b.getUniqueID())) {
+			for (int i = 0; i < children.size(); i += 1) {
+				DataObject component = (DataObject) map.get(children.get(i));
+				component.evaluate(c, map, factory);
+			}
+			b = (IVPBoolean) map.get(loopConditionID).evaluate(c, map, factory);
+		}
+		return null;
+	}
 
 }

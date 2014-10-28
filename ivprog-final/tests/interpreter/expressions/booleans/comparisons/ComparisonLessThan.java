@@ -41,16 +41,16 @@ public class ComparisonLessThan {
 
 		c.addBigDecimal(a.getUniqueID(), new BigDecimal(3));
 		c.addBigDecimal(b.getUniqueID(), new BigDecimal(30));
-		
+
 		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
 		map.put(a.getUniqueID(), a);
 		map.put(b.getUniqueID(), b);
 		map.put(lt.getUniqueID(), lt);
-		
+
 		IVPBoolean result = (IVPBoolean) lt.evaluate(c, map, factory);
 		assertTrue(c.getBoolean(result.getUniqueID()));
 	}
-	
+
 	@Test
 	public void testEqualForDoubleNumbers() {
 		Context c = new Context();
@@ -66,16 +66,16 @@ public class ComparisonLessThan {
 
 		c.addBigDecimal(a.getUniqueID(), new BigDecimal(3.0001));
 		c.addBigDecimal(b.getUniqueID(), new BigDecimal(3.0002));
-		
+
 		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
 		map.put(a.getUniqueID(), a);
 		map.put(b.getUniqueID(), b);
 		map.put(lt.getUniqueID(), lt);
-		
+
 		IVPBoolean result = (IVPBoolean) lt.evaluate(c, map, factory);
 		assertTrue(c.getBoolean(result.getUniqueID()));
 	}
-	
+
 	@Test
 	public void testEqualForIntAndDouble() {
 		Context c = new Context();
@@ -91,14 +91,14 @@ public class ComparisonLessThan {
 
 		c.addBigDecimal(a.getUniqueID(), new BigDecimal(3.0001));
 		c.addBigDecimal(b.getUniqueID(), new BigDecimal(3));
-		
+
 		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
 		map.put(a.getUniqueID(), a);
 		map.put(b.getUniqueID(), b);
 		map.put(lt.getUniqueID(), lt);
-		
+
 		IVPBoolean result = (IVPBoolean) lt.evaluate(c, map, factory);
 		assertFalse(c.getBoolean(result.getUniqueID()));
 	}
-	
+
 }

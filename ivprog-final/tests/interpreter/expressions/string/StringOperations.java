@@ -41,16 +41,16 @@ public class StringOperations {
 
 		c.addString(a.getUniqueID(), "Hello, ");
 		c.addString(b.getUniqueID(), "world!");
-		
+
 		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
 		map.put(a.getUniqueID(), a);
 		map.put(b.getUniqueID(), b);
 		map.put(conc.getUniqueID(), conc);
-		
+
 		IVPString result = (IVPString) conc.evaluate(c, map, factory);
 		assertTrue(c.getString(result.getUniqueID()).equals("Hello, world!"));
 	}
-	
+
 	@Test
 	public void obtainingSubstringTest() {
 		Context c = new Context();
@@ -62,15 +62,15 @@ public class StringOperations {
 		substring.setEndIndex("17");
 
 		c.addString(a.getUniqueID(), "ABCDEFGHIJKLMNOPQRSTUWXYZ");
-		
+
 		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
 		map.put(a.getUniqueID(), a);
 		map.put(substring.getUniqueID(), substring);
-		
+
 		IVPString result = (IVPString) substring.evaluate(c, map, factory);
 		assertTrue(c.getString(result.getUniqueID()).equals("MNOPQ"));
 	}
-	
+
 	@Test
 	public void obtainingStrlen() {
 		Context c = new Context();
@@ -80,35 +80,35 @@ public class StringOperations {
 		string.setString(a.getUniqueID());
 
 		c.addString(a.getUniqueID(), "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
-		
+
 		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
 		map.put(a.getUniqueID(), a);
 		map.put(string.getUniqueID(), string);
-		
+
 		IVPNumber result = (IVPNumber) string.evaluate(c, map, factory);
 		assertTrue(result.getValueType().equals(IVPValue.INTEGER_TYPE));
 		assertTrue(c.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("26")) == 0);
 	}
-	
+
 	@Test
 	public void containsSubstringTest() {
 		Context c = new Context();
 		DataFactory factory = new DataFactory();
 		IVPString a = factory.createIVPString();
 		IVPString b = factory.createIVPString();
-		
+
 		Contains contains = factory.createContains();
 		contains.setString(a.getUniqueID());
 		contains.setSubString(b.getUniqueID());
 
 		c.addString(a.getUniqueID(), "ABCDEFGHIJKLMNOPQRSTUWXYZ");
 		c.addString(b.getUniqueID(), "KLMN");
-		
+
 		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
 		map.put(a.getUniqueID(), a);
 		map.put(b.getUniqueID(), b);
 		map.put(contains.getUniqueID(), contains);
-		
+
 		IVPNumber result = (IVPNumber) contains.evaluate(c, map, factory);
 		assertTrue(c.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("10")) == 0);
 	}

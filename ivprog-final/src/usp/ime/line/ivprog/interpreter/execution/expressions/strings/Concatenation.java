@@ -49,7 +49,7 @@ public class Concatenation extends Expression {
 		IVPString str1 = (IVPString) map.get(expA).evaluate(c, map, factory);
 		IVPString str2 = (IVPString) map.get(expB).evaluate(c, map, factory);
 		IVPString result = str1.concatenate(str2, c, factory);
-		return result; 
+		return result;
 	}
 
 }

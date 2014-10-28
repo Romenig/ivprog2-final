@@ -48,7 +48,7 @@ public class SimpleOr {
 		assertTrue(result.getValueType().equals(IVPValue.BOOLEAN_TYPE));
 		assertTrue(c.getBoolean(result.getUniqueID()));
 	}
-	
+
 	@Test
 	public void trueOrFalse() {
 		Context c = new Context();
@@ -72,7 +72,7 @@ public class SimpleOr {
 		assertTrue(result.getValueType().equals(IVPValue.BOOLEAN_TYPE));
 		assertTrue(c.getBoolean(result.getUniqueID()));
 	}
-	
+
 	@Test
 	public void falseOrTrue() {
 		Context c = new Context();
@@ -96,7 +96,7 @@ public class SimpleOr {
 		assertTrue(result.getValueType().equals(IVPValue.BOOLEAN_TYPE));
 		assertTrue(c.getBoolean(result.getUniqueID()));
 	}
-	
+
 	@Test
 	public void falseOrFalse() {
 		Context c = new Context();

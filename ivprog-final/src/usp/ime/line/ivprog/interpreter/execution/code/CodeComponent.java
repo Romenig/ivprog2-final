@@ -11,5 +11,5 @@ package usp.ime.line.ivprog.interpreter.execution.code;
 import usp.ime.line.ivprog.interpreter.DataObject;
 
 public abstract class CodeComponent extends DataObject {
-	
+
 }

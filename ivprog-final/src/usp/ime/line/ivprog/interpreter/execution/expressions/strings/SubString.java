@@ -26,39 +26,37 @@ public class SubString extends Expression {
 	private String endIndex;
 
 	/**
-	 * Set the string. 
+	 * Set the string.
+	 * 
 	 * @param str
 	 */
 	public void setString(String str) {
 		string = str;
 	}
 
-	
 	@Override
 	public Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory) {
 		IVPString str1 = (IVPString) map.get(string).evaluate(c, map, factory);
 		IVPString result = str1.substring(beginIndex, endIndex, c, factory);
-		return result; 
+		return result;
 	}
-
 
 	/**
 	 * Set the begin index to split the IVPString object.
+	 * 
 	 * @param bi
 	 */
-    public void setBeginIndex(String bi) {
-	    beginIndex = bi;
-    }
-
+	public void setBeginIndex(String bi) {
+		beginIndex = bi;
+	}
 
 	/**
 	 * Set the end index to split the IVPString object.
+	 * 
 	 * @param ei
 	 */
-    public void setEndIndex(String ei) {
-	    endIndex = ei;
-    }
-    
-    
+	public void setEndIndex(String ei) {
+		endIndex = ei;
+	}
 
 }

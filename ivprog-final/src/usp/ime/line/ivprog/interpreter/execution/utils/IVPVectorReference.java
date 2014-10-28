@@ -15,56 +15,63 @@ import usp.ime.line.ivprog.interpreter.DataObject;
 import usp.ime.line.ivprog.interpreter.execution.Context;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPValue;
 
-public class IVPVectorReference extends DataObject{
+public class IVPVectorReference extends DataObject {
 
 	private String vectorID;
 	private String positionID;
-	
-	/* (non-Javadoc)
-	 * @see usp.ime.line.ivprog.interpreter.DataObject#evaluate(usp.ime.line.ivprog.interpreter.execution.Context, java.util.HashMap, usp.ime.line.ivprog.interpreter.DataFactory)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * usp.ime.line.ivprog.interpreter.DataObject#evaluate(usp.ime.line.ivprog
+	 * .interpreter.execution.Context, java.util.HashMap,
+	 * usp.ime.line.ivprog.interpreter.DataFactory)
 	 */
-    @Override
-    public Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory) {
-    	IVPValue value = (IVPValue) map.get(((IVPVector)map.get(vectorID)).get(c.getBigDecimal(positionID)));
-	    return value;
-    }
+	@Override
+	public Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory) {
+		IVPValue value = (IVPValue) map.get(((IVPVector) map.get(vectorID)).get(c.getBigDecimal(positionID)));
+		return value;
+	}
 
 	/**
 	 * @return the vectorID
 	 */
-    public String getVectorID() {
-	    return vectorID;
-    }
+	public String getVectorID() {
+		return vectorID;
+	}
 
 	/**
-	 * @param vectorID the vectorID to set
+	 * @param vectorID
+	 *            the vectorID to set
 	 */
-    public void setVectorID(String vectorID) {
-	    this.vectorID = vectorID;
-    }
-	
-    public IVPValue getElementFromVector(Context c, HashMap<String, DataObject> map, DataFactory factory){
-    	IVPValue value = (IVPValue) map.get(((IVPVector)map.get(vectorID)).get(c.getBigDecimal(positionID)));
-	    return value;
-    }
+	public void setVectorID(String vectorID) {
+		this.vectorID = vectorID;
+	}
 
-    public Object setElementIntoVector(String valueID, Context c, HashMap<String,DataObject> map, DataFactory factory){
-    	IVPVector v = (IVPVector) map.get(vectorID);
-    	v.add(c.getBigDecimal(positionID), valueID);
-    	return null;
-    }
+	public IVPValue getElementFromVector(Context c, HashMap<String, DataObject> map, DataFactory factory) {
+		IVPValue value = (IVPValue) map.get(((IVPVector) map.get(vectorID)).get(c.getBigDecimal(positionID)));
+		return value;
+	}
+
+	public Object setElementIntoVector(String valueID, Context c, HashMap<String, DataObject> map, DataFactory factory) {
+		IVPVector v = (IVPVector) map.get(vectorID);
+		v.add(c.getBigDecimal(positionID), valueID);
+		return null;
+	}
 
 	/**
 	 * @return the positionID
 	 */
-    public String getPositionID() {
-	    return positionID;
-    }
+	public String getPositionID() {
+		return positionID;
+	}
 
 	/**
-	 * @param positionID the positionID to set
+	 * @param positionID
+	 *            the positionID to set
 	 */
-    public void setPositionID(String positionID) {
-	    this.positionID = positionID;
-    }
+	public void setPositionID(String positionID) {
+		this.positionID = positionID;
+	}
 }

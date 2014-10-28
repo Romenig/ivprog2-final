@@ -19,27 +19,28 @@ public class IVPVariable extends Expression {
 
 	private String valueID;
 	private String variableType;
-	
-    @Override
-    public Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory) {
-    	DataObject dO = map.get(valueID);
-	    return dO.evaluate(c, map, factory);
-    }
+
+	@Override
+	public Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory) {
+		DataObject dO = map.get(valueID);
+		return dO.evaluate(c, map, factory);
+	}
 
 	/**
 	 * @return the variable type
 	 */
-    public String getVariableType() {
-	    return variableType;
-    }
+	public String getVariableType() {
+		return variableType;
+	}
 
 	/**
-	 * @param variableType the variable type to set
+	 * @param variableType
+	 *            the variable type to set
 	 */
-    public void setVariableType(String variableType) {
-	    this.variableType = variableType;
-    }
-    
+	public void setVariableType(String variableType) {
+		this.variableType = variableType;
+	}
+
 	/**
 	 * @return the valueID
 	 */
@@ -48,10 +49,11 @@ public class IVPVariable extends Expression {
 	}
 
 	/**
-	 * @param valueID the valueID to set
+	 * @param valueID
+	 *            the valueID to set
 	 */
 	public void setValueID(String valueID) {
 		this.valueID = valueID;
 	}
-	
+
 }

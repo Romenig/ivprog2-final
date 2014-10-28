@@ -13,6 +13,7 @@ import java.util.Random;
 
 import usp.ime.line.ivprog.interpreter.execution.Context;
 import usp.ime.line.ivprog.interpreter.execution.code.AttributionLine;
+import usp.ime.line.ivprog.interpreter.execution.code.IfElse;
 import usp.ime.line.ivprog.interpreter.execution.code.While;
 import usp.ime.line.ivprog.interpreter.execution.expressions.arithmetic.Addition;
 import usp.ime.line.ivprog.interpreter.execution.expressions.arithmetic.Division;
@@ -256,62 +257,76 @@ public class DataFactory {
 	 * 
 	 * @return
 	 */
-    public StringLength createStringLength() {
-    	StringLength strlen = new StringLength();
-    	strlen.setUniqueID(getID());
-	    return strlen;
-    }
+	public StringLength createStringLength() {
+		StringLength strlen = new StringLength();
+		strlen.setUniqueID(getID());
+		return strlen;
+	}
 
 	/**
 	 * Get a new Contains object.
 	 * 
 	 * @return
 	 */
-    public Contains createContains() {
-	    Contains contains = new Contains();
-	    contains.setUniqueID(getID());
-	    return contains;
-    }
+	public Contains createContains() {
+		Contains contains = new Contains();
+		contains.setUniqueID(getID());
+		return contains;
+	}
 
 	/**
 	 * Get a new AttributionLine object.
 	 * 
 	 * @return
 	 */
-    public AttributionLine createAttributionLine() {
-    	AttributionLine attLine = new AttributionLine();
-    	attLine.setUniqueID(getID());
-	    return attLine;
-    }
+	public AttributionLine createAttributionLine() {
+		AttributionLine attLine = new AttributionLine();
+		attLine.setUniqueID(getID());
+		return attLine;
+	}
 
 	/**
 	 * Get a new AttributionLine object.
+	 * 
 	 * @return
 	 */
-    public IVPVector createIVPVector() {
-	    IVPVector vector = new IVPVector();
-	    vector.setUniqueID(getID());
-	    return vector;
-    }
+	public IVPVector createIVPVector() {
+		IVPVector vector = new IVPVector();
+		vector.setUniqueID(getID());
+		return vector;
+	}
 
 	/**
 	 * Get a new IVPVectorReference object.
+	 * 
 	 * @return
 	 */
-    public IVPVectorReference createIVPVectorReference() {
-    	IVPVectorReference ref = new IVPVectorReference();
-    	ref.setUniqueID(getID());
-	    return ref;
-    }
+	public IVPVectorReference createIVPVectorReference() {
+		IVPVectorReference ref = new IVPVectorReference();
+		ref.setUniqueID(getID());
+		return ref;
+	}
 
 	/**
-	 * Get a new IVPWhile object.
+	 * Get a new While object.
+	 * 
 	 * @return
 	 */
-    public While createWhile() {
-	    While w = new While();
-	    w.setUniqueID(getID());
-	    return w;
-    }
+	public While createWhile() {
+		While w = new While();
+		w.setUniqueID(getID());
+		return w;
+	}
+
+	/**
+	 * Get a new IfElse object.
+	 * 
+	 * @return
+	 */
+	public IfElse createIfElse() {
+		IfElse ifElse = new IfElse();
+		ifElse.setUniqueID(getID());
+		return ifElse;
+	}
 
 }

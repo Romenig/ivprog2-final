@@ -48,7 +48,7 @@ public class Division extends Expression {
 		IVPNumber v2 = (IVPNumber) map.get(expB).evaluate(c, map, factory);
 		IVPNumber result = v1.divide(v2, c, factory);
 		result.setValueType(IVPValue.DOUBLE_TYPE);
-		return result; 
+		return result;
 	}
 
 }

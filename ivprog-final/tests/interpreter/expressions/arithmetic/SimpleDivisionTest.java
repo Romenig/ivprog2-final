@@ -48,7 +48,7 @@ public class SimpleDivisionTest {
 		map.put(b.getUniqueID(), b);
 
 		IVPNumber result = (IVPNumber) division.evaluate(c, map, factory);
-		
+
 		assertTrue(result.getValueType().equals(IVPValue.DOUBLE_TYPE));
 		assertTrue(c.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("5")) == 0);
 	}

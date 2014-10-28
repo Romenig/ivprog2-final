@@ -35,7 +35,7 @@ public class CompleteDivisionTest {
 		a.setValueType(IVPValue.DOUBLE_TYPE);
 		b.setValueType(IVPValue.INTEGER_TYPE);
 		c.setValueType(IVPValue.INTEGER_TYPE);
-		
+
 		context.addBigDecimal(a.getUniqueID(), new BigDecimal("3.4313"));
 		context.addBigDecimal(b.getUniqueID(), new BigDecimal("10"));
 		context.addBigDecimal(c.getUniqueID(), new BigDecimal("2"));
@@ -56,8 +56,8 @@ public class CompleteDivisionTest {
 		map.put(c.getUniqueID(), c);
 		// division2(c / division1(a / b))
 		// c / (a / b)
-		
-		IVPNumber result =  (IVPNumber) division2.evaluate(context, map, factory);
+
+		IVPNumber result = (IVPNumber) division2.evaluate(context, map, factory);
 		assertTrue(result.getValueType().equals(IVPValue.DOUBLE_TYPE));
 		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("5.828694663830035")) == 0);
 	}
@@ -94,7 +94,7 @@ public class CompleteDivisionTest {
 		map.put(c.getUniqueID(), c);
 		// division2(c / division1(a / b))
 		// c / (a / b)
-		IVPNumber result =  (IVPNumber) division2.evaluate(context, map, factory);
+		IVPNumber result = (IVPNumber) division2.evaluate(context, map, factory);
 		assertTrue(result.getValueType().equals(IVPValue.DOUBLE_TYPE));
 		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("2.857142857142857")) == 0);
 	}
@@ -140,7 +140,7 @@ public class CompleteDivisionTest {
 		map.put(d.getUniqueID(), d);
 		// division3(division1(a / b) / division2(c / d))
 		// ((a / b) / (c / d))
-		IVPNumber result =  (IVPNumber) division3.evaluate(context, map, factory);
+		IVPNumber result = (IVPNumber) division3.evaluate(context, map, factory);
 		assertTrue(result.getValueType().equals(IVPValue.DOUBLE_TYPE));
 		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("0.7")) == 0);
 	}

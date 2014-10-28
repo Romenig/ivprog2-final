@@ -34,35 +34,35 @@ public class IVPWhileTest {
 		DataFactory factory = new DataFactory();
 		Context context = new Context();
 		While w = factory.createWhile();
-		
+
 		IVPValue startingValue = factory.createIVPNumber();
 		startingValue.setValueType(IVPValue.INTEGER_TYPE);
 		context.addBigDecimal(startingValue.getUniqueID(), new BigDecimal(0));
-		
+
 		IVPValue maximumValue = factory.createIVPNumber();
 		maximumValue.setValueType(IVPValue.INTEGER_TYPE);
 		context.addBigDecimal(maximumValue.getUniqueID(), new BigDecimal(9));
-		
+
 		IVPValue one = factory.createIVPNumber();
 		one.setValueType(IVPValue.INTEGER_TYPE);
 		context.addBigDecimal(one.getUniqueID(), new BigDecimal(1));
-		
+
 		IVPVariable v = factory.createIVPVariable();
 		v.setVariableType(IVPValue.INTEGER_TYPE);
 		v.setValueID(startingValue.getUniqueID());
-		
+
 		LessThanOrEqualTo leq = factory.createLessThanOrEqualTo();
 		leq.setExpressionA(v.getUniqueID());
 		leq.setExpressionB(maximumValue.getUniqueID());
-		
+
 		Addition add = factory.createAddition();
 		add.setExpressionA(v.getUniqueID());
 		add.setExpressionB(one.getUniqueID());
-		
+
 		AttributionLine attLine = factory.createAttributionLine();
 		attLine.setVariable(v.getUniqueID());
 		attLine.setExpression(add.getUniqueID());
-		
+
 		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
 		map.put(maximumValue.getUniqueID(), maximumValue);
 		map.put(startingValue.getUniqueID(), startingValue);
@@ -71,16 +71,14 @@ public class IVPWhileTest {
 		map.put(add.getUniqueID(), add);
 		map.put(leq.getUniqueID(), leq);
 		map.put(attLine.getUniqueID(), attLine);
-		
+
 		w.setLoopCondition(leq.getUniqueID());
 		w.addChild(attLine.getUniqueID());
 		w.evaluate(context, map, factory);
-		
+
 		IVPNumber result = (IVPNumber) v.evaluate(context, map, factory);
 
 		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal(10)) == 0);
 	}
 
-	
-	
 }

@@ -170,11 +170,8 @@ public class Context implements Cloneable {
 	 * The clone method will be used only during a recursive call.
 	 */
 	public Object clone() {
-		Context c = new Context(
-				(HashMap<String, BigDecimal>) bigDecimalMap.clone(), 
-				(HashMap<String, String>) stringMap.clone(),
-		        (HashMap<String, Boolean>) booleanMap.clone()
-		        );
+		Context c = new Context((HashMap<String, BigDecimal>) bigDecimalMap.clone(), (HashMap<String, String>) stringMap.clone(),
+		        (HashMap<String, Boolean>) booleanMap.clone());
 		return c;
 	}
 

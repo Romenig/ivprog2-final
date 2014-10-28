@@ -57,7 +57,7 @@ public class CompleteAdditionTest {
 		map.put(c.getUniqueID(), c);
 		// addition2(c + addition1(a + b))
 		// c + (a + b)
-		IVPNumber result =  (IVPNumber) addition2.evaluate(context, map, factory);
+		IVPNumber result = (IVPNumber) addition2.evaluate(context, map, factory);
 		assertTrue(result.getValueType().equals(IVPValue.DOUBLE_TYPE));
 		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("15.4313")) == 0);
 	}
@@ -94,7 +94,7 @@ public class CompleteAdditionTest {
 		map.put(c.getUniqueID(), c);
 		// addition2(c + addition1(a + b))
 		// c + (a + b)
-		IVPNumber result =  (IVPNumber) addition2.evaluate(context, map, factory);
+		IVPNumber result = (IVPNumber) addition2.evaluate(context, map, factory);
 		assertTrue(result.getValueType().equals(IVPValue.INTEGER_TYPE));
 		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("19")) == 0);
 	}
@@ -140,7 +140,7 @@ public class CompleteAdditionTest {
 		map.put(d.getUniqueID(), d);
 		// addition3(addition1(a + b) + addition2(c + d))
 		// ((a + b) + (c + d))
-		IVPNumber result =  (IVPNumber) addition3.evaluate(context, map, factory);
+		IVPNumber result = (IVPNumber) addition3.evaluate(context, map, factory);
 		assertTrue(result.getValueType().equals(IVPValue.INTEGER_TYPE));
 		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("21")) == 0);
 	}

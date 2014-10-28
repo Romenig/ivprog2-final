@@ -25,9 +25,10 @@ import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPValue;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPVariable;
 
 public class SimpleAdditionTestWithVariable {
-	
+
 	/*
-	 * Bastam estes testes para verificar se as variáveis numéricas estão funcionando.
+	 * Bastam estes testes para verificar se as variáveis numéricas estão
+	 * funcionando.
 	 */
 
 	@Test
@@ -90,7 +91,7 @@ public class SimpleAdditionTestWithVariable {
 		IVPNumber result = (IVPNumber) addition.evaluate(c, map, factory);
 		assertTrue(result.getValueType().equals(IVPValue.DOUBLE_TYPE));
 		assertTrue(c.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("13.4313")) == 0);
-		
+
 	}
 
 	@Test
@@ -151,7 +152,7 @@ public class SimpleAdditionTestWithVariable {
 		map.put(v.getUniqueID(), v);
 
 		IVPNumber result = (IVPNumber) addition.evaluate(c, map, factory);
-		
+
 		assertTrue(result.getValueType().equals(IVPValue.DOUBLE_TYPE));
 		assertTrue(c.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("13.5424")) == 0);
 	}

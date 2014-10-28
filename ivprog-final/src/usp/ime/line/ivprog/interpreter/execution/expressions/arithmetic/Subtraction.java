@@ -47,13 +47,12 @@ public class Subtraction extends Expression {
 		IVPNumber v1 = (IVPNumber) map.get(expA).evaluate(c, map, factory);
 		IVPNumber v2 = (IVPNumber) map.get(expB).evaluate(c, map, factory);
 		IVPNumber result = v1.subtract(v2, c, factory);
-		if( v1.getValueType() == IVPValue.DOUBLE_TYPE || 
-				v2.getValueType() == IVPValue.DOUBLE_TYPE ){
-				result.setValueType(IVPValue.DOUBLE_TYPE);
-			}else{
-				result.setValueType(IVPValue.INTEGER_TYPE);
-			}
-		return result; 
+		if (v1.getValueType() == IVPValue.DOUBLE_TYPE || v2.getValueType() == IVPValue.DOUBLE_TYPE) {
+			result.setValueType(IVPValue.DOUBLE_TYPE);
+		} else {
+			result.setValueType(IVPValue.INTEGER_TYPE);
+		}
+		return result;
 	}
 
 }

@@ -24,7 +24,7 @@ import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPVariable;
 
 /**
  * @author Romenig
- *
+ * 
  */
 public class CreateIVPVariable {
 
@@ -35,20 +35,20 @@ public class CreateIVPVariable {
 
 		IVPNumber n = factory.createIVPNumber();
 		n.setValueType(IVPValue.INTEGER_TYPE);
-		c.addBigDecimal(n.getUniqueID(), new BigDecimal("10"));		
-		
+		c.addBigDecimal(n.getUniqueID(), new BigDecimal("10"));
+
 		IVPVariable v = factory.createIVPVariable();
 		v.setVariableType(IVPValue.INTEGER_TYPE);
 		v.setValueID(n.getUniqueID());
-		
+
 		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
 		map.put(v.getUniqueID(), v);
 		map.put(n.getUniqueID(), n);
-		
+
 		IVPNumber result = (IVPNumber) v.evaluate(c, map, factory);
 		assertTrue(c.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("10")) == 0);
 	}
-	
+
 	@Test
 	public void creatingDoubleVariable() {
 		Context c = new Context();
@@ -56,20 +56,20 @@ public class CreateIVPVariable {
 
 		IVPNumber n = factory.createIVPNumber();
 		n.setValueType(IVPValue.DOUBLE_TYPE);
-		c.addBigDecimal(n.getUniqueID(), new BigDecimal("10.5"));		
-		
+		c.addBigDecimal(n.getUniqueID(), new BigDecimal("10.5"));
+
 		IVPVariable v = factory.createIVPVariable();
 		v.setVariableType(IVPValue.DOUBLE_TYPE);
 		v.setValueID(n.getUniqueID());
-		
+
 		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
 		map.put(v.getUniqueID(), v);
 		map.put(n.getUniqueID(), n);
-		
+
 		IVPNumber result = (IVPNumber) v.evaluate(c, map, factory);
 		assertTrue(c.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("10.5")) == 0);
 	}
-	
+
 	@Test
 	public void creatingStringVariable() {
 		Context c = new Context();
@@ -77,20 +77,20 @@ public class CreateIVPVariable {
 
 		IVPNumber n = factory.createIVPNumber();
 		n.setValueType(IVPValue.STRING_TYPE);
-		c.addString(n.getUniqueID(), "Hello, world");		
-		
+		c.addString(n.getUniqueID(), "Hello, world");
+
 		IVPVariable v = factory.createIVPVariable();
 		v.setVariableType(IVPValue.STRING_TYPE);
 		v.setValueID(n.getUniqueID());
-		
+
 		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
 		map.put(v.getUniqueID(), v);
 		map.put(n.getUniqueID(), n);
-		
+
 		IVPNumber result = (IVPNumber) v.evaluate(c, map, factory);
 		assertTrue(c.getString(result.getUniqueID()).equals("Hello, world"));
 	}
-	
+
 	@Test
 	public void creatingBooleanVariable() {
 		Context c = new Context();
@@ -98,16 +98,16 @@ public class CreateIVPVariable {
 
 		IVPNumber n = factory.createIVPNumber();
 		n.setValueType(IVPValue.BOOLEAN_TYPE);
-		c.addBoolean(n.getUniqueID(), new Boolean(true));		
-		
+		c.addBoolean(n.getUniqueID(), new Boolean(true));
+
 		IVPVariable v = factory.createIVPVariable();
 		v.setVariableType(IVPValue.BOOLEAN_TYPE);
 		v.setValueID(n.getUniqueID());
-		
+
 		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
 		map.put(v.getUniqueID(), v);
 		map.put(n.getUniqueID(), n);
-		
+
 		IVPNumber result = (IVPNumber) v.evaluate(c, map, factory);
 		assertTrue(c.getBoolean(result.getUniqueID()));
 	}

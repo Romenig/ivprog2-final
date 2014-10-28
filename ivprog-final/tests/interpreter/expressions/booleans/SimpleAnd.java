@@ -48,7 +48,7 @@ public class SimpleAnd {
 		assertTrue(result.getValueType().equals(IVPValue.BOOLEAN_TYPE));
 		assertTrue(c.getBoolean(result.getUniqueID()));
 	}
-	
+
 	@Test
 	public void trueAndFalse() {
 		Context c = new Context();
@@ -72,7 +72,7 @@ public class SimpleAnd {
 		assertTrue(result.getValueType().equals(IVPValue.BOOLEAN_TYPE));
 		assertTrue(!c.getBoolean(result.getUniqueID()));
 	}
-	
+
 	@Test
 	public void falseAndTrue() {
 		Context c = new Context();
@@ -96,7 +96,7 @@ public class SimpleAnd {
 		assertTrue(result.getValueType().equals(IVPValue.BOOLEAN_TYPE));
 		assertTrue(!c.getBoolean(result.getUniqueID()));
 	}
-	
+
 	@Test
 	public void falseAndFalse() {
 		Context c = new Context();

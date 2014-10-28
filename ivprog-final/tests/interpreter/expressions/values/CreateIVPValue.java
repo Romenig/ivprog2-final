@@ -83,5 +83,5 @@ public class CreateIVPValue {
 		assertTrue(string.getValueType().equals(IVPValue.STRING_TYPE));
 		assertTrue(context.getString(string.getUniqueID()).equals("Alterando o valor da String aqui."));
 	}
-	
+
 }
