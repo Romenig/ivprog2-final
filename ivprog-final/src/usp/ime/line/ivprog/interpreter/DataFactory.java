@@ -13,6 +13,7 @@ import java.util.Random;
 
 import usp.ime.line.ivprog.interpreter.execution.Context;
 import usp.ime.line.ivprog.interpreter.execution.code.AttributionLine;
+import usp.ime.line.ivprog.interpreter.execution.code.For;
 import usp.ime.line.ivprog.interpreter.execution.code.IfElse;
 import usp.ime.line.ivprog.interpreter.execution.code.While;
 import usp.ime.line.ivprog.interpreter.execution.expressions.arithmetic.Addition;
@@ -328,5 +329,16 @@ public class DataFactory {
 		ifElse.setUniqueID(getID());
 		return ifElse;
 	}
+
+	/**
+	 * Get a new For object.
+	 * 
+	 * @return
+	 */
+    public For createFor() {
+    	For f = new For();
+    	f.setUniqueID(getID());
+	    return f;
+    }
 
 }

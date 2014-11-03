@@ -22,13 +22,6 @@ public class While extends CodeComposite {
 	/**
 	 * @param uniqueID
 	 */
-	public void addChild(String uniqueID) {
-		children.add(uniqueID);
-	}
-
-	/**
-	 * @param uniqueID
-	 */
 	public void setLoopCondition(String uniqueID) {
 		loopConditionID = uniqueID;
 	}

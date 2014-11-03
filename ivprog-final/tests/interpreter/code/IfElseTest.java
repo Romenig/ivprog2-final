@@ -25,7 +25,7 @@ import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPNumber;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPValue;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPVariable;
 
-public class IVPIfElseTest {
+public class IfElseTest {
 
 	@Test
 	public void flowTest() {
@@ -215,7 +215,6 @@ public class IVPIfElseTest {
 
 		IVPNumber result = (IVPNumber) v.evaluate(context, map, factory);
 		
-		System.out.println(context.getBigDecimal(result.getUniqueID()));
 		// After removing the attLine1, the result must be 2.
 		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal(2)) == 0);
 

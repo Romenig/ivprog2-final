@@ -27,7 +27,7 @@ import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPNumber;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPValue;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPVariable;
 
-public class IVPWhileTest {
+public class WhileTest {
 
 	@Test
 	public void whileTest() {
