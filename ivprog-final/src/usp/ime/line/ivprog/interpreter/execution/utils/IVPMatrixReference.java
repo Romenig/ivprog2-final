@@ -15,10 +15,11 @@ import usp.ime.line.ivprog.interpreter.DataObject;
 import usp.ime.line.ivprog.interpreter.execution.Context;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPValue;
 
-public class IVPVectorReference extends DataObject {
+public class IVPMatrixReference extends DataObject {
 
-	private String vectorID;
-	private String positionID;
+	private String matrixID;
+	private String linID;
+	private String colID;
 
 	/*
 	 * (non-Javadoc)
@@ -30,48 +31,61 @@ public class IVPVectorReference extends DataObject {
 	 */
 	@Override
 	public Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory) {
-		IVPValue value = (IVPValue) map.get(((IVPVector) map.get(vectorID)).get(positionID,c));
+		IVPValue value = (IVPValue) map.get(((IVPMatrix) map.get(matrixID)).getElement(linID,colID,c));
 		return value;
 	}
 
 	/**
 	 * @return the vectorID
 	 */
-	public String getVectorID() {
-		return vectorID;
+	public String getMatrixID() {
+		return matrixID;
 	}
 
 	/**
 	 * @param vectorID
 	 *            the vectorID to set
 	 */
-	public void setVectorID(String vectorID) {
-		this.vectorID = vectorID;
+	public void setMatrixID(String vectorID) {
+		this.matrixID = vectorID;
 	}
 
-	public IVPValue getElementFromVector(Context c, HashMap<String, DataObject> map, DataFactory factory) {
-		IVPValue value = (IVPValue) map.get(((IVPVector) map.get(vectorID)).get(positionID,c));
+	public IVPValue getElementFromMatrix(Context c, HashMap<String, DataObject> map, DataFactory factory) {
+		IVPValue value = (IVPValue) map.get(((IVPMatrix) map.get(matrixID)).getElement(linID,colID,c));
 		return value;
 	}
 
-	public Object setElementIntoVector(String valueID, Context c, HashMap<String, DataObject> map, DataFactory factory) {
-		IVPVector v = (IVPVector) map.get(vectorID);
-		v.add(c.getBigDecimal(positionID), valueID);
-		return null;
+	public Object setElementIntoMatrix(String valueID, Context c, HashMap<String, DataObject> map, DataFactory factory) {
+		IVPMatrix m = (IVPMatrix) map.get(matrixID);
+		return m.addElement(linID,colID,c,valueID);
 	}
 
 	/**
-	 * @return the positionID
+	 * @return the linID
 	 */
-	public String getPositionID() {
-		return positionID;
+	public String getLinID() {
+		return linID;
 	}
 
 	/**
-	 * @param positionID
-	 *            the positionID to set
+	 * @param linID the linID to set
 	 */
-	public void setPositionID(String positionID) {
-		this.positionID = positionID;
+	public void setLinID(String linID) {
+		this.linID = linID;
 	}
+
+	/**
+	 * @return the colID
+	 */
+	public String getColID() {
+		return colID;
+	}
+
+	/**
+	 * @param colID the colID to set
+	 */
+	public void setColID(String colID) {
+		this.colID = colID;
+	}
+
 }

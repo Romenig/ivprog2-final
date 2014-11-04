@@ -18,11 +18,12 @@ import usp.ime.line.ivprog.interpreter.execution.Context;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPBoolean;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPValue;
 
-public class IVPVector extends DataObject {
+public class IVPMatrix extends DataObject {
 
-	private String sizeID;
+	private String nColID;
+	private String nLinID;
 	private String primitiveTypeID;
-	private String[] vectorRepresentation;
+	private String[][] matrixRepresentation;
 
 	/*
 	 * (non-Javadoc)
@@ -43,11 +44,16 @@ public class IVPVector extends DataObject {
 	 * @param sizeID
 	 * @param c
 	 */
-	public void setSize(String sizeID, Context c) {
-		this.sizeID = sizeID;
-		vectorRepresentation = new String[c.getBigDecimal(sizeID).intValue()];
-		for (int i = 0; i < c.getBigDecimal(sizeID).intValue(); i++) {
-			vectorRepresentation[i] = IVPValue.NULL;
+	public void setSize(String nCol, String nLin, Context c) {
+		this.nColID = nCol;
+		this.nLinID = nLin;
+		int col = c.getBigDecimal(nCol).intValue();
+		int lin = c.getBigDecimal(nLin).intValue();
+		matrixRepresentation = new String[lin][col];
+		for(int i = 0; i < lin; i++){
+			for(int j = 0; j < col; j++){
+				matrixRepresentation[i][j] = IVPValue.NULL;
+			}
 		}
 	}
 
@@ -70,15 +76,6 @@ public class IVPVector extends DataObject {
 	}
 
 	/**
-	 * Get the IVPVector sizeID.
-	 * 
-	 * @return
-	 */
-	public String getSize() {
-		return sizeID;
-	}
-
-	/**
 	 * If there is no element in the vector, it returns IVPBoolean false.
 	 * Returns IVPBoolean true otherwise.
 	 * 
@@ -87,10 +84,14 @@ public class IVPVector extends DataObject {
 	public String isEmpty(DataFactory factory, Context c, HashMap<String, DataObject> map) {
 		IVPBoolean isEmpty = factory.createIVPBoolean();
 		boolean test = true;
-		for (int i = 0; i < vectorRepresentation.length; i += 1) {
-			if (vectorRepresentation[i] != IVPValue.NULL) {
-				test = false;
-				break;
+		int col = c.getBigDecimal(nColID).intValue();
+		int lin = c.getBigDecimal(nLinID).intValue();
+		for(int i = 0; i < lin; i++){
+			for(int j = 0; j < col; j++){
+				if (matrixRepresentation[i][j] != IVPValue.NULL) {
+					test = false;
+					break;
+				}
 			}
 		}
 		c.addBoolean(isEmpty.getUniqueID(), new Boolean(test));
@@ -100,12 +101,13 @@ public class IVPVector extends DataObject {
 	/**
 	 * Add element to the specified position.
 	 * 
-	 * @param bigDecimal
-	 * @param uniqueID
+	 * @return the last element on that place
 	 */
-	public Object add(BigDecimal bigDecimal, String uniqueID) {
-		String lastElement = vectorRepresentation[bigDecimal.intValue()];
-		vectorRepresentation[bigDecimal.intValue()] = uniqueID;
+	public Object addElement(String lin, String col, Context context, String elementID) {
+		int line = context.getBigDecimal(lin).intValue();
+		int column = context.getBigDecimal(col).intValue();
+		String lastElement = matrixRepresentation[line][column];
+		matrixRepresentation[line][column] = elementID;
 		return lastElement;
 	}
 
@@ -115,21 +117,39 @@ public class IVPVector extends DataObject {
 	 * @param bigDecimal
 	 * @return
 	 */
-	public Object get(String uniqueID, Context context) {
-		int index = context.getBigDecimal(uniqueID).intValue();
-		return vectorRepresentation[index];
+	public Object getElement(String lin, String col, Context context) {
+		int line = context.getBigDecimal(lin).intValue();
+		int column = context.getBigDecimal(col).intValue();
+		return matrixRepresentation[line][column];
 	}
 
 	/**
-	 * @param uniqueID
-	 * @param context
+	 * 
+	 * @param bigDecimal
 	 * @return
 	 */
-    public String remove(String uniqueID, Context context) {
-    	int index = context.getBigDecimal(uniqueID).intValue();
-    	String removed = vectorRepresentation[index];
-		vectorRepresentation[index] = IVPValue.NULL;
+	public String removeElement(String lin, String col, Context context) {
+		int line = context.getBigDecimal(lin).intValue();
+		int column = context.getBigDecimal(col).intValue();
+		String removed = matrixRepresentation[line][column];
+		matrixRepresentation[line][column] = IVPValue.NULL;
 		return removed;
-    }
+	}
 
+	/**
+	 * Get the number of lines of this matrix.
+	 * @return the nColID
+	 */
+	public String getNColID() {
+		return nColID;
+	}
+
+	/**
+	 * Get the number of lines of this matrix.
+	 * @return the nLinID
+	 */
+	public String getNLinID() {
+		return nLinID;
+	}
+	
 }

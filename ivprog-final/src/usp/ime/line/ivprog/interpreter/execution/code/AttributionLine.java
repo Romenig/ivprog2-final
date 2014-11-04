@@ -18,6 +18,7 @@ import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPBoolean;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPNumber;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPValue;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPVariable;
+import usp.ime.line.ivprog.interpreter.execution.utils.IVPMatrixReference;
 import usp.ime.line.ivprog.interpreter.execution.utils.IVPVectorReference;
 
 public class AttributionLine extends CodeComponent {
@@ -45,6 +46,11 @@ public class AttributionLine extends CodeComponent {
 			IVPValue value = (IVPValue) map.get(expressionID).evaluate(c, map, factory);
 			IVPValue copyOfValue = createCopy(value, c, map, factory);
 			ref.setElementIntoVector(copyOfValue.getUniqueID(), c, map, factory);
+		} else if(map.get(variableID) instanceof IVPMatrixReference ){
+			IVPMatrixReference ref = (IVPMatrixReference) map.get(variableID);
+			IVPValue value = (IVPValue) map.get(expressionID).evaluate(c, map, factory);
+			IVPValue copyOfValue = createCopy(value, c, map, factory);
+			ref.setElementIntoMatrix(copyOfValue.getUniqueID(), c, map, factory);
 		}
 		return null;
 	}

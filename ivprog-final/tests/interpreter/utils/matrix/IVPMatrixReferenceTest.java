@@ -6,7 +6,7 @@
  * Romenig da Silva Ribeiro - romenig@ime.usp.br | romenig@gmail.com
  * @author Romenig
  */
-package interpreter.utils.vector;
+package interpreter.utils.matrix;
 
 import static org.junit.Assert.*;
 
@@ -23,48 +23,54 @@ import usp.ime.line.ivprog.interpreter.execution.expressions.arithmetic.Addition
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPNumber;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPValue;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPVariable;
-import usp.ime.line.ivprog.interpreter.execution.utils.IVPVector;
-import usp.ime.line.ivprog.interpreter.execution.utils.IVPVectorReference;
+import usp.ime.line.ivprog.interpreter.execution.utils.IVPMatrix;
+import usp.ime.line.ivprog.interpreter.execution.utils.IVPMatrixReference;
 
-public class IVPVectorReferenceTest {
+public class IVPMatrixReferenceTest {
 
 	@Test
-	public void setVectorElementThroughReference() {
+	public void setMatrixElementThroughReference() {
 		Context context = new Context();
 		DataFactory factory = new DataFactory();
 		IVPNumber a = factory.createIVPNumber();
 		IVPNumber b = factory.createIVPNumber();
 		Addition add = factory.createAddition();
 		IVPNumber size = factory.createIVPNumber();
-		IVPNumber position = factory.createIVPNumber();
-		IVPVector vect = factory.createIVPVector();
+		IVPMatrix matrix = factory.createIVPMatrix();
 		AttributionLine attLine = factory.createAttributionLine();
-		IVPVectorReference ref = factory.createIVPVectorReference();
-
+		IVPMatrixReference ref = factory.createIVPMatrixReference();
+		IVPNumber line = factory.createIVPNumber();
+		IVPNumber column = factory.createIVPNumber();
+		
 		a.setValueType(IVPValue.INTEGER_TYPE);
 		b.setValueType(IVPValue.INTEGER_TYPE);
-		position.setValueType(IVPValue.INTEGER_TYPE);
 		size.setValueType(IVPValue.INTEGER_TYPE);
+		line.setValueType(IVPValue.INTEGER_TYPE);
+		column.setValueType(IVPValue.INTEGER_TYPE);
 
-		context.addBigDecimal(size.getUniqueID(), new BigDecimal(10));
+		context.addBigDecimal(size.getUniqueID(), new BigDecimal(3));
 		context.addBigDecimal(a.getUniqueID(), new BigDecimal(1));
 		context.addBigDecimal(b.getUniqueID(), new BigDecimal(2));
-		context.addBigDecimal(position.getUniqueID(), new BigDecimal(2));
-
-		vect.setSize(size.getUniqueID(), context);
-		vect.setType(IVPValue.INTEGER_TYPE);
+		context.addBigDecimal(line.getUniqueID(), new BigDecimal(0));
+		context.addBigDecimal(column.getUniqueID(), new BigDecimal(0));
+		
+		matrix.setSize(size.getUniqueID(), size.getUniqueID(), context);
+		matrix.setType(IVPValue.INTEGER_TYPE);
+		
 
 		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
 		map.put(a.getUniqueID(), a);
 		map.put(b.getUniqueID(), b);
-		map.put(position.getUniqueID(), position);
+		map.put(line.getUniqueID(), line);
+		map.put(column.getUniqueID(), column);
 		map.put(add.getUniqueID(), add);
 		map.put(ref.getUniqueID(), ref);
-		map.put(vect.getUniqueID(), vect);
+		map.put(matrix.getUniqueID(), matrix);
 
-		ref.setVectorID(vect.getUniqueID());
-		ref.setPositionID(position.getUniqueID());
-
+		ref.setMatrixID(matrix.getUniqueID());
+		ref.setLinID(line.getUniqueID());
+		ref.setColID(column.getUniqueID());
+		
 		add.setExpressionA(a.getUniqueID());
 		add.setExpressionB(b.getUniqueID());
 
@@ -80,14 +86,22 @@ public class IVPVectorReferenceTest {
 	}
 
 	@Test
-	public void getVectorElementThroughReference() {
+	public void getMatrixElementThroughReference() {
 		Context context = new Context();
 		DataFactory factory = new DataFactory();
 		IVPVariable var = factory.createIVPVariable();
-		IVPVector vect = factory.createIVPVector();
+		IVPMatrix vect = factory.createIVPMatrix();
 		AttributionLine attLine = factory.createAttributionLine();
-		IVPVectorReference ref = factory.createIVPVectorReference();
-
+		IVPMatrixReference ref = factory.createIVPMatrixReference();
+		
+		IVPNumber line = factory.createIVPNumber();
+		line.setValueType(IVPValue.INTEGER_TYPE);
+		context.addBigDecimal(line.getUniqueID(), new BigDecimal(0));
+		
+		IVPNumber column = factory.createIVPNumber();
+		column.setValueType(IVPValue.INTEGER_TYPE);
+		context.addBigDecimal(column.getUniqueID(), new BigDecimal(0));
+		
 		IVPNumber n1 = factory.createIVPNumber();
 		n1.setValueType(IVPValue.INTEGER_TYPE);
 		context.addBigDecimal(n1.getUniqueID(), new BigDecimal(1));
@@ -103,10 +117,10 @@ public class IVPVectorReferenceTest {
 		var.setValueID(n1.getUniqueID());
 		var.setVariableType(IVPValue.INTEGER_TYPE);
 
-		vect.setSize(size.getUniqueID(), context);
+		vect.setSize(size.getUniqueID(),size.getUniqueID(), context);
 		vect.setType(IVPValue.INTEGER_TYPE);
 
-		vect.add(new BigDecimal(2), n1.getUniqueID());
+		vect.addElement(line.getUniqueID(), column.getUniqueID(), context, n1.getUniqueID());
 
 		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
 		map.put(n1.getUniqueID(), n1);
@@ -114,9 +128,12 @@ public class IVPVectorReferenceTest {
 		map.put(ref.getUniqueID(), ref);
 		map.put(vect.getUniqueID(), vect);
 		map.put(var.getUniqueID(), var);
+		map.put(line.getUniqueID(), line);
+		map.put(column.getUniqueID(), column);
 
-		ref.setVectorID(vect.getUniqueID());
-		ref.setPositionID(position.getUniqueID());
+		ref.setMatrixID(vect.getUniqueID());
+		ref.setColID(column.getUniqueID());
+		ref.setLinID(line.getUniqueID());
 
 		attLine.setVariable(var.getUniqueID());
 		attLine.setExpression(ref.getUniqueID());

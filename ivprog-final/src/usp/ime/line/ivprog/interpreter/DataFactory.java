@@ -10,6 +10,7 @@ package usp.ime.line.ivprog.interpreter;
 
 import java.math.BigDecimal;
 import java.util.Random;
+import java.util.Vector;
 
 import usp.ime.line.ivprog.interpreter.execution.Context;
 import usp.ime.line.ivprog.interpreter.execution.code.AttributionLine;
@@ -37,6 +38,8 @@ import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPNumber;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPString;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPValue;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPVariable;
+import usp.ime.line.ivprog.interpreter.execution.utils.IVPMatrix;
+import usp.ime.line.ivprog.interpreter.execution.utils.IVPMatrixReference;
 import usp.ime.line.ivprog.interpreter.execution.utils.IVPVector;
 import usp.ime.line.ivprog.interpreter.execution.utils.IVPVectorReference;
 import usp.ime.line.ivprog.language.Messages;
@@ -44,13 +47,20 @@ import usp.ime.line.ivprog.language.Messages;
 public class DataFactory {
 
 	private Random r;
+	private Vector<String> v;
 
 	public DataFactory() {
 		r = new Random();
+		v = new Vector<String>();
 	}
 
 	private String getID() {
-		return Integer.toHexString(r.nextInt());
+		String randomHash = Integer.toHexString(r.nextInt());
+		while(v.contains(randomHash)){
+			randomHash = Integer.toHexString(r.nextInt());
+		}
+		v.add(randomHash);
+		return v.lastElement();
 	}
 
 	/**
@@ -339,6 +349,27 @@ public class DataFactory {
     	For f = new For();
     	f.setUniqueID(getID());
 	    return f;
+    }
+
+	/**
+	 * Get a new Matrix object.
+	 * 
+	 * @return
+	 */
+    public IVPMatrix createIVPMatrix() {
+    	IVPMatrix m = new IVPMatrix();
+    	m.setUniqueID(getID());
+	    return m;
+    }
+
+	/**
+	 * Get a new IVPMatrixReference object.
+	 * @return
+	 */
+    public IVPMatrixReference createIVPMatrixReference() {
+    	IVPMatrixReference mr = new IVPMatrixReference();
+    	mr.setUniqueID(getID());
+	    return mr;
     }
 
 }
