@@ -31,11 +31,10 @@ public class IVPMatrixTests {
 		DataFactory factory = new DataFactory();
 		Context context = new Context();
 
-		
 		IVPNumber size = factory.createIVPNumber();
 		size.setValueType(IVPValue.INTEGER_TYPE);
 		context.addBigDecimal(size.getUniqueID(), new BigDecimal("3"));
-		
+
 		IVPMatrix matrix = factory.createIVPMatrix();
 		matrix.setType(IVPValue.INTEGER_TYPE);
 
@@ -43,7 +42,7 @@ public class IVPMatrixTests {
 		map.put(matrix.getUniqueID(), matrix);
 		map.put(size.getUniqueID(), size);
 
-		matrix.setSize(size.getUniqueID(),size.getUniqueID(), context);
+		matrix.setSize(size.getUniqueID(), size.getUniqueID(), context);
 
 		assertTrue(matrix.getType().equals(IVPValue.INTEGER_TYPE));
 		assertTrue(context.getBigDecimal(matrix.getNColID()).intValue() == 3);
@@ -51,7 +50,6 @@ public class IVPMatrixTests {
 		assertTrue(context.getBoolean(matrix.isEmpty(factory, context, map)));
 	}
 
-	
 	@Test
 	public void createAMatrixAndPopulateWithInteger() {
 		Context context = new Context();
@@ -81,13 +79,13 @@ public class IVPMatrixTests {
 
 		matrix.setType(IVPValue.INTEGER_TYPE);
 
-		matrix.addElement(line.getUniqueID(), column.getUniqueID(),context, a.getUniqueID());
+		matrix.addElement(line.getUniqueID(), column.getUniqueID(), context, a.getUniqueID());
 		line.updateValue(context, new BigDecimal(1));
 		column.updateValue(context, new BigDecimal(1));
-		matrix.addElement(line.getUniqueID(), column.getUniqueID(),context, b.getUniqueID());
+		matrix.addElement(line.getUniqueID(), column.getUniqueID(), context, b.getUniqueID());
 		line.updateValue(context, new BigDecimal(2));
 		column.updateValue(context, new BigDecimal(2));
-		matrix.addElement(line.getUniqueID(), column.getUniqueID(),context, c.getUniqueID());
+		matrix.addElement(line.getUniqueID(), column.getUniqueID(), context, c.getUniqueID());
 
 		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
 		map.put(a.getUniqueID(), a);
@@ -105,13 +103,13 @@ public class IVPMatrixTests {
 
 		line.updateValue(context, new BigDecimal(0));
 		column.updateValue(context, new BigDecimal(0));
-		IVPNumber result1 = (IVPNumber) map.get(matrix.getElement(line.getUniqueID(), column.getUniqueID(),context));
+		IVPNumber result1 = (IVPNumber) map.get(matrix.getElement(line.getUniqueID(), column.getUniqueID(), context));
 		line.updateValue(context, new BigDecimal(1));
 		column.updateValue(context, new BigDecimal(1));
-		IVPNumber result2 = (IVPNumber) map.get(matrix.getElement(line.getUniqueID(), column.getUniqueID(),context));
+		IVPNumber result2 = (IVPNumber) map.get(matrix.getElement(line.getUniqueID(), column.getUniqueID(), context));
 		line.updateValue(context, new BigDecimal(2));
 		column.updateValue(context, new BigDecimal(2));
-		IVPNumber result3 = (IVPNumber) map.get(matrix.getElement(line.getUniqueID(), column.getUniqueID(),context));
+		IVPNumber result3 = (IVPNumber) map.get(matrix.getElement(line.getUniqueID(), column.getUniqueID(), context));
 
 		assertTrue(context.getBigDecimal(result1.getUniqueID()).compareTo(new BigDecimal("3")) == 0);
 		assertTrue(context.getBigDecimal(result2.getUniqueID()).compareTo(new BigDecimal("10")) == 0);
@@ -130,10 +128,10 @@ public class IVPMatrixTests {
 		IVPNumber column = factory.createIVPNumber();
 		IVPMatrix matrix = factory.createIVPMatrix();
 		IVPNumber size = factory.createIVPNumber();
-		
+
 		line.setValueType(IVPValue.INTEGER_TYPE);
 		column.setValueType(IVPValue.INTEGER_TYPE);
-		
+
 		a.setValueType(IVPValue.INTEGER_TYPE);
 		b.setValueType(IVPValue.INTEGER_TYPE);
 		c.setValueType(IVPValue.INTEGER_TYPE);
@@ -144,7 +142,7 @@ public class IVPMatrixTests {
 		context.addBigDecimal(size.getUniqueID(), new BigDecimal("3"));
 		context.addBigDecimal(line.getUniqueID(), new BigDecimal("0"));
 		context.addBigDecimal(column.getUniqueID(), new BigDecimal("0"));
-		
+
 		matrix.setSize(size.getUniqueID(), size.getUniqueID(), context);
 		matrix.setType(IVPValue.INTEGER_TYPE);
 
@@ -163,21 +161,21 @@ public class IVPMatrixTests {
 		map.put(matrix.getUniqueID(), matrix);
 		map.put(line.getUniqueID(), line);
 		map.put(column.getUniqueID(), column);
-		
+
 		assertTrue(matrix.getType().equals(IVPValue.INTEGER_TYPE));
 		assertTrue(context.getBigDecimal(matrix.getNColID()).intValue() == 3);
 		assertTrue(context.getBigDecimal(matrix.getNLinID()).intValue() == 3);
 		assertFalse(context.getBoolean(matrix.isEmpty(factory, context, map)));
-		
+
 		line.updateValue(context, new BigDecimal(0));
 		column.updateValue(context, new BigDecimal(0));
-		IVPNumber result1 = (IVPNumber) map.get(matrix.getElement(line.getUniqueID(), column.getUniqueID(),context));
+		IVPNumber result1 = (IVPNumber) map.get(matrix.getElement(line.getUniqueID(), column.getUniqueID(), context));
 		line.updateValue(context, new BigDecimal(1));
 		column.updateValue(context, new BigDecimal(1));
-		IVPNumber result2 = (IVPNumber) map.get(matrix.getElement(line.getUniqueID(), column.getUniqueID(),context));
+		IVPNumber result2 = (IVPNumber) map.get(matrix.getElement(line.getUniqueID(), column.getUniqueID(), context));
 		line.updateValue(context, new BigDecimal(2));
 		column.updateValue(context, new BigDecimal(2));
-		IVPNumber result3 = (IVPNumber) map.get(matrix.getElement(line.getUniqueID(), column.getUniqueID(),context));
+		IVPNumber result3 = (IVPNumber) map.get(matrix.getElement(line.getUniqueID(), column.getUniqueID(), context));
 
 		assertTrue(context.getBigDecimal(result1.getUniqueID()).compareTo(new BigDecimal("3")) == 0);
 		assertTrue(context.getBigDecimal(result2.getUniqueID()).compareTo(new BigDecimal("10")) == 0);
@@ -190,5 +188,5 @@ public class IVPMatrixTests {
 		assertTrue(removed.equals(b.getUniqueID()));
 		assertTrue(matrix.getElement(line.getUniqueID(), column.getUniqueID(), context).equals(IVPValue.NULL));
 	}
-	
+
 }

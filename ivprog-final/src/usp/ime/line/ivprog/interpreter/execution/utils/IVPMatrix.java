@@ -50,8 +50,8 @@ public class IVPMatrix extends DataObject {
 		int col = c.getBigDecimal(nCol).intValue();
 		int lin = c.getBigDecimal(nLin).intValue();
 		matrixRepresentation = new String[lin][col];
-		for(int i = 0; i < lin; i++){
-			for(int j = 0; j < col; j++){
+		for (int i = 0; i < lin; i++) {
+			for (int j = 0; j < col; j++) {
 				matrixRepresentation[i][j] = IVPValue.NULL;
 			}
 		}
@@ -86,8 +86,8 @@ public class IVPMatrix extends DataObject {
 		boolean test = true;
 		int col = c.getBigDecimal(nColID).intValue();
 		int lin = c.getBigDecimal(nLinID).intValue();
-		for(int i = 0; i < lin; i++){
-			for(int j = 0; j < col; j++){
+		for (int i = 0; i < lin; i++) {
+			for (int j = 0; j < col; j++) {
 				if (matrixRepresentation[i][j] != IVPValue.NULL) {
 					test = false;
 					break;
@@ -138,6 +138,7 @@ public class IVPMatrix extends DataObject {
 
 	/**
 	 * Get the number of lines of this matrix.
+	 * 
 	 * @return the nColID
 	 */
 	public String getNColID() {
@@ -146,10 +147,11 @@ public class IVPMatrix extends DataObject {
 
 	/**
 	 * Get the number of lines of this matrix.
+	 * 
 	 * @return the nLinID
 	 */
 	public String getNLinID() {
 		return nLinID;
 	}
-	
+
 }

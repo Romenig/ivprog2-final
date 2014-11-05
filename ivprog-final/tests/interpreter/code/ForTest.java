@@ -32,23 +32,23 @@ public class ForTest {
 		DataFactory factory = new DataFactory();
 		Context context = new Context();
 		For f = factory.createFor();
-		
+
 		IVPValue startingValue = factory.createIVPNumber();
 		startingValue.setValueType(IVPValue.INTEGER_TYPE);
 		context.addBigDecimal(startingValue.getUniqueID(), new BigDecimal(0));
-		
+
 		IVPValue one = factory.createIVPNumber();
 		one.setValueType(IVPValue.INTEGER_TYPE);
 		context.addBigDecimal(one.getUniqueID(), new BigDecimal(1));
-		
+
 		IVPValue n_times = factory.createIVPNumber();
 		n_times.setValueType(IVPValue.INTEGER_TYPE);
 		context.addBigDecimal(n_times.getUniqueID(), new BigDecimal(5));
-		
+
 		IVPVariable v = factory.createIVPVariable();
 		v.setVariableType(IVPValue.INTEGER_TYPE);
 		v.setValueID(startingValue.getUniqueID());
-		
+
 		Addition add = factory.createAddition();
 		add.setExpressionA(v.getUniqueID());
 		add.setExpressionB(one.getUniqueID());
@@ -56,7 +56,7 @@ public class ForTest {
 		AttributionLine attLine = factory.createAttributionLine();
 		attLine.setVariable(v.getUniqueID());
 		attLine.setExpression(add.getUniqueID());
-		
+
 		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
 		map.put(startingValue.getUniqueID(), startingValue);
 		map.put(one.getUniqueID(), one);
@@ -64,46 +64,46 @@ public class ForTest {
 		map.put(add.getUniqueID(), add);
 		map.put(attLine.getUniqueID(), attLine);
 		map.put(n_times.getUniqueID(), n_times);
-		
+
 		f.setExecutionMethod(For.FOR_N_TIMES);
 		f.setUpperBound(n_times.getUniqueID());
 		f.addChild(attLine.getUniqueID());
 		f.evaluate(context, map, factory);
-		
+
 		IVPNumber result = (IVPNumber) v.evaluate(context, map, factory);
 		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal(5)) == 0);
 	}
-	
+
 	@Test
 	public void forNTimesWithIndex() {
 		DataFactory factory = new DataFactory();
 		Context context = new Context();
 		For f = factory.createFor();
-		
+
 		IVPValue startingValue = factory.createIVPNumber();
 		startingValue.setValueType(IVPValue.INTEGER_TYPE);
 		context.addBigDecimal(startingValue.getUniqueID(), new BigDecimal(0));
-		
+
 		IVPValue one = factory.createIVPNumber();
 		one.setValueType(IVPValue.INTEGER_TYPE);
 		context.addBigDecimal(one.getUniqueID(), new BigDecimal(1));
-		
+
 		IVPValue indexValue = factory.createIVPNumber();
 		indexValue.setValueType(IVPValue.INTEGER_TYPE);
 		context.addBigDecimal(indexValue.getUniqueID(), new BigDecimal(1));
-		
+
 		IVPValue n_times = factory.createIVPNumber();
 		n_times.setValueType(IVPValue.INTEGER_TYPE);
 		context.addBigDecimal(n_times.getUniqueID(), new BigDecimal(5));
-		
+
 		IVPVariable v = factory.createIVPVariable();
 		v.setVariableType(IVPValue.INTEGER_TYPE);
 		v.setValueID(startingValue.getUniqueID());
-		
+
 		IVPVariable indexVar = factory.createIVPVariable();
 		indexVar.setVariableType(IVPValue.INTEGER_TYPE);
 		indexVar.setValueID(indexValue.getUniqueID());
-		
+
 		Addition add = factory.createAddition();
 		add.setExpressionA(v.getUniqueID());
 		add.setExpressionB(one.getUniqueID());
@@ -111,7 +111,7 @@ public class ForTest {
 		AttributionLine attLine = factory.createAttributionLine();
 		attLine.setVariable(v.getUniqueID());
 		attLine.setExpression(add.getUniqueID());
-		
+
 		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
 		map.put(startingValue.getUniqueID(), startingValue);
 		map.put(one.getUniqueID(), one);
@@ -121,13 +121,13 @@ public class ForTest {
 		map.put(add.getUniqueID(), add);
 		map.put(attLine.getUniqueID(), attLine);
 		map.put(n_times.getUniqueID(), n_times);
-		
+
 		f.setExecutionMethod(For.FOR_N_TIMES_WITH_INDEX);
 		f.setIndex(indexVar.getUniqueID());
 		f.setUpperBound(n_times.getUniqueID());
 		f.addChild(attLine.getUniqueID());
 		f.evaluate(context, map, factory);
-		
+
 		IVPNumber result = (IVPNumber) v.evaluate(context, map, factory);
 		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal(5)) == 0);
 		result = (IVPNumber) indexVar.evaluate(context, map, factory);
@@ -139,35 +139,35 @@ public class ForTest {
 		DataFactory factory = new DataFactory();
 		Context context = new Context();
 		For f = factory.createFor();
-		
+
 		IVPValue lowerBound = factory.createIVPNumber();
 		lowerBound.setValueType(IVPValue.INTEGER_TYPE);
 		context.addBigDecimal(lowerBound.getUniqueID(), new BigDecimal(0));
-		
+
 		IVPValue upperBound = factory.createIVPNumber();
 		upperBound.setValueType(IVPValue.INTEGER_TYPE);
 		context.addBigDecimal(upperBound.getUniqueID(), new BigDecimal(5));
-		
+
 		IVPValue increment = factory.createIVPNumber();
 		increment.setValueType(IVPValue.INTEGER_TYPE);
 		context.addBigDecimal(increment.getUniqueID(), new BigDecimal(1));
-		
+
 		IVPValue indexStartingValue = factory.createIVPNumber();
 		indexStartingValue.setValueType(IVPValue.INTEGER_TYPE);
 		context.addBigDecimal(indexStartingValue.getUniqueID(), new BigDecimal(0));
-		
+
 		IVPValue one = factory.createIVPNumber();
 		one.setValueType(IVPValue.INTEGER_TYPE);
 		context.addBigDecimal(one.getUniqueID(), new BigDecimal(1));
-		
+
 		IVPVariable v = factory.createIVPVariable();
 		v.setVariableType(IVPValue.INTEGER_TYPE);
 		v.setValueID(one.getUniqueID());
-		
+
 		IVPVariable indexVar = factory.createIVPVariable();
 		indexVar.setVariableType(IVPValue.INTEGER_TYPE);
 		indexVar.setValueID(indexStartingValue.getUniqueID());
-		
+
 		Addition add = factory.createAddition();
 		add.setExpressionA(v.getUniqueID());
 		add.setExpressionB(one.getUniqueID());
@@ -175,7 +175,7 @@ public class ForTest {
 		AttributionLine attLine = factory.createAttributionLine();
 		attLine.setVariable(v.getUniqueID());
 		attLine.setExpression(add.getUniqueID());
-		
+
 		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
 		map.put(lowerBound.getUniqueID(), lowerBound);
 		map.put(upperBound.getUniqueID(), upperBound);
@@ -185,7 +185,7 @@ public class ForTest {
 		map.put(add.getUniqueID(), add);
 		map.put(attLine.getUniqueID(), attLine);
 		map.put(one.getUniqueID(), one);
-		
+
 		f.setExecutionMethod(For.FOR_N_TIMES_WITH_INDEX);
 		f.setIndex(indexVar.getUniqueID());
 		f.setUpperBound(upperBound.getUniqueID());
@@ -193,11 +193,11 @@ public class ForTest {
 		f.setIncrement(increment.getUniqueID());
 		f.addChild(attLine.getUniqueID());
 		f.evaluate(context, map, factory);
-		
+
 		IVPNumber result = (IVPNumber) v.evaluate(context, map, factory);
 		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal(6)) == 0);
 		result = (IVPNumber) indexVar.evaluate(context, map, factory);
 		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal(5)) == 0);
 	}
-	
+
 }

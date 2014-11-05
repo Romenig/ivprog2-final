@@ -30,7 +30,7 @@ public class IVPVectorReference extends DataObject {
 	 */
 	@Override
 	public Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory) {
-		IVPValue value = (IVPValue) map.get(((IVPVector) map.get(vectorID)).get(positionID,c));
+		IVPValue value = (IVPValue) map.get(((IVPVector) map.get(vectorID)).get(positionID, c));
 		return value;
 	}
 
@@ -50,7 +50,7 @@ public class IVPVectorReference extends DataObject {
 	}
 
 	public IVPValue getElementFromVector(Context c, HashMap<String, DataObject> map, DataFactory factory) {
-		IVPValue value = (IVPValue) map.get(((IVPVector) map.get(vectorID)).get(positionID,c));
+		IVPValue value = (IVPValue) map.get(((IVPVector) map.get(vectorID)).get(positionID, c));
 		return value;
 	}
 

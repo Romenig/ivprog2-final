@@ -19,6 +19,7 @@ public class IVPVariable extends Expression {
 
 	private String valueID;
 	private String variableType;
+	private String variableName;
 
 	@Override
 	public Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory) {
@@ -54,6 +55,24 @@ public class IVPVariable extends Expression {
 	 */
 	public void setValueID(String valueID) {
 		this.valueID = valueID;
+	}
+
+	/**
+	 * Set this variable name.
+	 * 
+	 * @param name
+	 */
+	public void setVariableName(String name) {
+		variableName = name;
+	}
+
+	/**
+	 * Get this variable name.
+	 * 
+	 * @return variableName
+	 */
+	public String getVariableName() {
+		return variableName;
 	}
 
 }

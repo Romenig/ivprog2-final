@@ -29,7 +29,7 @@ public class For extends CodeComposite {
 	private String lowerBound;
 	private String index;
 	private String increment;
-	
+
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -44,28 +44,28 @@ public class For extends CodeComposite {
 		IVPValue lowerValue = null;
 		IVPVariable indexVariable = null;
 		IVPValue incrementValue = null;
-		if(executionMethod.equals(FOR_N_TIMES)){
+		if (executionMethod.equals(FOR_N_TIMES)) {
 			upperValue = (IVPValue) map.get(upperBound).evaluate(c, map, factory);
 			int upperInt = c.getBigDecimal(upperValue.getUniqueID()).intValue();
-			for(int i = 0; i < upperInt; i++){
-				for(int j = 0; j < children.size(); j++){
+			for (int i = 0; i < upperInt; i++) {
+				for (int j = 0; j < children.size(); j++) {
 					DataObject component = (DataObject) map.get(children.get(j));
 					component.evaluate(c, map, factory);
 				}
 			}
-		} else if (executionMethod.equals(FOR_N_TIMES_WITH_INDEX)){
+		} else if (executionMethod.equals(FOR_N_TIMES_WITH_INDEX)) {
 			upperValue = (IVPValue) map.get(upperBound).evaluate(c, map, factory);
 			indexVariable = (IVPVariable) map.get(index);
 			IVPNumber indexValue = (IVPNumber) map.get(indexVariable.getValueID()).evaluate(c, map, factory);
 			int upperInt = c.getBigDecimal(upperValue.getUniqueID()).intValue();
-			for(int i = 0; i < upperInt; i++){
-				for(int j = 0; j < children.size(); j++){
+			for (int i = 0; i < upperInt; i++) {
+				for (int j = 0; j < children.size(); j++) {
 					DataObject component = (DataObject) map.get(children.get(j));
 					component.evaluate(c, map, factory);
 				}
 				indexValue.updateValue(c, new BigDecimal(c.getBigDecimal(indexValue.getUniqueID()).intValue() + 1));
 			}
-		} else { //COMPLETE
+		} else { // COMPLETE
 			upperValue = (IVPValue) map.get(upperBound).evaluate(c, map, factory);
 			lowerValue = (IVPValue) map.get(lowerBound).evaluate(c, map, factory);
 			incrementValue = (IVPValue) map.get(incrementValue).evaluate(c, map, factory);
@@ -74,8 +74,8 @@ public class For extends CodeComposite {
 			int upperInt = c.getBigDecimal(upperValue.getUniqueID()).intValue();
 			int lowerInt = c.getBigDecimal(lowerValue.getUniqueID()).intValue();
 			int incrementInt = c.getBigDecimal(incrementValue.getUniqueID()).intValue();
-			for(int i = lowerInt; i < upperInt; i+=incrementInt){
-				for(int j = 0; j < children.size(); j++){
+			for (int i = lowerInt; i < upperInt; i += incrementInt) {
+				for (int j = 0; j < children.size(); j++) {
 					DataObject component = (DataObject) map.get(children.get(j));
 					component.evaluate(c, map, factory);
 				}
@@ -88,7 +88,6 @@ public class For extends CodeComposite {
 		return null;
 	}
 
-	
 	/**
 	 * @return the executionMethod
 	 */
@@ -97,7 +96,8 @@ public class For extends CodeComposite {
 	}
 
 	/**
-	 * @param executionMethod the executionMethod to set
+	 * @param executionMethod
+	 *            the executionMethod to set
 	 */
 	public void setExecutionMethod(String executionMethod) {
 		this.executionMethod = executionMethod;
@@ -111,7 +111,8 @@ public class For extends CodeComposite {
 	}
 
 	/**
-	 * @param upperBound the upperBound to set
+	 * @param upperBound
+	 *            the upperBound to set
 	 */
 	public void setUpperBound(String upperBound) {
 		this.upperBound = upperBound;
@@ -125,7 +126,8 @@ public class For extends CodeComposite {
 	}
 
 	/**
-	 * @param lowerBound the lowerBound to set
+	 * @param lowerBound
+	 *            the lowerBound to set
 	 */
 	public void setLowerBound(String lowerBound) {
 		this.lowerBound = lowerBound;
@@ -139,7 +141,8 @@ public class For extends CodeComposite {
 	}
 
 	/**
-	 * @param index the index to set
+	 * @param index
+	 *            the index to set
 	 */
 	public void setIndex(String index) {
 		this.index = index;
@@ -153,7 +156,8 @@ public class For extends CodeComposite {
 	}
 
 	/**
-	 * @param increment the increment to set
+	 * @param increment
+	 *            the increment to set
 	 */
 	public void setIncrement(String increment) {
 		this.increment = increment;

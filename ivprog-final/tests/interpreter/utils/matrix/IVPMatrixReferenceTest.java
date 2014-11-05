@@ -41,7 +41,7 @@ public class IVPMatrixReferenceTest {
 		IVPMatrixReference ref = factory.createIVPMatrixReference();
 		IVPNumber line = factory.createIVPNumber();
 		IVPNumber column = factory.createIVPNumber();
-		
+
 		a.setValueType(IVPValue.INTEGER_TYPE);
 		b.setValueType(IVPValue.INTEGER_TYPE);
 		size.setValueType(IVPValue.INTEGER_TYPE);
@@ -53,10 +53,9 @@ public class IVPMatrixReferenceTest {
 		context.addBigDecimal(b.getUniqueID(), new BigDecimal(2));
 		context.addBigDecimal(line.getUniqueID(), new BigDecimal(0));
 		context.addBigDecimal(column.getUniqueID(), new BigDecimal(0));
-		
+
 		matrix.setSize(size.getUniqueID(), size.getUniqueID(), context);
 		matrix.setType(IVPValue.INTEGER_TYPE);
-		
 
 		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
 		map.put(a.getUniqueID(), a);
@@ -70,7 +69,7 @@ public class IVPMatrixReferenceTest {
 		ref.setMatrixID(matrix.getUniqueID());
 		ref.setLinID(line.getUniqueID());
 		ref.setColID(column.getUniqueID());
-		
+
 		add.setExpressionA(a.getUniqueID());
 		add.setExpressionB(b.getUniqueID());
 
@@ -93,15 +92,15 @@ public class IVPMatrixReferenceTest {
 		IVPMatrix vect = factory.createIVPMatrix();
 		AttributionLine attLine = factory.createAttributionLine();
 		IVPMatrixReference ref = factory.createIVPMatrixReference();
-		
+
 		IVPNumber line = factory.createIVPNumber();
 		line.setValueType(IVPValue.INTEGER_TYPE);
 		context.addBigDecimal(line.getUniqueID(), new BigDecimal(0));
-		
+
 		IVPNumber column = factory.createIVPNumber();
 		column.setValueType(IVPValue.INTEGER_TYPE);
 		context.addBigDecimal(column.getUniqueID(), new BigDecimal(0));
-		
+
 		IVPNumber n1 = factory.createIVPNumber();
 		n1.setValueType(IVPValue.INTEGER_TYPE);
 		context.addBigDecimal(n1.getUniqueID(), new BigDecimal(1));
@@ -117,7 +116,7 @@ public class IVPMatrixReferenceTest {
 		var.setValueID(n1.getUniqueID());
 		var.setVariableType(IVPValue.INTEGER_TYPE);
 
-		vect.setSize(size.getUniqueID(),size.getUniqueID(), context);
+		vect.setSize(size.getUniqueID(), size.getUniqueID(), context);
 		vect.setType(IVPValue.INTEGER_TYPE);
 
 		vect.addElement(line.getUniqueID(), column.getUniqueID(), context, n1.getUniqueID());

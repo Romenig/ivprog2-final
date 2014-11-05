@@ -43,7 +43,7 @@ public class IfElse extends CodeComposite {
 				component.evaluate(c, map, factory);
 			}
 		} else {
-			
+
 			for (int i = 0; i < elseChildren.size(); i += 1) {
 				DataObject component = (DataObject) map.get(elseChildren.get(i));
 				component.evaluate(c, map, factory);

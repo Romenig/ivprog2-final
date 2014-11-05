@@ -15,6 +15,7 @@ import java.util.Vector;
 import usp.ime.line.ivprog.interpreter.execution.Context;
 import usp.ime.line.ivprog.interpreter.execution.code.AttributionLine;
 import usp.ime.line.ivprog.interpreter.execution.code.For;
+import usp.ime.line.ivprog.interpreter.execution.code.Function;
 import usp.ime.line.ivprog.interpreter.execution.code.IfElse;
 import usp.ime.line.ivprog.interpreter.execution.code.While;
 import usp.ime.line.ivprog.interpreter.execution.expressions.arithmetic.Addition;
@@ -56,7 +57,7 @@ public class DataFactory {
 
 	private String getID() {
 		String randomHash = Integer.toHexString(r.nextInt());
-		while(v.contains(randomHash)){
+		while (v.contains(randomHash)) {
 			randomHash = Integer.toHexString(r.nextInt());
 		}
 		v.add(randomHash);
@@ -345,31 +346,43 @@ public class DataFactory {
 	 * 
 	 * @return
 	 */
-    public For createFor() {
-    	For f = new For();
-    	f.setUniqueID(getID());
-	    return f;
-    }
+	public For createFor() {
+		For f = new For();
+		f.setUniqueID(getID());
+		return f;
+	}
 
 	/**
 	 * Get a new Matrix object.
 	 * 
 	 * @return
 	 */
-    public IVPMatrix createIVPMatrix() {
-    	IVPMatrix m = new IVPMatrix();
-    	m.setUniqueID(getID());
-	    return m;
-    }
+	public IVPMatrix createIVPMatrix() {
+		IVPMatrix m = new IVPMatrix();
+		m.setUniqueID(getID());
+		return m;
+	}
 
 	/**
 	 * Get a new IVPMatrixReference object.
+	 * 
 	 * @return
 	 */
-    public IVPMatrixReference createIVPMatrixReference() {
-    	IVPMatrixReference mr = new IVPMatrixReference();
-    	mr.setUniqueID(getID());
-	    return mr;
-    }
+	public IVPMatrixReference createIVPMatrixReference() {
+		IVPMatrixReference mr = new IVPMatrixReference();
+		mr.setUniqueID(getID());
+		return mr;
+	}
+
+	/**
+	 * Get a new Function object.
+	 * 
+	 * @return
+	 */
+	public Function createFunction() {
+		Function f = new Function();
+		f.setUniqueID(getID());
+		return f;
+	}
 
 }

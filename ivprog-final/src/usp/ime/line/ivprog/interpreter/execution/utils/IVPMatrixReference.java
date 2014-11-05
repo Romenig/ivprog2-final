@@ -31,7 +31,7 @@ public class IVPMatrixReference extends DataObject {
 	 */
 	@Override
 	public Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory) {
-		IVPValue value = (IVPValue) map.get(((IVPMatrix) map.get(matrixID)).getElement(linID,colID,c));
+		IVPValue value = (IVPValue) map.get(((IVPMatrix) map.get(matrixID)).getElement(linID, colID, c));
 		return value;
 	}
 
@@ -51,13 +51,13 @@ public class IVPMatrixReference extends DataObject {
 	}
 
 	public IVPValue getElementFromMatrix(Context c, HashMap<String, DataObject> map, DataFactory factory) {
-		IVPValue value = (IVPValue) map.get(((IVPMatrix) map.get(matrixID)).getElement(linID,colID,c));
+		IVPValue value = (IVPValue) map.get(((IVPMatrix) map.get(matrixID)).getElement(linID, colID, c));
 		return value;
 	}
 
 	public Object setElementIntoMatrix(String valueID, Context c, HashMap<String, DataObject> map, DataFactory factory) {
 		IVPMatrix m = (IVPMatrix) map.get(matrixID);
-		return m.addElement(linID,colID,c,valueID);
+		return m.addElement(linID, colID, c, valueID);
 	}
 
 	/**
@@ -68,7 +68,8 @@ public class IVPMatrixReference extends DataObject {
 	}
 
 	/**
-	 * @param linID the linID to set
+	 * @param linID
+	 *            the linID to set
 	 */
 	public void setLinID(String linID) {
 		this.linID = linID;
@@ -82,7 +83,8 @@ public class IVPMatrixReference extends DataObject {
 	}
 
 	/**
-	 * @param colID the colID to set
+	 * @param colID
+	 *            the colID to set
 	 */
 	public void setColID(String colID) {
 		this.colID = colID;

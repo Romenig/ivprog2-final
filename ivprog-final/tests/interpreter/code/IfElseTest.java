@@ -214,7 +214,7 @@ public class IfElseTest {
 		ifElse.evaluate(context, map, factory);
 
 		IVPNumber result = (IVPNumber) v.evaluate(context, map, factory);
-		
+
 		// After removing the attLine1, the result must be 2.
 		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal(2)) == 0);
 
@@ -273,7 +273,7 @@ public class IfElseTest {
 		ifElse.setFlowCondition(leq.getUniqueID());
 		ifElse.addElseChild(attLine2.getUniqueID());
 		ifElse.addElseChild(attLine1.getUniqueID());
-		
+
 		ifElse.removeElseChild(attLine1.getUniqueID());
 
 		ifElse.evaluate(context, map, factory);
@@ -284,5 +284,5 @@ public class IfElseTest {
 		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal(2)) == 0);
 
 	}
-	
+
 }

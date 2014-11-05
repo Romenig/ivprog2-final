@@ -125,11 +125,11 @@ public class IVPVector extends DataObject {
 	 * @param context
 	 * @return
 	 */
-    public String remove(String uniqueID, Context context) {
-    	int index = context.getBigDecimal(uniqueID).intValue();
-    	String removed = vectorRepresentation[index];
+	public String remove(String uniqueID, Context context) {
+		int index = context.getBigDecimal(uniqueID).intValue();
+		String removed = vectorRepresentation[index];
 		vectorRepresentation[index] = IVPValue.NULL;
 		return removed;
-    }
+	}
 
 }
