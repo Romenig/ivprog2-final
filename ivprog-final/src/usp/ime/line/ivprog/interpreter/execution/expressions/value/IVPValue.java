@@ -22,7 +22,12 @@ public abstract class IVPValue extends Expression {
 	public static final String STRING_TYPE = "String";
 	public static final String BOOLEAN_TYPE = "boolean";
 	public static final String NULL = "null";
-
+	
+	public static final String DEFAULT_INTEGER = "0";
+	public static final String DEFAULT_DOUBLE = "0.0";
+	public static final String DEFAULT_STRING = "abcd";
+	public static final String DEFAULT_BOOLEAN = "true";
+	
 	private String valueType;
 
 	@Override

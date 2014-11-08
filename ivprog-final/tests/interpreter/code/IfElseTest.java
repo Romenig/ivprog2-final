@@ -19,6 +19,7 @@ import usp.ime.line.ivprog.interpreter.DataFactory;
 import usp.ime.line.ivprog.interpreter.DataObject;
 import usp.ime.line.ivprog.interpreter.execution.Context;
 import usp.ime.line.ivprog.interpreter.execution.code.AttributionLine;
+import usp.ime.line.ivprog.interpreter.execution.code.Function;
 import usp.ime.line.ivprog.interpreter.execution.code.IfElse;
 import usp.ime.line.ivprog.interpreter.execution.expressions.booleans.comparisons.LessThanOrEqualTo;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPNumber;
@@ -31,6 +32,7 @@ public class IfElseTest {
 	public void flowTest() {
 		DataFactory factory = new DataFactory();
 		Context context = new Context();
+		Function f = factory.createFunction();
 
 		IfElse ifElse = factory.createIfElse();
 
@@ -76,6 +78,8 @@ public class IfElseTest {
 		map.put(attLine1.getUniqueID(), attLine1);
 		map.put(attLine2.getUniqueID(), attLine2);
 		map.put(comparisonValue.getUniqueID(), comparisonValue);
+		map.put(f.getUniqueID(), f);
+		context.setFunctionID(f.getUniqueID());
 
 		ifElse.setFlowCondition(leq.getUniqueID());
 		ifElse.addIfChild(attLine1.getUniqueID());
@@ -98,7 +102,7 @@ public class IfElseTest {
 	public void remotionTest() {
 		DataFactory factory = new DataFactory();
 		Context context = new Context();
-
+		Function f = factory.createFunction();
 		IfElse ifElse = factory.createIfElse();
 
 		IVPNumber leftValue = factory.createIVPNumber();
@@ -143,6 +147,8 @@ public class IfElseTest {
 		map.put(attLine1.getUniqueID(), attLine1);
 		map.put(attLine2.getUniqueID(), attLine2);
 		map.put(comparisonValue.getUniqueID(), comparisonValue);
+		map.put(f.getUniqueID(), f);
+		context.setFunctionID(f.getUniqueID());
 
 		ifElse.setFlowCondition(leq.getUniqueID());
 		ifElse.addIfChild(attLine1.getUniqueID());
@@ -161,7 +167,7 @@ public class IfElseTest {
 	public void remotionTest2() {
 		DataFactory factory = new DataFactory();
 		Context context = new Context();
-
+		Function f = factory.createFunction();
 		IfElse ifElse = factory.createIfElse();
 
 		IVPNumber leftValue = factory.createIVPNumber();
@@ -206,6 +212,8 @@ public class IfElseTest {
 		map.put(attLine1.getUniqueID(), attLine1);
 		map.put(attLine2.getUniqueID(), attLine2);
 		map.put(comparisonValue.getUniqueID(), comparisonValue);
+		map.put(f.getUniqueID(), f);
+		context.setFunctionID(f.getUniqueID());
 
 		ifElse.setFlowCondition(leq.getUniqueID());
 		ifElse.addIfChild(attLine2.getUniqueID());
@@ -224,7 +232,7 @@ public class IfElseTest {
 	public void remotionTest3() {
 		DataFactory factory = new DataFactory();
 		Context context = new Context();
-
+		Function f = factory.createFunction();
 		IfElse ifElse = factory.createIfElse();
 
 		IVPNumber leftValue = factory.createIVPNumber();
@@ -269,6 +277,8 @@ public class IfElseTest {
 		map.put(attLine1.getUniqueID(), attLine1);
 		map.put(attLine2.getUniqueID(), attLine2);
 		map.put(comparisonValue.getUniqueID(), comparisonValue);
+		map.put(f.getUniqueID(), f);
+		context.setFunctionID(f.getUniqueID());
 
 		ifElse.setFlowCondition(leq.getUniqueID());
 		ifElse.addElseChild(attLine2.getUniqueID());

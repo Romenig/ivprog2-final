@@ -44,12 +44,21 @@ public class For extends CodeComposite {
 		IVPValue lowerValue = null;
 		IVPVariable indexVariable = null;
 		IVPValue incrementValue = null;
+		Function f = (Function) map.get(c.getFunctionID());
 		if (executionMethod.equals(FOR_N_TIMES)) {
 			upperValue = (IVPValue) map.get(upperBound).evaluate(c, map, factory);
 			int upperInt = c.getBigDecimal(upperValue.getUniqueID()).intValue();
 			for (int i = 0; i < upperInt; i++) {
 				for (int j = 0; j < children.size(); j++) {
 					DataObject component = (DataObject) map.get(children.get(j));
+					if(component instanceof Return){
+						DataObject returnedElement = (DataObject) component.evaluate(c, map, factory);
+						f.setFunctionReturnedElementID(returnedElement.getUniqueID());
+						f.setReturning(true);
+						return returnedElement;
+					}else if(f.isReturning()){
+						return IVPValue.NULL;
+					}
 					component.evaluate(c, map, factory);
 				}
 			}
@@ -61,6 +70,14 @@ public class For extends CodeComposite {
 			for (int i = 0; i < upperInt; i++) {
 				for (int j = 0; j < children.size(); j++) {
 					DataObject component = (DataObject) map.get(children.get(j));
+					if(component instanceof Return){
+						DataObject returnedElement = (DataObject) component.evaluate(c, map, factory);
+						f.setFunctionReturnedElementID(returnedElement.getUniqueID());
+						f.setReturning(true);
+						return returnedElement;
+					}else if(f.isReturning()){
+						return IVPValue.NULL;
+					}
 					component.evaluate(c, map, factory);
 				}
 				indexValue.updateValue(c, new BigDecimal(c.getBigDecimal(indexValue.getUniqueID()).intValue() + 1));
@@ -77,13 +94,20 @@ public class For extends CodeComposite {
 			for (int i = lowerInt; i < upperInt; i += incrementInt) {
 				for (int j = 0; j < children.size(); j++) {
 					DataObject component = (DataObject) map.get(children.get(j));
+					if(component instanceof Return){
+						DataObject returnedElement = (DataObject) component.evaluate(c, map, factory);
+						f.setFunctionReturnedElementID(returnedElement.getUniqueID());
+						f.setReturning(true);
+						return returnedElement;
+					}else if(f.isReturning()){
+						return IVPValue.NULL;
+					}
 					component.evaluate(c, map, factory);
 				}
 				indexValue.updateValue(c, new BigDecimal(c.getBigDecimal(indexValue.getUniqueID()).intValue() + incrementInt));
 				incrementValue = (IVPValue) map.get(incrementValue).evaluate(c, map, factory);
 				incrementInt = c.getBigDecimal(incrementValue.getUniqueID()).intValue();
 			}
-
 		}
 		return null;
 	}

@@ -20,6 +20,7 @@ import usp.ime.line.ivprog.interpreter.DataObject;
 import usp.ime.line.ivprog.interpreter.execution.Context;
 import usp.ime.line.ivprog.interpreter.execution.code.AttributionLine;
 import usp.ime.line.ivprog.interpreter.execution.code.For;
+import usp.ime.line.ivprog.interpreter.execution.code.Function;
 import usp.ime.line.ivprog.interpreter.execution.expressions.arithmetic.Addition;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPNumber;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPValue;
@@ -31,7 +32,8 @@ public class ForTest {
 	public void forNTimesTest() {
 		DataFactory factory = new DataFactory();
 		Context context = new Context();
-		For f = factory.createFor();
+		For myFor = factory.createFor();
+		Function f = factory.createFunction();
 
 		IVPValue startingValue = factory.createIVPNumber();
 		startingValue.setValueType(IVPValue.INTEGER_TYPE);
@@ -64,11 +66,13 @@ public class ForTest {
 		map.put(add.getUniqueID(), add);
 		map.put(attLine.getUniqueID(), attLine);
 		map.put(n_times.getUniqueID(), n_times);
+		map.put(f.getUniqueID(), f);
+		context.setFunctionID(f.getUniqueID());
 
-		f.setExecutionMethod(For.FOR_N_TIMES);
-		f.setUpperBound(n_times.getUniqueID());
-		f.addChild(attLine.getUniqueID());
-		f.evaluate(context, map, factory);
+		myFor.setExecutionMethod(For.FOR_N_TIMES);
+		myFor.setUpperBound(n_times.getUniqueID());
+		myFor.addChild(attLine.getUniqueID());
+		myFor.evaluate(context, map, factory);
 
 		IVPNumber result = (IVPNumber) v.evaluate(context, map, factory);
 		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal(5)) == 0);
@@ -79,7 +83,8 @@ public class ForTest {
 		DataFactory factory = new DataFactory();
 		Context context = new Context();
 		For f = factory.createFor();
-
+		Function func = factory.createFunction();
+		
 		IVPValue startingValue = factory.createIVPNumber();
 		startingValue.setValueType(IVPValue.INTEGER_TYPE);
 		context.addBigDecimal(startingValue.getUniqueID(), new BigDecimal(0));
@@ -121,6 +126,8 @@ public class ForTest {
 		map.put(add.getUniqueID(), add);
 		map.put(attLine.getUniqueID(), attLine);
 		map.put(n_times.getUniqueID(), n_times);
+		map.put(func.getUniqueID(), func);
+		context.setFunctionID(func.getUniqueID());
 
 		f.setExecutionMethod(For.FOR_N_TIMES_WITH_INDEX);
 		f.setIndex(indexVar.getUniqueID());
@@ -139,6 +146,7 @@ public class ForTest {
 		DataFactory factory = new DataFactory();
 		Context context = new Context();
 		For f = factory.createFor();
+		Function func = factory.createFunction();
 
 		IVPValue lowerBound = factory.createIVPNumber();
 		lowerBound.setValueType(IVPValue.INTEGER_TYPE);
@@ -185,6 +193,8 @@ public class ForTest {
 		map.put(add.getUniqueID(), add);
 		map.put(attLine.getUniqueID(), attLine);
 		map.put(one.getUniqueID(), one);
+		map.put(func.getUniqueID(), func);
+		context.setFunctionID(func.getUniqueID());
 
 		f.setExecutionMethod(For.FOR_N_TIMES_WITH_INDEX);
 		f.setIndex(indexVar.getUniqueID());

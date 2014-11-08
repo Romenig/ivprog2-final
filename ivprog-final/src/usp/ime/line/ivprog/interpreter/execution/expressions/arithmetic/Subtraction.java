@@ -46,7 +46,7 @@ public class Subtraction extends Expression {
 	public Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory) {
 		IVPNumber v1 = (IVPNumber) map.get(expA).evaluate(c, map, factory);
 		IVPNumber v2 = (IVPNumber) map.get(expB).evaluate(c, map, factory);
-		IVPNumber result = v1.subtract(v2, c, factory);
+		IVPNumber result = v1.subtract(v2, c, factory, map);
 		if (v1.getValueType() == IVPValue.DOUBLE_TYPE || v2.getValueType() == IVPValue.DOUBLE_TYPE) {
 			result.setValueType(IVPValue.DOUBLE_TYPE);
 		} else {

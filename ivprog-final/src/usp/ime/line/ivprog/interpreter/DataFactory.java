@@ -16,7 +16,10 @@ import usp.ime.line.ivprog.interpreter.execution.Context;
 import usp.ime.line.ivprog.interpreter.execution.code.AttributionLine;
 import usp.ime.line.ivprog.interpreter.execution.code.For;
 import usp.ime.line.ivprog.interpreter.execution.code.Function;
+import usp.ime.line.ivprog.interpreter.execution.code.FunctionReference;
 import usp.ime.line.ivprog.interpreter.execution.code.IfElse;
+import usp.ime.line.ivprog.interpreter.execution.code.RecursiveCall;
+import usp.ime.line.ivprog.interpreter.execution.code.Return;
 import usp.ime.line.ivprog.interpreter.execution.code.While;
 import usp.ime.line.ivprog.interpreter.execution.expressions.arithmetic.Addition;
 import usp.ime.line.ivprog.interpreter.execution.expressions.arithmetic.Division;
@@ -384,5 +387,35 @@ public class DataFactory {
 		f.setUniqueID(getID());
 		return f;
 	}
+
+	/**
+	 * Get a new Return object.
+	 * @return
+	 */
+    public Return createReturn() {
+    	Return r = new Return();
+    	r.setUniqueID(getID());
+	    return r;
+    }
+
+	/**
+	 * Get a new FunctionReference object.
+	 * @return
+	 */
+    public FunctionReference createFunctionReference() {
+    	FunctionReference fr = new FunctionReference();
+    	fr.setUniqueID(getID());
+	    return fr;
+    }
+
+	/**
+	 * Get a new RecursiveCall object.
+	 * @return
+	 */
+    public RecursiveCall createRecursiveCall() {
+		RecursiveCall rc = new RecursiveCall();
+		rc.setUniqueID(getID());
+		return rc;
+    }
 
 }

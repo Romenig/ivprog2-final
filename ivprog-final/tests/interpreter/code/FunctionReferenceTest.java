@@ -20,6 +20,7 @@ import usp.ime.line.ivprog.interpreter.DataObject;
 import usp.ime.line.ivprog.interpreter.execution.Context;
 import usp.ime.line.ivprog.interpreter.execution.code.AttributionLine;
 import usp.ime.line.ivprog.interpreter.execution.code.Function;
+import usp.ime.line.ivprog.interpreter.execution.code.FunctionReference;
 import usp.ime.line.ivprog.interpreter.execution.code.Return;
 import usp.ime.line.ivprog.interpreter.execution.code.While;
 import usp.ime.line.ivprog.interpreter.execution.expressions.arithmetic.Addition;
@@ -28,19 +29,26 @@ import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPNumber;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPValue;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPVariable;
 
-public class FunctionTest {
+public class FunctionReferenceTest {
 
 	@Test
-	public void functionWithWhile() {
+	public void validatingNormalFunctionReference() {
 		DataFactory factory = new DataFactory();
 		Context context = new Context();
 		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
 		While w = factory.createWhile();
 		Function f = factory.createFunction();
+		Return r = factory.createReturn();
+		AttributionLine attLine2 = factory.createAttributionLine();
+		FunctionReference fr = factory.createFunctionReference();
 
 		IVPValue maximumValue = factory.createIVPNumber();
 		maximumValue.setValueType(IVPValue.INTEGER_TYPE);
 		f.addConstant(maximumValue, "9", context, map);
+		
+		IVPVariable result = factory.createIVPVariable();
+		result.setVariableType(IVPValue.INTEGER_TYPE);
+		f.addVariable(result,"-11",context,map,factory);
 
 		IVPValue one = factory.createIVPNumber();
 		one.setValueType(IVPValue.INTEGER_TYPE);
@@ -50,6 +58,7 @@ public class FunctionTest {
 		v.setVariableType(IVPValue.INTEGER_TYPE);
 		v.setVariableName("var1");
 		f.addVariable(v, "1", context, map, factory);
+		r.setReturnable(v.getUniqueID());
 
 		LessThanOrEqualTo leq = factory.createLessThanOrEqualTo();
 		leq.setExpressionA(v.getUniqueID());
@@ -66,19 +75,30 @@ public class FunctionTest {
 		map.put(add.getUniqueID(), add);
 		map.put(leq.getUniqueID(), leq);
 		map.put(attLine.getUniqueID(), attLine);
+		map.put(attLine2.getUniqueID(), attLine2);
 		map.put(w.getUniqueID(), w);
+		map.put(r.getUniqueID(), r);
 		map.put(f.getUniqueID(), f);
+		map.put(fr.getUniqueID(), fr);
+		
 		context.setFunctionID(f.getUniqueID());
 
 		w.setLoopCondition(leq.getUniqueID());
 		w.addChild(attLine.getUniqueID());
 
+		fr.setFunctionID(f.getUniqueID());
+		
 		f.addChild(w.getUniqueID());
-
-		f.evaluate(context, map, factory);
-
-		IVPNumber result = (IVPNumber) v.evaluate(context, map, factory);
-		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal(10)) == 0);
+		f.addChild(r.getUniqueID());
+		
+		attLine2.setVariable(result.getUniqueID());
+		attLine2.setExpression(fr.getUniqueID());
+		
+		attLine2.evaluate(context, map, factory);
+		
+		IVPNumber result2 = (IVPNumber) result.evaluate(context, map, factory);
+		
+		assertTrue(context.getBigDecimal(result2.getUniqueID()).compareTo(new BigDecimal(10)) == 0);
 	}
 	
 }

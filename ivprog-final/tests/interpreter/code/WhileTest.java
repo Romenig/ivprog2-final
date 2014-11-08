@@ -19,6 +19,7 @@ import usp.ime.line.ivprog.interpreter.DataFactory;
 import usp.ime.line.ivprog.interpreter.DataObject;
 import usp.ime.line.ivprog.interpreter.execution.Context;
 import usp.ime.line.ivprog.interpreter.execution.code.AttributionLine;
+import usp.ime.line.ivprog.interpreter.execution.code.Function;
 import usp.ime.line.ivprog.interpreter.execution.code.While;
 import usp.ime.line.ivprog.interpreter.execution.expressions.arithmetic.Addition;
 import usp.ime.line.ivprog.interpreter.execution.expressions.booleans.comparisons.EqualTo;
@@ -34,6 +35,7 @@ public class WhileTest {
 		DataFactory factory = new DataFactory();
 		Context context = new Context();
 		While w = factory.createWhile();
+		Function f = factory.createFunction();
 
 		IVPValue startingValue = factory.createIVPNumber();
 		startingValue.setValueType(IVPValue.INTEGER_TYPE);
@@ -71,7 +73,9 @@ public class WhileTest {
 		map.put(add.getUniqueID(), add);
 		map.put(leq.getUniqueID(), leq);
 		map.put(attLine.getUniqueID(), attLine);
-
+		map.put(f.getUniqueID(), f);
+		context.setFunctionID(f.getUniqueID());
+		
 		w.setLoopCondition(leq.getUniqueID());
 		w.addChild(attLine.getUniqueID());
 		w.evaluate(context, map, factory);

@@ -16,6 +16,7 @@ import usp.ime.line.ivprog.language.Messages;
 
 public class Context implements Cloneable {
 
+	private String functionID;
 	private HashMap<String, BigDecimal> bigDecimalMap;
 	private HashMap<String, String> stringMap;
 	private HashMap<String, Boolean> booleanMap;
@@ -174,5 +175,19 @@ public class Context implements Cloneable {
 		        (HashMap<String, Boolean>) booleanMap.clone());
 		return c;
 	}
+
+	/**
+	 * @return the functionID
+	 */
+    public String getFunctionID() {
+	    return functionID;
+    }
+
+	/**
+	 * @param functionID the functionID to set
+	 */
+    public void setFunctionID(String functionID) {
+	    this.functionID = functionID;
+    }
 
 }

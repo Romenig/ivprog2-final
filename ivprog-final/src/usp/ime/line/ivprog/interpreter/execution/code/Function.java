@@ -10,6 +10,7 @@ package usp.ime.line.ivprog.interpreter.execution.code;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
+import java.util.Vector;
 
 import usp.ime.line.ivprog.interpreter.DataFactory;
 import usp.ime.line.ivprog.interpreter.DataObject;
@@ -23,8 +24,12 @@ public class Function extends CodeComposite {
 
 	private String functionName;
 	private String functionReturnType;
+	private String functionReturnedElementID;
+	private boolean isReturning = false;
+	private Vector<String> argumentList;
 
 	public Function() {
+		argumentList = new Vector<String>();
 	}
 
 	/*
@@ -39,7 +44,21 @@ public class Function extends CodeComposite {
 	public Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory) {
 		for (int i = 0; i < children.size(); i += 1) {
 			DataObject component = (DataObject) map.get(children.get(i));
+			if(component instanceof Return){
+				DataObject returnedElement = (DataObject) component.evaluate(c, map, factory);
+				this.setFunctionReturnedElementID(returnedElement.getUniqueID());
+				this.setReturning(true);
+				return returnedElement;
+			}
 			component.evaluate(c, map, factory);
+			if(this.isReturning()){
+				if(functionReturnedElementID != null){
+					return map.get(functionReturnedElementID);
+				}
+				return IVPValue.NULL;
+			}			
+
+			
 		}
 		return null;
 	}
@@ -127,5 +146,67 @@ public class Function extends CodeComposite {
 	public void setFunctionReturnType(String functionReturnType) {
 		this.functionReturnType = functionReturnType;
 	}
+
+	/**
+	 * Add a parameter to this function. It automatically put a value in the memory.
+	 * @param integerType
+	 */
+    public void addArgument(String type, Context c, HashMap<String, DataObject> map, DataFactory factory) {
+    	IVPValue value = null;
+    	if(type.equals(IVPValue.INTEGER_TYPE)){
+    		value = factory.createIVPNumber();
+    		c.addBigDecimal(value.getUniqueID(), new BigDecimal(IVPValue.DEFAULT_INTEGER));
+    	}else if(type.equals(IVPValue.DOUBLE_TYPE)){
+    		value = factory.createIVPNumber();
+    		c.addBigDecimal(value.getUniqueID(), new BigDecimal(IVPValue.DEFAULT_DOUBLE));
+    	}else if(type.equals(IVPValue.STRING_TYPE)){
+    		value = factory.createIVPString();
+    		c.addString(value.getUniqueID(), IVPValue.DEFAULT_STRING);
+    	}else {
+    		value = factory.createIVPBoolean();
+    		c.addBoolean(value.getUniqueID(), new Boolean(IVPValue.DEFAULT_BOOLEAN));
+    	}
+    	value.setValueType(type); 
+    	map.put(value.getUniqueID(), value);
+    	argumentList.add(value.getUniqueID());
+    }
+
+	/**
+	 * Get the argument in the given position.
+	 * @param position
+	 * @return
+	 */
+    public String getArgument(int position) {
+    	String argumentID = argumentList.get(position);
+	    return argumentID;
+    }
+
+	/**
+	 * @return the functionReturnedElementID
+	 */
+    public String getFunctionReturnedElementID() {
+	    return functionReturnedElementID;
+    }
+
+	/**
+	 * @param functionReturnedElementID the functionReturnedElementID to set
+	 */
+    public void setFunctionReturnedElementID(String functionReturnedElementID) {
+	    this.functionReturnedElementID = functionReturnedElementID;
+    }
+
+	/**
+	 * @return the isReturning
+	 */
+    public boolean isReturning() {
+	    return isReturning;
+    }
+
+	/**
+	 * @param isReturning the isReturning to set
+	 */
+    public void setReturning(boolean isReturning) {
+	    this.isReturning = isReturning;
+    }
 
 }

@@ -14,6 +14,7 @@ import usp.ime.line.ivprog.interpreter.DataFactory;
 import usp.ime.line.ivprog.interpreter.DataObject;
 import usp.ime.line.ivprog.interpreter.execution.Context;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPBoolean;
+import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPValue;
 
 public class While extends CodeComposite {
 
@@ -37,9 +38,18 @@ public class While extends CodeComposite {
 	@Override
 	public Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory) {
 		IVPBoolean b = (IVPBoolean) map.get(loopConditionID).evaluate(c, map, factory);
+		Function f = (Function) map.get(c.getFunctionID());
 		while (c.getBoolean(b.getUniqueID())) {
 			for (int i = 0; i < children.size(); i += 1) {
 				DataObject component = (DataObject) map.get(children.get(i));
+				if(component instanceof Return){
+					DataObject returnedElement = (DataObject) component.evaluate(c, map, factory);
+					f.setFunctionReturnedElementID(returnedElement.getUniqueID());
+					f.setReturning(true);
+					return returnedElement;
+				}else if(f.isReturning()){
+					return IVPValue.NULL;
+				}
 				component.evaluate(c, map, factory);
 			}
 			b = (IVPBoolean) map.get(loopConditionID).evaluate(c, map, factory);

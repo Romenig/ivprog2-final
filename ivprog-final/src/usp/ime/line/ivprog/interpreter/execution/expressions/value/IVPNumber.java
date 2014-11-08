@@ -38,8 +38,9 @@ public class IVPNumber extends IVPValue {
 	 * @param factory
 	 * @return
 	 */
-	public IVPNumber add(IVPNumber number, Context context, DataFactory factory) {
+	public IVPNumber add(IVPNumber number, Context context, DataFactory factory, HashMap<String, DataObject> map) {
 		IVPNumber result = factory.createIVPNumber();
+		map.put(result.getUniqueID(), result);
 		BigDecimal n = context.getBigDecimal(getUniqueID()).add(context.getBigDecimal(number.getUniqueID()), mathContext);
 		context.addBigDecimal(result.getUniqueID(), n);
 		return result;
@@ -53,8 +54,9 @@ public class IVPNumber extends IVPValue {
 	 * @param factory
 	 * @return
 	 */
-	public IVPNumber multiply(IVPNumber number, Context context, DataFactory factory) {
+	public IVPNumber multiply(IVPNumber number, Context context, DataFactory factory, HashMap<String, DataObject> map) {
 		IVPNumber result = factory.createIVPNumber();
+		map.put(result.getUniqueID(), result);
 		BigDecimal n = context.getBigDecimal(getUniqueID()).multiply(context.getBigDecimal(number.getUniqueID()), mathContext);
 		context.addBigDecimal(result.getUniqueID(), n);
 		return result;
@@ -68,8 +70,9 @@ public class IVPNumber extends IVPValue {
 	 * @param factory
 	 * @return
 	 */
-	public IVPNumber divide(IVPNumber number, Context context, DataFactory factory) {
+	public IVPNumber divide(IVPNumber number, Context context, DataFactory factory, HashMap<String, DataObject> map) {
 		IVPNumber result = factory.createIVPNumber();
+		map.put(result.getUniqueID(), result);
 		BigDecimal n = context.getBigDecimal(getUniqueID()).divide(context.getBigDecimal(number.getUniqueID()), mathContext);
 		context.addBigDecimal(result.getUniqueID(), n);
 		return result;
@@ -83,8 +86,9 @@ public class IVPNumber extends IVPValue {
 	 * @param factory
 	 * @return
 	 */
-	public IVPNumber subtract(IVPNumber number, Context context, DataFactory factory) {
+	public IVPNumber subtract(IVPNumber number, Context context, DataFactory factory, HashMap<String, DataObject> map) {
 		IVPNumber result = factory.createIVPNumber();
+		map.put(result.getUniqueID(), result);
 		BigDecimal n = context.getBigDecimal(getUniqueID()).subtract(context.getBigDecimal(number.getUniqueID()), mathContext);
 		context.addBigDecimal(result.getUniqueID(), n);
 		return result;
@@ -98,8 +102,9 @@ public class IVPNumber extends IVPValue {
 	 * @param factory
 	 * @return
 	 */
-	public IVPNumber remainder(IVPNumber number, Context context, DataFactory factory) {
+	public IVPNumber remainder(IVPNumber number, Context context, DataFactory factory, HashMap<String, DataObject> map) {
 		IVPNumber result = factory.createIVPNumber();
+		map.put(result.getUniqueID(), result);
 		BigDecimal n = context.getBigDecimal(getUniqueID()).remainder(context.getBigDecimal(number.getUniqueID()), mathContext);
 		context.addBigDecimal(result.getUniqueID(), n);
 		return result;
@@ -116,6 +121,7 @@ public class IVPNumber extends IVPValue {
 	 */
 	public IVPBoolean lessThan(IVPNumber num, Context c, HashMap<String, DataObject> map, DataFactory factory) {
 		IVPBoolean result = factory.createIVPBoolean();
+		map.put(result.getUniqueID(), result);
 		Boolean booleanResult = new Boolean(c.getBigDecimal(getUniqueID()).compareTo(c.getBigDecimal(num.getUniqueID())) < 0);
 		c.addBoolean(result.getUniqueID(), booleanResult);
 		return result;
@@ -132,6 +138,7 @@ public class IVPNumber extends IVPValue {
 	 */
 	public IVPBoolean lessThanOrEqualTo(IVPNumber num, Context c, HashMap<String, DataObject> map, DataFactory factory) {
 		IVPBoolean result = factory.createIVPBoolean();
+		map.put(result.getUniqueID(), result);
 		Boolean booleanResult = new Boolean(c.getBigDecimal(getUniqueID()).compareTo(c.getBigDecimal(num.getUniqueID())) <= 0);
 		c.addBoolean(result.getUniqueID(), booleanResult);
 		return result;
@@ -148,6 +155,7 @@ public class IVPNumber extends IVPValue {
 	 */
 	public IVPBoolean greaterThan(IVPNumber num, Context c, HashMap<String, DataObject> map, DataFactory factory) {
 		IVPBoolean result = factory.createIVPBoolean();
+		map.put(result.getUniqueID(), result);
 		Boolean booleanResult = new Boolean(c.getBigDecimal(getUniqueID()).compareTo(c.getBigDecimal(num.getUniqueID())) > 0);
 		c.addBoolean(result.getUniqueID(), booleanResult);
 		return result;
@@ -164,6 +172,7 @@ public class IVPNumber extends IVPValue {
 	 */
 	public IVPBoolean greaterThanOrEqualTo(IVPNumber num, Context c, HashMap<String, DataObject> map, DataFactory factory) {
 		IVPBoolean result = factory.createIVPBoolean();
+		map.put(result.getUniqueID(), result);
 		Boolean booleanResult = new Boolean(c.getBigDecimal(getUniqueID()).compareTo(c.getBigDecimal(num.getUniqueID())) >= 0);
 		c.addBoolean(result.getUniqueID(), booleanResult);
 		return result;
@@ -182,6 +191,7 @@ public class IVPNumber extends IVPValue {
 	@Override
 	public IVPBoolean ivpEqualTo(IVPValue v, Context c, HashMap<String, DataObject> map, DataFactory factory) {
 		IVPBoolean result = factory.createIVPBoolean();
+		map.put(result.getUniqueID(), result);
 		Boolean booleanResult = new Boolean(c.getBigDecimal(getUniqueID()).compareTo(c.getBigDecimal(v.getUniqueID())) == 0);
 		c.addBoolean(result.getUniqueID(), booleanResult);
 		return result;
@@ -200,6 +210,7 @@ public class IVPNumber extends IVPValue {
 	@Override
 	public IVPBoolean ivpNotEqualTo(IVPValue v, Context c, HashMap<String, DataObject> map, DataFactory factory) {
 		IVPBoolean result = factory.createIVPBoolean();
+		map.put(result.getUniqueID(), result);
 		Boolean booleanResult = new Boolean(c.getBigDecimal(getUniqueID()).compareTo(c.getBigDecimal(v.getUniqueID())) != 0);
 		c.addBoolean(result.getUniqueID(), booleanResult);
 		return result;
