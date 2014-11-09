@@ -8,23 +8,20 @@ package usp.ime.line.ivprog.interpreter.gui;
  * @author Romenig
  */
 
-import javax.swing.JDialog;
-import javax.swing.JTextField;
-
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JPanel;
-
-import java.awt.FlowLayout;
-
-import usp.ime.line.ivprog.view.FlatUIColors;
-import usp.ime.line.ivprog.view.language.ResourceBundleIVP;
-import javax.swing.border.EmptyBorder;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
-import java.awt.CardLayout;
-import javax.swing.BoxLayout;
-import java.awt.GridLayout;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import usp.ime.line.ivprog.language.Messages;
+import usp.ime.line.ivprog.view.FlatUIColors;
 
 public class JDialogReadInteger extends JDialog {
 	private static JDialogReadInteger instance;
@@ -59,10 +56,22 @@ public class JDialogReadInteger extends JDialog {
 		getContentPane().add(btnsPanel, BorderLayout.SOUTH);
 		btnsPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
     	
-    	btnOk = new JButton(ResourceBundleIVP.getString("Btn.OK"));
+    	btnOk = new JButton(Messages.getString("Btn.OK"));
+    	btnOk.addActionListener(new ActionListener(){
+			@Override
+            public void actionPerformed(ActionEvent e) {
+				JDialogReadInteger.getInstance().dispose();
+            }
+    	});
 		btnsPanel.add(btnOk);
 		
-		btnCancelar = new JButton(ResourceBundleIVP.getString("Btn.cancel"));
+		btnCancelar = new JButton(Messages.getString("Btn.CANCEL"));
+		btnCancelar.addActionListener(new ActionListener(){
+			@Override
+            public void actionPerformed(ActionEvent e) {
+				JDialogReadInteger.getInstance().dispose();
+            }
+		});
 		btnsPanel.add(btnCancelar);
     }
 
@@ -71,7 +80,7 @@ public class JDialogReadInteger extends JDialog {
 		contentPane.add(textFieldPanel, BorderLayout.CENTER);
 		textFieldPanel.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		textLabel = new JLabel(ResourceBundleIVP.getString("JDialogReadInteger.textLabel.text"));
+		textLabel = new JLabel(Messages.getString("JDialogReadInteger.textLabel.text"));
 		textFieldPanel.add(textLabel);
     }
 
@@ -86,6 +95,7 @@ public class JDialogReadInteger extends JDialog {
     private void initTextField() {
 		customTextField = new JCustomTextField();
 		customTextField.setColumns(20);
+		customTextField.setRegexFilter(JCustomTextField.INTEGER);
 		textFieldPanel.add(customTextField);
     }
 

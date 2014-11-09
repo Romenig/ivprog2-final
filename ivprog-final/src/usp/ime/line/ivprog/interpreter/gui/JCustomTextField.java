@@ -21,9 +21,9 @@ public class JCustomTextField extends JTextField {
 
 	private String currentRegex = "";
 
-	private String integerRegex = "^[-]?[0-9]*$";
-	private String doubleRegex = "^[-]?[0-9]*$";
-	private String variableNameRegex = "^[a-zA-Z_][a-zA-Z0-9_]*$";
+	public static String INTEGER = "^[-]?[0-9]*$";
+	public static String DOUBLE = "^[-]?[0-9]*$";
+	public static String VARIABLE_NAME = "^[a-zA-Z_][a-zA-Z0-9_]*$";
 
 	public JCustomTextField() {
 		super();
@@ -75,6 +75,11 @@ public class JCustomTextField extends JTextField {
 	}
 
 	/**
+	 * Set the regex that will validate de user input.
+	 * Choose onde value from:
+	 * JCustomTextField.INTEGER
+	 * JCustomTextField.DOUBLE
+	 * JCustomTextField.VARIABLE_NAME
 	 * @param currentRegex
 	 *            the currentRegex to set
 	 */
