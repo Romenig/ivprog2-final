@@ -22,6 +22,7 @@ import usp.ime.line.ivprog.interpreter.execution.code.Function;
 import usp.ime.line.ivprog.interpreter.execution.code.IfElse;
 import usp.ime.line.ivprog.interpreter.execution.code.RecursiveCall;
 import usp.ime.line.ivprog.interpreter.execution.code.Return;
+import usp.ime.line.ivprog.interpreter.execution.code.UserInput;
 import usp.ime.line.ivprog.interpreter.execution.expressions.arithmetic.Multiplication;
 import usp.ime.line.ivprog.interpreter.execution.expressions.arithmetic.Subtraction;
 import usp.ime.line.ivprog.interpreter.execution.expressions.booleans.comparisons.EqualTo;
@@ -42,8 +43,12 @@ public class RecursiveCallWithUserInputTest {
 		fatorial.setFunctionReturnType(IVPValue.INTEGER_TYPE);
 		fatorial.addArgument(IVPValue.INTEGER_TYPE, context, map, factory);
 		IVPNumber argu = (IVPNumber) map.get(fatorial.getArgument(0));
-		argu.updateValue(context, new BigDecimal(5));
 		map.put(fatorial.getUniqueID(), fatorial);
+		
+		UserInput input = factory.createUserInput();
+		input.setType(IVPValue.INTEGER_TYPE);
+		input.setValueID(argu.getUniqueID());
+		map.put(input.getUniqueID(), input);
 		
 		Return r1 = factory.createReturn();
 		IVPNumber one = factory.createIVPNumber();
@@ -56,7 +61,6 @@ public class RecursiveCallWithUserInputTest {
 		RecursiveCall recursion = factory.createRecursiveCall();
 		map.put(recursion.getUniqueID(), recursion);
 		recursion.setFunctionID(fatorial.getUniqueID());
-
 		map.put(r2.getUniqueID(), r2);
 		
 		IfElse ifElse = factory.createIfElse();
@@ -83,6 +87,7 @@ public class RecursiveCallWithUserInputTest {
 		map.put(sub.getUniqueID(), sub);
 		recursion.addParameter(0, sub.getUniqueID());
 		
+		input.evaluate(context, map, factory);
 		IVPNumber result = (IVPNumber) fatorial.evaluate(context, map, factory);
 		
 		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal(120)) == 0); 

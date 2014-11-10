@@ -20,6 +20,7 @@ import usp.ime.line.ivprog.interpreter.execution.code.FunctionReference;
 import usp.ime.line.ivprog.interpreter.execution.code.IfElse;
 import usp.ime.line.ivprog.interpreter.execution.code.RecursiveCall;
 import usp.ime.line.ivprog.interpreter.execution.code.Return;
+import usp.ime.line.ivprog.interpreter.execution.code.UserInput;
 import usp.ime.line.ivprog.interpreter.execution.code.While;
 import usp.ime.line.ivprog.interpreter.execution.expressions.arithmetic.Addition;
 import usp.ime.line.ivprog.interpreter.execution.expressions.arithmetic.Division;
@@ -416,6 +417,16 @@ public class DataFactory {
 		RecursiveCall rc = new RecursiveCall();
 		rc.setUniqueID(getID());
 		return rc;
+    }
+
+	/**
+	 * Get a new UserInput object.
+	 * @return
+	 */
+    public UserInput createUserInput() {
+    	UserInput input = new UserInput();
+    	input.setUniqueID(getID());
+    	return input;
     }
 
 }

@@ -16,6 +16,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -49,6 +50,8 @@ public class JDialogReadInteger extends JDialog {
 		initBtnPanel();
 		setLocationRelativeTo(null);
 		pack();
+		setModal(true);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 	}
 	
     private void initBtnPanel() {
@@ -97,6 +100,14 @@ public class JDialogReadInteger extends JDialog {
 		customTextField.setColumns(20);
 		customTextField.setRegexFilter(JCustomTextField.INTEGER);
 		textFieldPanel.add(customTextField);
+    }
+
+	/**
+	 * Get the input value.
+	 * @return
+	 */
+    public String getValue() {
+	    return customTextField.getText();
     }
 
 }
