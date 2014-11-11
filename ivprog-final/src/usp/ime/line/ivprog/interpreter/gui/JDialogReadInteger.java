@@ -21,6 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPValue;
 import usp.ime.line.ivprog.language.Messages;
 import usp.ime.line.ivprog.view.FlatUIColors;
 
@@ -98,7 +99,7 @@ public class JDialogReadInteger extends JDialog {
     private void initTextField() {
 		customTextField = new JCustomTextField();
 		customTextField.setColumns(20);
-		customTextField.setRegexFilter(JCustomTextField.INTEGER);
+		customTextField.setValueType(IVPValue.INTEGER_TYPE);
 		textFieldPanel.add(customTextField);
     }
 
