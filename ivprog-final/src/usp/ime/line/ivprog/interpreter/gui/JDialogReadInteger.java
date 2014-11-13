@@ -13,6 +13,8 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -25,7 +27,10 @@ import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPValue;
 import usp.ime.line.ivprog.language.Messages;
 import usp.ime.line.ivprog.view.FlatUIColors;
 
-public class JDialogReadInteger extends JDialog {
+import java.awt.Color;
+
+public class JDialogReadInteger extends IVPInput {
+	
 	private static JDialogReadInteger instance;
 	private JButton btnOk;
 	private JButton btnCancelar;
@@ -57,6 +62,7 @@ public class JDialogReadInteger extends JDialog {
 	
     private void initBtnPanel() {
 		JPanel btnsPanel = new JPanel();
+		btnsPanel.setBackground(FlatUIColors.MAIN_BG);
 		getContentPane().add(btnsPanel, BorderLayout.SOUTH);
 		btnsPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
     	
@@ -64,7 +70,7 @@ public class JDialogReadInteger extends JDialog {
     	btnOk.addActionListener(new ActionListener(){
 			@Override
             public void actionPerformed(ActionEvent e) {
-				JDialogReadInteger.getInstance().dispose();
+				verifyRegex();
             }
     	});
 		btnsPanel.add(btnOk);
@@ -73,14 +79,20 @@ public class JDialogReadInteger extends JDialog {
 		btnCancelar.addActionListener(new ActionListener(){
 			@Override
             public void actionPerformed(ActionEvent e) {
-				JDialogReadInteger.getInstance().dispose();
+				failRegex();
             }
 		});
 		btnsPanel.add(btnCancelar);
     }
 
+    public boolean testOK(){
+    	return customTextField.testOK();
+    }
+    
     private void initTextPanel() {
 		textFieldPanel = new JPanel();
+		textFieldPanel.setBackground(FlatUIColors.MAIN_BG);
+		
 		contentPane.add(textFieldPanel, BorderLayout.CENTER);
 		textFieldPanel.setLayout(new GridLayout(0, 1, 0, 0));
 		
@@ -100,6 +112,7 @@ public class JDialogReadInteger extends JDialog {
 		customTextField = new JCustomTextField();
 		customTextField.setColumns(20);
 		customTextField.setValueType(IVPValue.INTEGER_TYPE);
+		customTextField.setMyParent(this);
 		textFieldPanel.add(customTextField);
     }
 
@@ -109,6 +122,25 @@ public class JDialogReadInteger extends JDialog {
 	 */
     public String getValue() {
 	    return customTextField.getText();
+    }
+
+	/* (non-Javadoc)
+	 * @see usp.ime.line.ivprog.interpreter.gui.IVPInput#failRegex()
+	 */
+    @Override
+    public void failRegex() {
+    	//Lançar exception de algoritmo interrompido.
+    	JDialogReadInteger.getInstance().dispose();
+    }
+
+	/* (non-Javadoc)
+	 * @see usp.ime.line.ivprog.interpreter.gui.IVPInput#passRegex()
+	 */
+    @Override
+    public void verifyRegex() {
+    	if(testOK()){
+			JDialogReadInteger.getInstance().dispose();
+		}
     }
 
 }

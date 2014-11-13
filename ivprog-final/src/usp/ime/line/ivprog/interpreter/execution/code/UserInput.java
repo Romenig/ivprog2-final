@@ -31,9 +31,7 @@ public class UserInput extends DataObject {
     	String theValue = IVPValue.NULL;
     	if(type.equals(IVPValue.INTEGER_TYPE)){
     		
-    		System.out.println("Chegou");
     		JDialogReadInteger.getInstance().setVisible(true);
-    		System.out.println("Passou");
     		
     		theValue = JDialogReadInteger.getInstance().getValue();
     		IVPNumber number = (IVPNumber) map.get(valueID);

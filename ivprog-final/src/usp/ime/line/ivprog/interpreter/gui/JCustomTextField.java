@@ -8,6 +8,10 @@ package usp.ime.line.ivprog.interpreter.gui;
  * @author Romenig
  */
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+import javax.swing.JDialog;
 import javax.swing.JTextField;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
@@ -15,12 +19,18 @@ import javax.swing.text.Document;
 import javax.swing.text.PlainDocument;
 
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPValue;
+import usp.ime.line.ivprog.view.FlatUIColors;
+
+import javax.swing.border.LineBorder;
+
+import java.awt.Color;
 
 public class JCustomTextField extends JTextField {
 
 	private int maxLength = -1;
 	private boolean isBlocked = false;
 	private String valueType;
+	private IVPInput myParent;
 
 	private String currentRegex = "";
 	private int index = 0;
@@ -32,17 +42,40 @@ public class JCustomTextField extends JTextField {
 
 	public JCustomTextField() {
 		super();
+		setBorder(new LineBorder(FlatUIColors.CODE_BORDER_BG));
+		init();
 	}
 
 	public JCustomTextField(int cols) {
 		super(cols);
+		init();
 	}
 
 	public JCustomTextField(int cols, int maxLength) {
 		super(cols);
+		init();
 		setMaximumLength(maxLength);
 	}
 
+    private void init() {
+    	addKeyListener(new KeyListener(){
+			@Override
+            public void keyPressed(KeyEvent e) {}
+
+			@Override
+            public void keyReleased(KeyEvent e) {}
+
+			@Override
+            public void keyTyped(KeyEvent e) {
+				if(e.getKeyChar() == 10){
+					myParent.verifyRegex();
+				}else if(e.getKeyChar() == 13){
+					myParent.failRegex();
+				}
+			}
+    	});
+    }
+	
 	@Override
 	protected Document createDefaultModel() {
 		return new RegexDocument(this);
@@ -106,6 +139,20 @@ public class JCustomTextField extends JTextField {
 	    this.valueType = valueType;
     }
 
+	/**
+	 * @return the myParent
+	 */
+    public JDialog getMyParent() {
+	    return myParent;
+    }
+
+	/**
+	 * @param myParent the myParent to set
+	 */
+    public void setMyParent(IVPInput myParent) {
+	    this.myParent = myParent;
+    }
+    
 	private final class RegexDocument extends PlainDocument {
 
 		private JCustomTextField textField;
@@ -124,13 +171,9 @@ public class JCustomTextField extends JTextField {
 					super.insertString(offs, str, a);
 				}
 			} else {
-				System.out.println("Atingiu o limite.");
 			}
-
 			String formedString = textField.getText();
-			
 			currentRegex = prepareRegex(formedString);
-			System.out.println(currentRegex);
 			if (formedString.matches(currentRegex)) {
 				return;
 			} else {
@@ -139,28 +182,56 @@ public class JCustomTextField extends JTextField {
 			}	
 		}
 
-		/**
-		 * @return
-		 */
-        private String prepareRegex(String formed) {
-        	if(IVPValue.INTEGER_TYPE.equals(valueType)){
-        		if(formed.length() > 1){
-        			return INTEGER[1];
-        		}else{
-        			return INTEGER[0];
-        		}
-        	}else if(IVPValue.DOUBLE_TYPE.equals(valueType)){
-        		if(IVPValue.DOUBLE_TYPE.equals(valueType)){
-        			if(formed.length() >= 1){
-            			return DOUBLE[1];
-            		}else{
-            			return DOUBLE[0];
-            		}	
-        		}
-        	}else if(IVPValue.STRING_TYPE.equals(valueType)){
-        		return STRING;
-        	}
-	        return null;
-        }
 	}
+
+	/**
+	 * Update the regex for integer or double cases.
+	 * @return
+	 */
+    public String prepareRegex(String formed) {
+    	if(IVPValue.INTEGER_TYPE.equals(valueType)){
+    		if(formed.length() > 1){
+    			return INTEGER[1];
+    		}else{
+    			return INTEGER[0];
+    		}
+    	}else if(IVPValue.DOUBLE_TYPE.equals(valueType)){
+    		if(IVPValue.DOUBLE_TYPE.equals(valueType)){
+    			if(formed.length() >= 1){
+        			return DOUBLE[1];
+        		}else{
+        			return DOUBLE[0];
+        		}	
+    		}
+    	}else if(IVPValue.STRING_TYPE.equals(valueType)){
+    		return STRING;
+    	}
+        return null;
+    }
+	
+	/**
+	 * Test if the current string is good enough to be returned as value.
+	 * @return
+	 */
+    public boolean testOK() {
+    	String formedString = this.getText();
+    	currentRegex = prepareRegex(formedString);
+    	if(valueType.equals(IVPValue.INTEGER_TYPE)||valueType.equals(IVPValue.DOUBLE_TYPE)){
+    		if(formedString.contains("-")||formedString.contains("+")){
+    			if(formedString.length() > 1 && formedString.matches(currentRegex)){
+    				return true;
+    			}
+    		}else{
+    			if(formedString.length() > 0 && formedString.matches(currentRegex)){
+    				return true;
+    			}
+    		}
+    	}else{
+    		if(formedString.length() > 1 && formedString.matches(currentRegex)){
+				return true;
+			}
+    	}
+	    return false;
+    }
+
 }
