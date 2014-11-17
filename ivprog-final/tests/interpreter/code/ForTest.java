@@ -59,7 +59,7 @@ public class ForTest {
 		attLine.setVariable(v.getUniqueID());
 		attLine.setExpression(add.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(startingValue.getUniqueID(), startingValue);
 		map.put(one.getUniqueID(), one);
 		map.put(v.getUniqueID(), v);
@@ -117,7 +117,7 @@ public class ForTest {
 		attLine.setVariable(v.getUniqueID());
 		attLine.setExpression(add.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(startingValue.getUniqueID(), startingValue);
 		map.put(one.getUniqueID(), one);
 		map.put(indexValue.getUniqueID(), indexValue);
@@ -184,7 +184,7 @@ public class ForTest {
 		attLine.setVariable(v.getUniqueID());
 		attLine.setExpression(add.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(lowerBound.getUniqueID(), lowerBound);
 		map.put(upperBound.getUniqueID(), upperBound);
 		map.put(indexStartingValue.getUniqueID(), indexStartingValue);

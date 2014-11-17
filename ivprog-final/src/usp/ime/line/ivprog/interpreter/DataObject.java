@@ -24,6 +24,6 @@ public abstract class DataObject {
 		this.uniqueID = uniqueID;
 	}
 
-	public abstract Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory);
+	public abstract Object evaluate(Context c, HashMap map, DataFactory factory);
 
 }

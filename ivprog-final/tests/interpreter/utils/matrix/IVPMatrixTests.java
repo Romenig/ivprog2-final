@@ -38,7 +38,7 @@ public class IVPMatrixTests {
 		IVPMatrix matrix = factory.createIVPMatrix();
 		matrix.setType(IVPValue.INTEGER_TYPE);
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(matrix.getUniqueID(), matrix);
 		map.put(size.getUniqueID(), size);
 
@@ -87,7 +87,7 @@ public class IVPMatrixTests {
 		column.updateValue(context, new BigDecimal(2));
 		matrix.addElement(line.getUniqueID(), column.getUniqueID(), context, c.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(a.getUniqueID(), a);
 		map.put(b.getUniqueID(), b);
 		map.put(c.getUniqueID(), c);
@@ -154,7 +154,7 @@ public class IVPMatrixTests {
 		column.updateValue(context, new BigDecimal(2));
 		matrix.addElement(line.getUniqueID(), column.getUniqueID(), context, c.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(a.getUniqueID(), a);
 		map.put(b.getUniqueID(), b);
 		map.put(c.getUniqueID(), c);

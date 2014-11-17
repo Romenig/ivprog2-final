@@ -21,10 +21,10 @@ import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPValue;
 public class IfElse extends CodeComposite {
 
 	private String flowConditionID;
-	private Vector<String> elseChildren;
+	private Vector elseChildren;
 
 	public IfElse() {
-		elseChildren = new Vector<String>();
+		elseChildren = new Vector();
 	}
 
 	/*
@@ -35,11 +35,10 @@ public class IfElse extends CodeComposite {
 	 * .interpreter.execution.Context, java.util.HashMap,
 	 * usp.ime.line.ivprog.interpreter.DataFactory)
 	 */
-	@Override
-	public Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory) {
-		IVPBoolean b = (IVPBoolean) map.get(flowConditionID).evaluate(c, map, factory);
+	public Object evaluate(Context c, HashMap map, DataFactory factory) {
+		IVPBoolean b = (IVPBoolean) ((DataObject)map.get(flowConditionID)).evaluate(c, map, factory);
 		Function f = (Function) map.get(c.getFunctionID());
-		if (c.getBoolean(b.getUniqueID())) {
+		if (c.getBoolean(b.getUniqueID()).booleanValue()) {
 			for (int i = 0; i < children.size(); i += 1) {
 				DataObject component = (DataObject) map.get(children.get(i));
 				if(component instanceof Return){
@@ -111,7 +110,7 @@ public class IfElse extends CodeComposite {
 	 * @param uniqueID
 	 */
 	public String addElseChildAtIndex(BigDecimal index, String uniqueID) {
-		String lastChild = children.remove(index.intValue());
+		String lastChild = (String) children.remove(index.intValue());
 		children.add(index.intValue(), uniqueID);
 		return lastChild;
 	}
@@ -131,7 +130,7 @@ public class IfElse extends CodeComposite {
 	 * @param bigDecimal
 	 */
 	public String removeElseChildAtIndex(BigDecimal index) {
-		String lastChild = elseChildren.remove(index.intValue());
+		String lastChild = (String) elseChildren.remove(index.intValue());
 		return lastChild;
 	}
 

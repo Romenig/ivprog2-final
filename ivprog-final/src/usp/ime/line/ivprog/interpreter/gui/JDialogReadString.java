@@ -61,7 +61,6 @@ public class JDialogReadString extends JDialog {
     	
     	btnOk = new JButton(Messages.getString("Btn.OK"));
     	btnOk.addActionListener(new ActionListener(){
-			@Override
             public void actionPerformed(ActionEvent e) {
 				JDialogReadString.getInstance().dispose();
             }
@@ -70,7 +69,6 @@ public class JDialogReadString extends JDialog {
 		
 		btnCancelar = new JButton(Messages.getString("Btn.CANCEL"));
 		btnCancelar.addActionListener(new ActionListener(){
-			@Override
             public void actionPerformed(ActionEvent e) {
 				JDialogReadString.getInstance().dispose();
             }

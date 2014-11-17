@@ -35,11 +35,10 @@ public class While extends CodeComposite {
 	 * .interpreter.execution.Context, java.util.HashMap,
 	 * usp.ime.line.ivprog.interpreter.DataFactory)
 	 */
-	@Override
-	public Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory) {
-		IVPBoolean b = (IVPBoolean) map.get(loopConditionID).evaluate(c, map, factory);
+	public Object evaluate(Context c, HashMap map, DataFactory factory) {
+		IVPBoolean b = (IVPBoolean) ((DataObject)map.get(loopConditionID)).evaluate(c, map, factory);
 		Function f = (Function) map.get(c.getFunctionID());
-		while (c.getBoolean(b.getUniqueID())) {
+		while (c.getBoolean(b.getUniqueID()).booleanValue()) {
 			for (int i = 0; i < children.size(); i += 1) {
 				DataObject component = (DataObject) map.get(children.get(i));
 				if(component instanceof Return){
@@ -52,7 +51,7 @@ public class While extends CodeComposite {
 				}
 				component.evaluate(c, map, factory);
 			}
-			b = (IVPBoolean) map.get(loopConditionID).evaluate(c, map, factory);
+			b = (IVPBoolean) ((DataObject)map.get(loopConditionID)).evaluate(c, map, factory);
 		}
 		return null;
 	}

@@ -34,21 +34,20 @@ public class AttributionLine extends DataObject {
 	 * .interpreter.execution.Context, java.util.HashMap,
 	 * usp.ime.line.ivprog.interpreter.DataFactory)
 	 */
-	@Override
-	public Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory) {
+	public Object evaluate(Context c, HashMap map, DataFactory factory) {
 		if (map.get(variableID) instanceof IVPVariable) {
 			IVPVariable variable = (IVPVariable) map.get(variableID);
-			IVPValue value = (IVPValue) map.get(expressionID).evaluate(c, map, factory);
+			IVPValue value = (IVPValue) ((DataObject) map.get(expressionID)).evaluate(c, map, factory);
 			IVPValue copyOfValue = createCopy(value, c, map, factory);
 			variable.setValueID(copyOfValue.getUniqueID());
 		} else if (map.get(variableID) instanceof IVPVectorReference) {
 			IVPVectorReference ref = (IVPVectorReference) map.get(variableID);
-			IVPValue value = (IVPValue) map.get(expressionID).evaluate(c, map, factory);
+			IVPValue value = (IVPValue) ((DataObject)map.get(expressionID)).evaluate(c, map, factory);
 			IVPValue copyOfValue = createCopy(value, c, map, factory);
 			ref.setElementIntoVector(copyOfValue.getUniqueID(), c, map, factory);
 		} else if (map.get(variableID) instanceof IVPMatrixReference) {
 			IVPMatrixReference ref = (IVPMatrixReference) map.get(variableID);
-			IVPValue value = (IVPValue) map.get(expressionID).evaluate(c, map, factory);
+			IVPValue value = (IVPValue) ((DataObject)map.get(expressionID)).evaluate(c, map, factory);
 			IVPValue copyOfValue = createCopy(value, c, map, factory);
 			ref.setElementIntoMatrix(copyOfValue.getUniqueID(), c, map, factory);
 		}
@@ -61,7 +60,7 @@ public class AttributionLine extends DataObject {
 	 * 
 	 * a = b; b = c; System.out.println(a); // results 2, not 3.
 	 */
-	private IVPValue createCopy(IVPValue value, Context c, HashMap<String, DataObject> map, DataFactory factory) {
+	private IVPValue createCopy(IVPValue value, Context c, HashMap map, DataFactory factory) {
 		IVPValue copy = null;
 		if (value instanceof IVPNumber) {
 			copy = factory.createIVPNumber();

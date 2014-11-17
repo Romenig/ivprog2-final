@@ -68,7 +68,6 @@ public class JDialogReadInteger extends IVPInput {
     	
     	btnOk = new JButton(Messages.getString("Btn.OK"));
     	btnOk.addActionListener(new ActionListener(){
-			@Override
             public void actionPerformed(ActionEvent e) {
 				verifyRegex();
             }
@@ -77,7 +76,6 @@ public class JDialogReadInteger extends IVPInput {
 		
 		btnCancelar = new JButton(Messages.getString("Btn.CANCEL"));
 		btnCancelar.addActionListener(new ActionListener(){
-			@Override
             public void actionPerformed(ActionEvent e) {
 				failRegex();
             }
@@ -127,7 +125,6 @@ public class JDialogReadInteger extends IVPInput {
 	/* (non-Javadoc)
 	 * @see usp.ime.line.ivprog.interpreter.gui.IVPInput#failRegex()
 	 */
-    @Override
     public void failRegex() {
     	//Lançar exception de algoritmo interrompido.
     	JDialogReadInteger.getInstance().dispose();
@@ -136,7 +133,6 @@ public class JDialogReadInteger extends IVPInput {
 	/* (non-Javadoc)
 	 * @see usp.ime.line.ivprog.interpreter.gui.IVPInput#passRegex()
 	 */
-    @Override
     public void verifyRegex() {
     	if(testOK()){
 			JDialogReadInteger.getInstance().dispose();

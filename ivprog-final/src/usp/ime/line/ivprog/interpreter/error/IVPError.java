@@ -33,8 +33,7 @@ public class IVPError extends DataObject {
 		message = m;
 	}
 
-	@Override
-	public Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory) {
+	public Object evaluate(Context c, HashMap map, DataFactory factory) {
 		return this;
 	}
 

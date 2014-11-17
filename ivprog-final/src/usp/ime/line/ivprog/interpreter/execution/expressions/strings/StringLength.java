@@ -32,9 +32,8 @@ public class StringLength extends Expression {
 		string = str;
 	}
 
-	@Override
-	public Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory) {
-		IVPString str1 = (IVPString) map.get(string).evaluate(c, map, factory);
+	public Object evaluate(Context c, HashMap map, DataFactory factory) {
+		IVPString str1 = (IVPString) ((DataObject)map.get(string)).evaluate(c, map, factory);
 		IVPNumber result = str1.strlen(c, factory);
 		return result;
 	}

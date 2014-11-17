@@ -48,7 +48,7 @@ public class CompleteDivisionTest {
 		division2.setExpressionA(c.getUniqueID());
 		division2.setExpressionB(division1.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(division1.getUniqueID(), division1);
 		map.put(division2.getUniqueID(), division2);
 		map.put(a.getUniqueID(), a);
@@ -86,7 +86,7 @@ public class CompleteDivisionTest {
 		division2.setExpressionA(c.getUniqueID());
 		division2.setExpressionB(division1.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(division1.getUniqueID(), division1);
 		map.put(division2.getUniqueID(), division2);
 		map.put(a.getUniqueID(), a);
@@ -130,7 +130,7 @@ public class CompleteDivisionTest {
 		division3.setExpressionA(division1.getUniqueID());
 		division3.setExpressionB(division2.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(division1.getUniqueID(), division1);
 		map.put(division2.getUniqueID(), division2);
 		map.put(division3.getUniqueID(), division3);

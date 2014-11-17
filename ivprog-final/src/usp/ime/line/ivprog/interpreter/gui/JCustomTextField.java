@@ -59,13 +59,10 @@ public class JCustomTextField extends JTextField {
 
     private void init() {
     	addKeyListener(new KeyListener(){
-			@Override
             public void keyPressed(KeyEvent e) {}
 
-			@Override
             public void keyReleased(KeyEvent e) {}
 
-			@Override
             public void keyTyped(KeyEvent e) {
 				if(e.getKeyChar() == 10){
 					myParent.verifyRegex();
@@ -76,7 +73,6 @@ public class JCustomTextField extends JTextField {
     	});
     }
 	
-	@Override
 	protected Document createDefaultModel() {
 		return new RegexDocument(this);
 	}
@@ -161,7 +157,6 @@ public class JCustomTextField extends JTextField {
 			textField = jCustomTextField;
 		}
 
-		@Override
 		public void insertString(int offs, String str, AttributeSet a) throws BadLocationException {
 			if (str == null) {
 				return;
@@ -217,7 +212,7 @@ public class JCustomTextField extends JTextField {
     	String formedString = this.getText();
     	currentRegex = prepareRegex(formedString);
     	if(valueType.equals(IVPValue.INTEGER_TYPE)||valueType.equals(IVPValue.DOUBLE_TYPE)){
-    		if(formedString.contains("-")||formedString.contains("+")){
+    		if(formedString.indexOf("-")!=-1 || formedString.indexOf("+")!= -1){
     			if(formedString.length() > 1 && formedString.matches(currentRegex)){
     				return true;
     			}

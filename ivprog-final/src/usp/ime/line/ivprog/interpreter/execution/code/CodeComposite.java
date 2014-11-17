@@ -15,10 +15,10 @@ import usp.ime.line.ivprog.interpreter.DataObject;
 
 public abstract class CodeComposite extends DataObject {
 
-	protected Vector<String> children;
+	protected Vector children;
 
 	public CodeComposite() {
-		children = new Vector<String>();
+		children = new Vector();
 	}
 
 	/**
@@ -38,7 +38,7 @@ public abstract class CodeComposite extends DataObject {
 	 * @return lastChild
 	 */
 	public String addChildAtIndex(BigDecimal index, String childID) {
-		String lastChild = children.remove(index.intValue());
+		String lastChild = (String) children.remove(index.intValue());
 		children.add(index.intValue(), childID);
 		return lastChild;
 	}
@@ -67,7 +67,7 @@ public abstract class CodeComposite extends DataObject {
 	 * @return
 	 */
 	public String removeChildAtIndex(BigDecimal index) {
-		String lastChild = children.remove(index.intValue());
+		String lastChild = (String) children.remove(index.intValue());
 		return lastChild;
 	}
 

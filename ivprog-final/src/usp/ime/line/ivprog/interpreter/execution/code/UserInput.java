@@ -26,8 +26,7 @@ public class UserInput extends DataObject {
 	/* (non-Javadoc)
 	 * @see usp.ime.line.ivprog.interpreter.DataObject#evaluate(usp.ime.line.ivprog.interpreter.execution.Context, java.util.HashMap, usp.ime.line.ivprog.interpreter.DataFactory)
 	 */
-    @Override
-    public Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory) {
+    public Object evaluate(Context c, HashMap map, DataFactory factory) {
     	String theValue = IVPValue.NULL;
     	if(type.equals(IVPValue.INTEGER_TYPE)){
     		

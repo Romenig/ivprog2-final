@@ -32,8 +32,7 @@ public class IVPVector extends DataObject {
 	 * .interpreter.execution.Context, java.util.HashMap,
 	 * usp.ime.line.ivprog.interpreter.DataFactory)
 	 */
-	@Override
-	public Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory) {
+	public Object evaluate(Context c, HashMap map, DataFactory factory) {
 		return this;
 	}
 
@@ -84,7 +83,7 @@ public class IVPVector extends DataObject {
 	 * 
 	 * @return
 	 */
-	public String isEmpty(DataFactory factory, Context c, HashMap<String, DataObject> map) {
+	public String isEmpty(DataFactory factory, Context c, HashMap map) {
 		IVPBoolean isEmpty = factory.createIVPBoolean();
 		boolean test = true;
 		for (int i = 0; i < vectorRepresentation.length; i += 1) {

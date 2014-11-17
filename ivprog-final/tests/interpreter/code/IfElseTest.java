@@ -68,7 +68,7 @@ public class IfElseTest {
 		attLine2.setVariable(v.getUniqueID());
 		attLine2.setExpression(value2.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 
 		map.put(leftValue.getUniqueID(), leftValue);
 		map.put(value1.getUniqueID(), value1);
@@ -137,7 +137,7 @@ public class IfElseTest {
 		attLine2.setVariable(v.getUniqueID());
 		attLine2.setExpression(value2.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 
 		map.put(leftValue.getUniqueID(), leftValue);
 		map.put(value1.getUniqueID(), value1);
@@ -202,7 +202,7 @@ public class IfElseTest {
 		attLine2.setVariable(v.getUniqueID());
 		attLine2.setExpression(value2.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 
 		map.put(leftValue.getUniqueID(), leftValue);
 		map.put(value1.getUniqueID(), value1);
@@ -267,7 +267,7 @@ public class IfElseTest {
 		attLine2.setVariable(v.getUniqueID());
 		attLine2.setExpression(value2.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 
 		map.put(leftValue.getUniqueID(), leftValue);
 		map.put(value1.getUniqueID(), value1);

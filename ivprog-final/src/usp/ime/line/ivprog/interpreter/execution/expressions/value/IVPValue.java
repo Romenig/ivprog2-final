@@ -30,8 +30,8 @@ public abstract class IVPValue extends Expression {
 	
 	private String valueType;
 
-	@Override
-	public Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory) {
+	
+	public Object evaluate(Context c, HashMap map, DataFactory factory) {
 		return this;
 	}
 
@@ -60,7 +60,7 @@ public abstract class IVPValue extends Expression {
 	 * 
 	 * @return
 	 */
-	public abstract IVPBoolean ivpEqualTo(IVPValue v, Context c, HashMap<String, DataObject> map, DataFactory factory);
+	public abstract IVPBoolean ivpEqualTo(IVPValue v, Context c, HashMap map, DataFactory factory);
 
 	/**
 	 * Verify if this object is not equal to the given IVPValue v. This method
@@ -68,6 +68,6 @@ public abstract class IVPValue extends Expression {
 	 * 
 	 * @return
 	 */
-	public abstract IVPBoolean ivpNotEqualTo(IVPValue v, Context c, HashMap<String, DataObject> map, DataFactory factory);
+	public abstract IVPBoolean ivpNotEqualTo(IVPValue v, Context c, HashMap map, DataFactory factory);
 
 }

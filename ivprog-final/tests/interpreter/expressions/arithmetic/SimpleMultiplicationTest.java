@@ -40,7 +40,7 @@ public class SimpleMultiplicationTest {
 		multiplication.setExpressionA(a.getUniqueID());
 		multiplication.setExpressionB(b.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(multiplication.getUniqueID(), multiplication);
 		map.put(a.getUniqueID(), a);
 		map.put(b.getUniqueID(), b);
@@ -66,7 +66,7 @@ public class SimpleMultiplicationTest {
 		multiplication.setExpressionA(a.getUniqueID());
 		multiplication.setExpressionB(b.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(multiplication.getUniqueID(), multiplication);
 		map.put(a.getUniqueID(), a);
 		map.put(b.getUniqueID(), b);
@@ -92,7 +92,7 @@ public class SimpleMultiplicationTest {
 		multiplication.setExpressionA(a.getUniqueID());
 		multiplication.setExpressionB(b.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(multiplication.getUniqueID(), multiplication);
 		map.put(a.getUniqueID(), a);
 		map.put(b.getUniqueID(), b);
@@ -117,7 +117,7 @@ public class SimpleMultiplicationTest {
 		multiplication.setExpressionA(a.getUniqueID());
 		multiplication.setExpressionB(b.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(multiplication.getUniqueID(), multiplication);
 		map.put(a.getUniqueID(), a);
 		map.put(b.getUniqueID(), b);

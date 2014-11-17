@@ -47,7 +47,7 @@ public class CompleteMultiplicationTest {
 		multiplication2.setExpressionA(c.getUniqueID());
 		multiplication2.setExpressionB(multiplication1.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(multiplication1.getUniqueID(), multiplication1);
 		map.put(multiplication2.getUniqueID(), multiplication2);
 		map.put(a.getUniqueID(), a);
@@ -85,7 +85,7 @@ public class CompleteMultiplicationTest {
 		multiplication2.setExpressionA(c.getUniqueID());
 		multiplication2.setExpressionB(multiplication1.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(multiplication1.getUniqueID(), multiplication1);
 		map.put(multiplication2.getUniqueID(), multiplication2);
 		map.put(a.getUniqueID(), a);
@@ -129,7 +129,7 @@ public class CompleteMultiplicationTest {
 		multiplication3.setExpressionA(multiplication1.getUniqueID());
 		multiplication3.setExpressionB(multiplication2.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(multiplication1.getUniqueID(), multiplication1);
 		map.put(multiplication2.getUniqueID(), multiplication2);
 		map.put(multiplication3.getUniqueID(), multiplication3);

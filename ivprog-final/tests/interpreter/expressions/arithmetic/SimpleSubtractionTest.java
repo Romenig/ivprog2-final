@@ -42,7 +42,7 @@ public class SimpleSubtractionTest {
 		subtraction.setExpressionA(a.getUniqueID());
 		subtraction.setExpressionB(b.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(subtraction.getUniqueID(), subtraction);
 		map.put(a.getUniqueID(), a);
 		map.put(b.getUniqueID(), b);
@@ -69,7 +69,7 @@ public class SimpleSubtractionTest {
 		subtraction.setExpressionA(a.getUniqueID());
 		subtraction.setExpressionB(b.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(subtraction.getUniqueID(), subtraction);
 		map.put(a.getUniqueID(), a);
 		map.put(b.getUniqueID(), b);
@@ -97,7 +97,7 @@ public class SimpleSubtractionTest {
 		subtraction.setExpressionA(a.getUniqueID());
 		subtraction.setExpressionB(b.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(subtraction.getUniqueID(), subtraction);
 		map.put(a.getUniqueID(), a);
 		map.put(b.getUniqueID(), b);
@@ -124,7 +124,7 @@ public class SimpleSubtractionTest {
 		subtraction.setExpressionA(a.getUniqueID());
 		subtraction.setExpressionB(b.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(subtraction.getUniqueID(), subtraction);
 		map.put(a.getUniqueID(), a);
 		map.put(b.getUniqueID(), b);

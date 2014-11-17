@@ -42,7 +42,7 @@ public class ComparisonNotEqualTo {
 		c.addBigDecimal(a.getUniqueID(), new BigDecimal(3));
 		c.addBigDecimal(b.getUniqueID(), new BigDecimal(2));
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(a.getUniqueID(), a);
 		map.put(b.getUniqueID(), b);
 		map.put(neq.getUniqueID(), neq);
@@ -67,7 +67,7 @@ public class ComparisonNotEqualTo {
 		c.addBigDecimal(a.getUniqueID(), new BigDecimal(3.0002));
 		c.addBigDecimal(b.getUniqueID(), new BigDecimal(3.0001));
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(a.getUniqueID(), a);
 		map.put(b.getUniqueID(), b);
 		map.put(neq.getUniqueID(), neq);
@@ -92,7 +92,7 @@ public class ComparisonNotEqualTo {
 		c.addBigDecimal(a.getUniqueID(), new BigDecimal(3.0001));
 		c.addBigDecimal(b.getUniqueID(), new BigDecimal(3));
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(a.getUniqueID(), a);
 		map.put(b.getUniqueID(), b);
 		map.put(neq.getUniqueID(), neq);
@@ -117,7 +117,7 @@ public class ComparisonNotEqualTo {
 		c.addString(a.getUniqueID(), "hello");
 		c.addString(b.getUniqueID(), "hello1");
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(a.getUniqueID(), a);
 		map.put(b.getUniqueID(), b);
 		map.put(neq.getUniqueID(), neq);
@@ -146,7 +146,7 @@ public class ComparisonNotEqualTo {
 		c.addBoolean(a.getUniqueID(), new Boolean(true));
 		c.addBoolean(b.getUniqueID(), new Boolean(false));
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 
 		map.put(a.getUniqueID(), a);
 		map.put(b.getUniqueID(), b);
