@@ -39,10 +39,9 @@ public class Or extends Expression {
 		expB = expressionB;
 	}
 
-	@Override
-	public Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory) {
-		IVPBoolean b1 = (IVPBoolean) map.get(expA).evaluate(c, map, factory);
-		IVPBoolean b2 = (IVPBoolean) map.get(expB).evaluate(c, map, factory);
+	public Object evaluate(Context c, HashMap map, DataFactory factory) {
+		IVPBoolean b1 = (IVPBoolean) ((DataObject)map.get(expA)).evaluate(c, map, factory);
+		IVPBoolean b2 = (IVPBoolean) ((DataObject)map.get(expB)).evaluate(c, map, factory);
 		IVPBoolean result = b1.or(b2, c, factory);
 		return result;
 	}

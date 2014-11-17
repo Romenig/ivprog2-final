@@ -40,10 +40,9 @@ public class EqualTo extends Expression {
 		expB = expressionB;
 	}
 
-	@Override
-	public Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory) {
-		IVPValue expressionA = (IVPValue) map.get(expA).evaluate(c, map, factory);
-		IVPValue expressionB = (IVPValue) map.get(expB).evaluate(c, map, factory);
+	public Object evaluate(Context c, HashMap map, DataFactory factory) {
+		IVPValue expressionA = (IVPValue) ((DataObject)map.get(expA)).evaluate(c, map, factory);
+		IVPValue expressionB = (IVPValue) ((DataObject)map.get(expB)).evaluate(c, map, factory);
 		return expressionA.ivpEqualTo(expressionB, c, map, factory);
 	}
 

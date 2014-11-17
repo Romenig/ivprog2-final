@@ -39,7 +39,7 @@ public class SimpleAnd {
 		and.setExpressionA(a.getUniqueID());
 		and.setExpressionB(b.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(and.getUniqueID(), and);
 		map.put(a.getUniqueID(), a);
 		map.put(b.getUniqueID(), b);
@@ -63,7 +63,7 @@ public class SimpleAnd {
 		and.setExpressionA(a.getUniqueID());
 		and.setExpressionB(b.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(and.getUniqueID(), and);
 		map.put(a.getUniqueID(), a);
 		map.put(b.getUniqueID(), b);
@@ -87,7 +87,7 @@ public class SimpleAnd {
 		and.setExpressionA(a.getUniqueID());
 		and.setExpressionB(b.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(and.getUniqueID(), and);
 		map.put(a.getUniqueID(), a);
 		map.put(b.getUniqueID(), b);
@@ -111,7 +111,7 @@ public class SimpleAnd {
 		and.setExpressionA(a.getUniqueID());
 		and.setExpressionB(b.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(and.getUniqueID(), and);
 		map.put(a.getUniqueID(), a);
 		map.put(b.getUniqueID(), b);

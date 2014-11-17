@@ -42,7 +42,7 @@ public class StringOperations {
 		c.addString(a.getUniqueID(), "Hello, ");
 		c.addString(b.getUniqueID(), "world!");
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(a.getUniqueID(), a);
 		map.put(b.getUniqueID(), b);
 		map.put(conc.getUniqueID(), conc);
@@ -63,7 +63,7 @@ public class StringOperations {
 
 		c.addString(a.getUniqueID(), "ABCDEFGHIJKLMNOPQRSTUWXYZ");
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(a.getUniqueID(), a);
 		map.put(substring.getUniqueID(), substring);
 
@@ -81,7 +81,7 @@ public class StringOperations {
 
 		c.addString(a.getUniqueID(), "ABCDEFGHIJKLMNOPQRSTUVWXYZ");
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(a.getUniqueID(), a);
 		map.put(string.getUniqueID(), string);
 
@@ -104,7 +104,7 @@ public class StringOperations {
 		c.addString(a.getUniqueID(), "ABCDEFGHIJKLMNOPQRSTUWXYZ");
 		c.addString(b.getUniqueID(), "KLMN");
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(a.getUniqueID(), a);
 		map.put(b.getUniqueID(), b);
 		map.put(contains.getUniqueID(), contains);

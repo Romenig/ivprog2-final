@@ -51,7 +51,7 @@ public class SimpleAdditionTestWithVariable {
 		addition.setExpressionA(a.getUniqueID());
 		addition.setExpressionB(v.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(addition.getUniqueID(), addition);
 		map.put(a.getUniqueID(), a);
 		map.put(b_var.getUniqueID(), b_var);
@@ -82,7 +82,7 @@ public class SimpleAdditionTestWithVariable {
 		addition.setExpressionA(a.getUniqueID());
 		addition.setExpressionB(v.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(addition.getUniqueID(), addition);
 		map.put(a.getUniqueID(), a);
 		map.put(b_var.getUniqueID(), b_var);
@@ -114,7 +114,7 @@ public class SimpleAdditionTestWithVariable {
 		addition.setExpressionA(a.getUniqueID());
 		addition.setExpressionB(b_var.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(addition.getUniqueID(), addition);
 		map.put(a.getUniqueID(), a);
 		map.put(b_var.getUniqueID(), b_var);
@@ -145,7 +145,7 @@ public class SimpleAdditionTestWithVariable {
 		addition.setExpressionA(a.getUniqueID());
 		addition.setExpressionB(b_var.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(addition.getUniqueID(), addition);
 		map.put(a.getUniqueID(), a);
 		map.put(b_var.getUniqueID(), b_var);

@@ -41,7 +41,7 @@ public class CreateIVPVariable {
 		v.setVariableType(IVPValue.INTEGER_TYPE);
 		v.setValueID(n.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(v.getUniqueID(), v);
 		map.put(n.getUniqueID(), n);
 
@@ -62,7 +62,7 @@ public class CreateIVPVariable {
 		v.setVariableType(IVPValue.DOUBLE_TYPE);
 		v.setValueID(n.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(v.getUniqueID(), v);
 		map.put(n.getUniqueID(), n);
 
@@ -83,7 +83,7 @@ public class CreateIVPVariable {
 		v.setVariableType(IVPValue.STRING_TYPE);
 		v.setValueID(n.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(v.getUniqueID(), v);
 		map.put(n.getUniqueID(), n);
 
@@ -104,7 +104,7 @@ public class CreateIVPVariable {
 		v.setVariableType(IVPValue.BOOLEAN_TYPE);
 		v.setValueID(n.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(v.getUniqueID(), v);
 		map.put(n.getUniqueID(), n);
 

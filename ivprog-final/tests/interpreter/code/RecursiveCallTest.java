@@ -34,7 +34,7 @@ public class RecursiveCallTest {
 	public void recursiveCall() {
 		DataFactory factory = new DataFactory();
 		Context context = new Context();
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		
 		Function fatorial = factory.createFunction();
 		context.setFunctionID(fatorial.getUniqueID());

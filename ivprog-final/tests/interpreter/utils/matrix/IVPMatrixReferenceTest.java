@@ -57,7 +57,7 @@ public class IVPMatrixReferenceTest {
 		matrix.setSize(size.getUniqueID(), size.getUniqueID(), context);
 		matrix.setType(IVPValue.INTEGER_TYPE);
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(a.getUniqueID(), a);
 		map.put(b.getUniqueID(), b);
 		map.put(line.getUniqueID(), line);
@@ -121,7 +121,7 @@ public class IVPMatrixReferenceTest {
 
 		vect.addElement(line.getUniqueID(), column.getUniqueID(), context, n1.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(n1.getUniqueID(), n1);
 		map.put(position.getUniqueID(), position);
 		map.put(ref.getUniqueID(), ref);

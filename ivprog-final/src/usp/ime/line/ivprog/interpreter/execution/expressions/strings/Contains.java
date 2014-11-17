@@ -42,10 +42,9 @@ public class Contains extends Expression {
 		subString = sub;
 	}
 
-	@Override
-	public Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory) {
-		IVPString str1 = (IVPString) map.get(string).evaluate(c, map, factory);
-		IVPString sub = (IVPString) map.get(subString).evaluate(c, map, factory);
+	public Object evaluate(Context c, HashMap map, DataFactory factory) {
+		IVPString str1 = (IVPString) ((DataObject)map.get(string)).evaluate(c, map, factory);
+		IVPString sub = (IVPString) ((DataObject)map.get(subString)).evaluate(c, map, factory);
 		IVPNumber result = str1.searchSubstring(sub, c, factory);
 		return result;
 	}

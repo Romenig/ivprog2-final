@@ -38,15 +38,14 @@ public class For extends CodeComposite {
 	 * .interpreter.execution.Context, java.util.HashMap,
 	 * usp.ime.line.ivprog.interpreter.DataFactory)
 	 */
-	@Override
-	public Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory) {
+	public Object evaluate(Context c, HashMap map, DataFactory factory) {
 		IVPValue upperValue = null;
 		IVPValue lowerValue = null;
 		IVPVariable indexVariable = null;
 		IVPValue incrementValue = null;
 		Function f = (Function) map.get(c.getFunctionID());
 		if (executionMethod.equals(FOR_N_TIMES)) {
-			upperValue = (IVPValue) map.get(upperBound).evaluate(c, map, factory);
+			upperValue = (IVPValue) ((DataObject)map.get(upperBound)).evaluate(c, map, factory);
 			int upperInt = c.getBigDecimal(upperValue.getUniqueID()).intValue();
 			for (int i = 0; i < upperInt; i++) {
 				for (int j = 0; j < children.size(); j++) {
@@ -63,9 +62,9 @@ public class For extends CodeComposite {
 				}
 			}
 		} else if (executionMethod.equals(FOR_N_TIMES_WITH_INDEX)) {
-			upperValue = (IVPValue) map.get(upperBound).evaluate(c, map, factory);
+			upperValue = (IVPValue) ((DataObject)map.get(upperBound)).evaluate(c, map, factory);
 			indexVariable = (IVPVariable) map.get(index);
-			IVPNumber indexValue = (IVPNumber) map.get(indexVariable.getValueID()).evaluate(c, map, factory);
+			IVPNumber indexValue = (IVPNumber) ((DataObject)map.get(indexVariable.getValueID())).evaluate(c, map, factory);
 			int upperInt = c.getBigDecimal(upperValue.getUniqueID()).intValue();
 			for (int i = 0; i < upperInt; i++) {
 				for (int j = 0; j < children.size(); j++) {
@@ -83,11 +82,11 @@ public class For extends CodeComposite {
 				indexValue.updateValue(c, new BigDecimal(c.getBigDecimal(indexValue.getUniqueID()).intValue() + 1));
 			}
 		} else { // COMPLETE
-			upperValue = (IVPValue) map.get(upperBound).evaluate(c, map, factory);
-			lowerValue = (IVPValue) map.get(lowerBound).evaluate(c, map, factory);
-			incrementValue = (IVPValue) map.get(incrementValue).evaluate(c, map, factory);
+			upperValue = (IVPValue) ((DataObject)map.get(upperBound)).evaluate(c, map, factory);
+			lowerValue = (IVPValue) ((DataObject)map.get(lowerBound)).evaluate(c, map, factory);
+			incrementValue = (IVPValue) ((DataObject)map.get(incrementValue)).evaluate(c, map, factory);
 			indexVariable = (IVPVariable) map.get(index);
-			IVPNumber indexValue = (IVPNumber) map.get(indexVariable.getValueID()).evaluate(c, map, factory);
+			IVPNumber indexValue = (IVPNumber) ((DataObject)map.get(indexVariable.getValueID())).evaluate(c, map, factory);
 			int upperInt = c.getBigDecimal(upperValue.getUniqueID()).intValue();
 			int lowerInt = c.getBigDecimal(lowerValue.getUniqueID()).intValue();
 			int incrementInt = c.getBigDecimal(incrementValue.getUniqueID()).intValue();
@@ -105,7 +104,7 @@ public class For extends CodeComposite {
 					component.evaluate(c, map, factory);
 				}
 				indexValue.updateValue(c, new BigDecimal(c.getBigDecimal(indexValue.getUniqueID()).intValue() + incrementInt));
-				incrementValue = (IVPValue) map.get(incrementValue).evaluate(c, map, factory);
+				incrementValue = (IVPValue) ((DataObject)map.get(incrementValue)).evaluate(c, map, factory);
 				incrementInt = c.getBigDecimal(incrementValue.getUniqueID()).intValue();
 			}
 		}

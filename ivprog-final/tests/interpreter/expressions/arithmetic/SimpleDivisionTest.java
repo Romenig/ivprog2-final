@@ -42,7 +42,7 @@ public class SimpleDivisionTest {
 		division.setExpressionA(a.getUniqueID());
 		division.setExpressionB(b.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(division.getUniqueID(), division);
 		map.put(a.getUniqueID(), a);
 		map.put(b.getUniqueID(), b);
@@ -70,7 +70,7 @@ public class SimpleDivisionTest {
 		division.setExpressionA(a.getUniqueID());
 		division.setExpressionB(b.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(division.getUniqueID(), division);
 		map.put(a.getUniqueID(), a);
 		map.put(b.getUniqueID(), b);
@@ -98,7 +98,7 @@ public class SimpleDivisionTest {
 		division.setExpressionA(a.getUniqueID());
 		division.setExpressionB(b.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(division.getUniqueID(), division);
 		map.put(a.getUniqueID(), a);
 		map.put(b.getUniqueID(), b);
@@ -125,7 +125,7 @@ public class SimpleDivisionTest {
 		division.setExpressionA(a.getUniqueID());
 		division.setExpressionB(b.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(division.getUniqueID(), division);
 		map.put(a.getUniqueID(), a);
 		map.put(b.getUniqueID(), b);

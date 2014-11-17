@@ -43,10 +43,9 @@ public class Addition extends Expression {
 		expB = expressionB;
 	}
 
-	@Override
-	public Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory) {
-		IVPNumber v1 = (IVPNumber) map.get(expA).evaluate(c, map, factory);
-		IVPNumber v2 = (IVPNumber) map.get(expB).evaluate(c, map, factory);
+	public Object evaluate(Context c, HashMap map, DataFactory factory) {
+		IVPNumber v1 = (IVPNumber) ((DataObject)map.get(expA)).evaluate(c, map, factory);
+		IVPNumber v2 = (IVPNumber) ((DataObject)map.get(expB)).evaluate(c, map, factory);
 		IVPNumber result = v1.add(v2, c, factory, map);
 		if (v1.getValueType() == IVPValue.DOUBLE_TYPE || v2.getValueType() == IVPValue.DOUBLE_TYPE) {
 			result.setValueType(IVPValue.DOUBLE_TYPE);
@@ -54,17 +53,6 @@ public class Addition extends Expression {
 			result.setValueType(IVPValue.INTEGER_TYPE);
 		}
 		return result;
-	}
-
-	/**
-	 * @param result
-	 */
-	private void setResultPrimitiveType(BigDecimal n, IVPNumber result) {
-		if (n.toString().contains(".")) {
-			result.setValueType(IVPValue.DOUBLE_TYPE);
-		} else {
-			result.setValueType(IVPValue.INTEGER_TYPE);
-		}
 	}
 
 }

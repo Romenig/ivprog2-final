@@ -65,7 +65,7 @@ public class WhileTest {
 		attLine.setVariable(v.getUniqueID());
 		attLine.setExpression(add.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(maximumValue.getUniqueID(), maximumValue);
 		map.put(startingValue.getUniqueID(), startingValue);
 		map.put(one.getUniqueID(), one);

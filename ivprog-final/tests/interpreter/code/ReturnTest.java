@@ -34,7 +34,7 @@ public class ReturnTest {
 	public void functionWithWhileAndReturn() {
 		DataFactory factory = new DataFactory();
 		Context context = new Context();
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		While w = factory.createWhile();
 		Function f = factory.createFunction();
 		Return r = factory.createReturn();

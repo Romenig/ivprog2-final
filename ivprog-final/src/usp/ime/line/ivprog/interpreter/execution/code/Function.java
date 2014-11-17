@@ -26,10 +26,10 @@ public class Function extends CodeComposite {
 	private String functionReturnType;
 	private String functionReturnedElementID;
 	private boolean isReturning = false;
-	private Vector<String> argumentList;
+	private Vector argumentList;
 
 	public Function() {
-		argumentList = new Vector<String>();
+		argumentList = new Vector();
 	}
 
 	/*
@@ -40,8 +40,7 @@ public class Function extends CodeComposite {
 	 * .interpreter.execution.Context, java.util.HashMap,
 	 * usp.ime.line.ivprog.interpreter.DataFactory)
 	 */
-	@Override
-	public Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory) {
+	public Object evaluate(Context c, HashMap map, DataFactory factory) {
 		for (int i = 0; i < children.size(); i += 1) {
 			DataObject component = (DataObject) map.get(children.get(i));
 			if(component instanceof Return){
@@ -71,7 +70,7 @@ public class Function extends CodeComposite {
 	 * @param context
 	 * @param map
 	 */
-	public void addConstant(IVPValue constant, String constantValue, Context context, HashMap<String, DataObject> map) {
+	public void addConstant(IVPValue constant, String constantValue, Context context, HashMap map) {
 		if (constant.getValueType().equals(IVPValue.INTEGER_TYPE) || constant.getValueType().equals(IVPValue.DOUBLE_TYPE)) {
 			context.addBigDecimal(constant.getUniqueID(), new BigDecimal(constantValue));
 		} else if (constant.getValueType().equals(IVPValue.STRING_TYPE)) {
@@ -91,7 +90,7 @@ public class Function extends CodeComposite {
 	 * @param map
 	 * @param factory
 	 */
-	public void addVariable(IVPVariable variable, String value, Context context, HashMap<String, DataObject> map, DataFactory factory) {
+	public void addVariable(IVPVariable variable, String value, Context context, HashMap map, DataFactory factory) {
 		IVPValue varValue = null;
 		if (variable.getVariableType().equals(IVPValue.INTEGER_TYPE) || variable.getVariableType().equals(IVPValue.DOUBLE_TYPE)) {
 			varValue = factory.createIVPNumber();
@@ -151,7 +150,7 @@ public class Function extends CodeComposite {
 	 * Add a parameter to this function. It automatically put a value in the memory.
 	 * @param integerType
 	 */
-    public void addArgument(String type, Context c, HashMap<String, DataObject> map, DataFactory factory) {
+    public void addArgument(String type, Context c, HashMap map, DataFactory factory) {
     	IVPValue value = null;
     	if(type.equals(IVPValue.INTEGER_TYPE)){
     		value = factory.createIVPNumber();
@@ -177,7 +176,7 @@ public class Function extends CodeComposite {
 	 * @return
 	 */
     public String getArgument(int position) {
-    	String argumentID = argumentList.get(position);
+    	String argumentID = (String) argumentList.get(position);
 	    return argumentID;
     }
 

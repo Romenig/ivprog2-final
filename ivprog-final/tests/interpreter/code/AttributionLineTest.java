@@ -52,7 +52,7 @@ public class AttributionLineTest {
 		attLine.setVariable(v.getUniqueID());
 		attLine.setExpression(n2.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(v.getUniqueID(), v);
 		map.put(n1.getUniqueID(), n1);
 		map.put(n2.getUniqueID(), n2);
@@ -86,7 +86,7 @@ public class AttributionLineTest {
 		attLine.setVariable(v.getUniqueID());
 		attLine.setExpression(n2.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(v.getUniqueID(), v);
 		map.put(n1.getUniqueID(), n1);
 		map.put(n2.getUniqueID(), n2);
@@ -120,7 +120,7 @@ public class AttributionLineTest {
 		attLine.setVariable(v.getUniqueID());
 		attLine.setExpression(n2.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(v.getUniqueID(), v);
 		map.put(n1.getUniqueID(), n1);
 		map.put(n2.getUniqueID(), n2);
@@ -154,7 +154,7 @@ public class AttributionLineTest {
 		attLine.setVariable(v.getUniqueID());
 		attLine.setExpression(n2.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(v.getUniqueID(), v);
 		map.put(n1.getUniqueID(), n1);
 		map.put(n2.getUniqueID(), n2);
@@ -192,7 +192,7 @@ public class AttributionLineTest {
 		attLine.setVariable(v1.getUniqueID());
 		attLine.setExpression(v2.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(v1.getUniqueID(), v1);
 		map.put(v2.getUniqueID(), v2);
 		map.put(n1.getUniqueID(), n1);
@@ -231,7 +231,7 @@ public class AttributionLineTest {
 		attLine.setVariable(v1.getUniqueID());
 		attLine.setExpression(and.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(and.getUniqueID(), and);
 		map.put(v1.getUniqueID(), v1);
 		map.put(n1.getUniqueID(), n1);
@@ -270,7 +270,7 @@ public class AttributionLineTest {
 		attLine.setVariable(v.getUniqueID());
 		attLine.setExpression(add.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(add.getUniqueID(), add);
 		map.put(v.getUniqueID(), v);
 		map.put(n1.getUniqueID(), n1);

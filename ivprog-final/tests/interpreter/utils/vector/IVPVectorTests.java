@@ -39,7 +39,7 @@ public class IVPVectorTests {
 
 		context.addBigDecimal(size.getUniqueID(), new BigDecimal("3"));
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(vect.getUniqueID(), vect);
 		map.put(size.getUniqueID(), size);
 
@@ -80,7 +80,7 @@ public class IVPVectorTests {
 		vect.add(new BigDecimal(1), b.getUniqueID());
 		vect.add(new BigDecimal(2), c.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(a.getUniqueID(), a);
 		map.put(b.getUniqueID(), b);
 		map.put(c.getUniqueID(), c);
@@ -136,7 +136,7 @@ public class IVPVectorTests {
 		vect.add(new BigDecimal(1), b.getUniqueID());
 		vect.add(new BigDecimal(2), c.getUniqueID());
 
-		HashMap<String, DataObject> map = new HashMap<String, DataObject>();
+		HashMap map = new HashMap();
 		map.put(a.getUniqueID(), a);
 		map.put(b.getUniqueID(), b);
 		map.put(c.getUniqueID(), c);

@@ -33,8 +33,8 @@ public class IVPMatrix extends DataObject {
 	 * .interpreter.execution.Context, java.util.HashMap,
 	 * usp.ime.line.ivprog.interpreter.DataFactory)
 	 */
-	@Override
-	public Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory) {
+	
+	public Object evaluate(Context c, HashMap map, DataFactory factory) {
 		return this;
 	}
 
@@ -81,7 +81,7 @@ public class IVPMatrix extends DataObject {
 	 * 
 	 * @return
 	 */
-	public String isEmpty(DataFactory factory, Context c, HashMap<String, DataObject> map) {
+	public String isEmpty(DataFactory factory, Context c, HashMap map) {
 		IVPBoolean isEmpty = factory.createIVPBoolean();
 		boolean test = true;
 		int col = c.getBigDecimal(nColID).intValue();

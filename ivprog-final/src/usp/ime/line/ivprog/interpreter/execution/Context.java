@@ -17,17 +17,17 @@ import usp.ime.line.ivprog.language.Messages;
 public class Context implements Cloneable {
 
 	private String functionID;
-	private HashMap<String, BigDecimal> bigDecimalMap;
-	private HashMap<String, String> stringMap;
-	private HashMap<String, Boolean> booleanMap;
+	private HashMap bigDecimalMap;
+	private HashMap stringMap;
+	private HashMap booleanMap;
 
 	public Context() {
-		bigDecimalMap = new HashMap<String, BigDecimal>();
-		stringMap = new HashMap<String, String>();
-		booleanMap = new HashMap<String, Boolean>();
+		bigDecimalMap = new HashMap();
+		stringMap = new HashMap();
+		booleanMap = new HashMap();
 	}
 
-	private Context(HashMap<String, BigDecimal> nMap, HashMap<String, String> sMap, HashMap<String, Boolean> bMap) {
+	private Context(HashMap nMap, HashMap sMap, HashMap bMap) {
 		bigDecimalMap = nMap;
 		stringMap = sMap;
 		booleanMap = bMap;
@@ -59,7 +59,7 @@ public class Context implements Cloneable {
 	 * @return IVPError
 	 */
 	public BigDecimal getBigDecimal(String key) {
-		return bigDecimalMap.get(key);
+		return (BigDecimal) bigDecimalMap.get(key);
 	}
 
 	/**
@@ -103,7 +103,7 @@ public class Context implements Cloneable {
 	 * @return IVPError
 	 */
 	public String getString(String key) {
-		return stringMap.get(key);
+		return (String) stringMap.get(key);
 	}
 
 	/**
@@ -147,7 +147,7 @@ public class Context implements Cloneable {
 	 * @return IVPError
 	 */
 	public Boolean getBoolean(String key) {
-		return booleanMap.get(key);
+		return (Boolean) booleanMap.get(key);
 	}
 
 	/**
@@ -171,8 +171,8 @@ public class Context implements Cloneable {
 	 * The clone method will be used only during a recursive call.
 	 */
 	public Object clone() {
-		Context c = new Context((HashMap<String, BigDecimal>) bigDecimalMap.clone(), (HashMap<String, String>) stringMap.clone(),
-		        (HashMap<String, Boolean>) booleanMap.clone());
+		Context c = new Context((HashMap) bigDecimalMap.clone(), (HashMap) stringMap.clone(),
+		        (HashMap) booleanMap.clone());
 		return c;
 	}
 

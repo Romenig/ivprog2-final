@@ -28,8 +28,7 @@ public class IVPVectorReference extends DataObject {
 	 * .interpreter.execution.Context, java.util.HashMap,
 	 * usp.ime.line.ivprog.interpreter.DataFactory)
 	 */
-	@Override
-	public Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory) {
+	public Object evaluate(Context c, HashMap map, DataFactory factory) {
 		IVPValue value = (IVPValue) map.get(((IVPVector) map.get(vectorID)).get(positionID, c));
 		return value;
 	}
@@ -49,12 +48,12 @@ public class IVPVectorReference extends DataObject {
 		this.vectorID = vectorID;
 	}
 
-	public IVPValue getElementFromVector(Context c, HashMap<String, DataObject> map, DataFactory factory) {
+	public IVPValue getElementFromVector(Context c, HashMap map, DataFactory factory) {
 		IVPValue value = (IVPValue) map.get(((IVPVector) map.get(vectorID)).get(positionID, c));
 		return value;
 	}
 
-	public Object setElementIntoVector(String valueID, Context c, HashMap<String, DataObject> map, DataFactory factory) {
+	public Object setElementIntoVector(String valueID, Context c, HashMap map, DataFactory factory) {
 		IVPVector v = (IVPVector) map.get(vectorID);
 		v.add(c.getBigDecimal(positionID), valueID);
 		return null;

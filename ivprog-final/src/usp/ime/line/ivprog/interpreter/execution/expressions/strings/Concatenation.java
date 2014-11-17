@@ -44,10 +44,9 @@ public class Concatenation extends Expression {
 		expB = expressionB;
 	}
 
-	@Override
-	public Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory) {
-		IVPString str1 = (IVPString) map.get(expA).evaluate(c, map, factory);
-		IVPString str2 = (IVPString) map.get(expB).evaluate(c, map, factory);
+	public Object evaluate(Context c, HashMap map, DataFactory factory) {
+		IVPString str1 = (IVPString) ((DataObject)map.get(expA)).evaluate(c, map, factory);
+		IVPString str2 = (IVPString) ((DataObject)map.get(expB)).evaluate(c, map, factory);
 		IVPString result = str1.concatenate(str2, c, factory);
 		return result;
 	}

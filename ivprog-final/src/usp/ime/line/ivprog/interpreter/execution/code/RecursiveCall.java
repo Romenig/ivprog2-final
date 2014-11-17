@@ -11,8 +11,6 @@ package usp.ime.line.ivprog.interpreter.execution.code;
 import java.util.HashMap;
 import java.util.Vector;
 
-import javax.jws.soap.SOAPBinding.ParameterStyle;
-
 import usp.ime.line.ivprog.interpreter.DataFactory;
 import usp.ime.line.ivprog.interpreter.DataObject;
 import usp.ime.line.ivprog.interpreter.execution.Context;
@@ -24,31 +22,30 @@ import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPValue;
 public class RecursiveCall extends DataObject {
 	
 	private String functionID;
-	private Vector<String> argumentsTypes;
-	private Vector<String> arguments;
+	private Vector argumentsTypes;
+	private Vector arguments;
 	
 	public RecursiveCall(){
-		argumentsTypes = new Vector<String>();
-		arguments = new Vector<String>();
+		argumentsTypes = new Vector();
+		arguments = new Vector();
 	}
 
 	/* (non-Javadoc)
 	 * @see usp.ime.line.ivprog.interpreter.DataObject#evaluate(usp.ime.line.ivprog.interpreter.execution.Context, java.util.HashMap, usp.ime.line.ivprog.interpreter.DataFactory)
 	 */
-	@Override
-	public Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory) {
+	public Object evaluate(Context c, HashMap map, DataFactory factory) {
 		Context updated = (Context) c.clone();
 		updated.setFunctionID(c.getFunctionID());
 		Function function = (Function) map.get(functionID);
 		for(int i = 0; i < arguments.size(); i++){
-			IVPValue value = (IVPValue) map.get(arguments.get(i)).evaluate(updated, map, factory);
+			IVPValue value = (IVPValue) ((DataObject)map.get(arguments.get(i))).evaluate(updated, map, factory);
 			IVPValue argument = (IVPValue) map.get(function.getArgument(i));
 			if(argument.getValueType().equals(IVPValue.INTEGER_TYPE) || argument.getValueType().equals(IVPValue.DOUBLE_TYPE)){
 				((IVPNumber)argument).updateValue(updated, updated.getBigDecimal(value.getUniqueID()));
 			}
 			map.put(value.getUniqueID(), value);
 		}
-		IVPValue returningValue = (IVPValue) map.get(functionID).evaluate(updated, map, factory);
+		IVPValue returningValue = (IVPValue) ((DataObject)map.get(functionID)).evaluate(updated, map, factory);
 		if(returningValue.getValueType().equals(IVPValue.INTEGER_TYPE) || returningValue.equals(IVPValue.DOUBLE_TYPE)){
 			c.addBigDecimal(returningValue.getUniqueID(), updated.getBigDecimal(returningValue.getUniqueID()));
 		}
@@ -72,7 +69,7 @@ public class RecursiveCall extends DataObject {
     public String addParameter(int position, String parameter){
     	String lastParameter = IVPValue.NULL;
     	if(arguments.size() >= position && position != 0){
-    		lastParameter = arguments.get(position); 
+    		lastParameter = (String) arguments.get(position); 
     	}
     	if(arguments.size() <= position && position != 0){
     		arguments.add(position, parameter);	

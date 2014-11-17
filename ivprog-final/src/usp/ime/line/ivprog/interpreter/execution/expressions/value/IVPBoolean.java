@@ -60,8 +60,7 @@ public class IVPBoolean extends IVPValue {
 	 * usp.ime.line.ivprog.interpreter.execution.Context, java.util.HashMap,
 	 * usp.ime.line.ivprog.interpreter.DataFactory)
 	 */
-	@Override
-	public IVPBoolean ivpEqualTo(IVPValue v, Context c, HashMap<String, DataObject> map, DataFactory factory) {
+	public IVPBoolean ivpEqualTo(IVPValue v, Context c, HashMap map, DataFactory factory) {
 		IVPBoolean result = factory.createIVPBoolean();
 		Boolean booleanResult = new Boolean(c.getBoolean(getUniqueID()).booleanValue() == c.getBoolean(v.getUniqueID()).booleanValue());
 		c.addBoolean(result.getUniqueID(), booleanResult);
@@ -78,8 +77,7 @@ public class IVPBoolean extends IVPValue {
 	 * usp.ime.line.ivprog.interpreter.execution.Context, java.util.HashMap,
 	 * usp.ime.line.ivprog.interpreter.DataFactory)
 	 */
-	@Override
-	public IVPBoolean ivpNotEqualTo(IVPValue v, Context c, HashMap<String, DataObject> map, DataFactory factory) {
+	public IVPBoolean ivpNotEqualTo(IVPValue v, Context c, HashMap map, DataFactory factory) {
 		IVPBoolean result = factory.createIVPBoolean();
 		Boolean booleanResult = new Boolean(c.getBoolean(getUniqueID()).booleanValue() != c.getBoolean(v.getUniqueID()).booleanValue());
 		c.addBoolean(result.getUniqueID(), booleanResult);

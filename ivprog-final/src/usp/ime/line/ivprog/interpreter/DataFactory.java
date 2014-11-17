@@ -52,11 +52,11 @@ import usp.ime.line.ivprog.language.Messages;
 public class DataFactory {
 
 	private Random r;
-	private Vector<String> v;
+	private Vector v;
 
 	public DataFactory() {
 		r = new Random();
-		v = new Vector<String>();
+		v = new Vector();
 	}
 
 	private String getID() {
@@ -65,7 +65,7 @@ public class DataFactory {
 			randomHash = Integer.toHexString(r.nextInt());
 		}
 		v.add(randomHash);
-		return v.lastElement();
+		return (String) v.lastElement();
 	}
 
 	/**

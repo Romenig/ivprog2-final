@@ -21,9 +21,9 @@ public class IVPVariable extends Expression {
 	private String variableType;
 	private String variableName;
 
-	@Override
-	public Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory) {
-		DataObject dO = map.get(valueID);
+	
+	public Object evaluate(Context c, HashMap map, DataFactory factory) {
+		DataObject dO = (DataObject) map.get(valueID);
 		return dO.evaluate(c, map, factory);
 	}
 

@@ -29,8 +29,7 @@ public class IVPMatrixReference extends DataObject {
 	 * .interpreter.execution.Context, java.util.HashMap,
 	 * usp.ime.line.ivprog.interpreter.DataFactory)
 	 */
-	@Override
-	public Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory) {
+	public Object evaluate(Context c, HashMap map, DataFactory factory) {
 		IVPValue value = (IVPValue) map.get(((IVPMatrix) map.get(matrixID)).getElement(linID, colID, c));
 		return value;
 	}
@@ -50,12 +49,12 @@ public class IVPMatrixReference extends DataObject {
 		this.matrixID = vectorID;
 	}
 
-	public IVPValue getElementFromMatrix(Context c, HashMap<String, DataObject> map, DataFactory factory) {
+	public IVPValue getElementFromMatrix(Context c, HashMap map, DataFactory factory) {
 		IVPValue value = (IVPValue) map.get(((IVPMatrix) map.get(matrixID)).getElement(linID, colID, c));
 		return value;
 	}
 
-	public Object setElementIntoMatrix(String valueID, Context c, HashMap<String, DataObject> map, DataFactory factory) {
+	public Object setElementIntoMatrix(String valueID, Context c, HashMap map, DataFactory factory) {
 		IVPMatrix m = (IVPMatrix) map.get(matrixID);
 		return m.addElement(linID, colID, c, valueID);
 	}

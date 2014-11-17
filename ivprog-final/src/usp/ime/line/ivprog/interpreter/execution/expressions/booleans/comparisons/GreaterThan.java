@@ -41,10 +41,9 @@ public class GreaterThan extends Expression {
 		expB = expressionB;
 	}
 
-	@Override
-	public Object evaluate(Context c, HashMap<String, DataObject> map, DataFactory factory) {
-		IVPNumber expressionA = (IVPNumber) map.get(expA).evaluate(c, map, factory);
-		IVPNumber expressionB = (IVPNumber) map.get(expB).evaluate(c, map, factory);
+	public Object evaluate(Context c, HashMap map, DataFactory factory) {
+		IVPNumber expressionA = (IVPNumber) ((DataObject)map.get(expA)).evaluate(c, map, factory);
+		IVPNumber expressionB = (IVPNumber) ((DataObject)map.get(expB)).evaluate(c, map, factory);
 		return expressionA.greaterThan(expressionB, c, map, factory);
 	}
 
