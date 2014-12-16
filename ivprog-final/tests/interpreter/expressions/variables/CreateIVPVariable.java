@@ -8,7 +8,7 @@
  */
 package interpreter.expressions.variables;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -16,7 +16,6 @@ import java.util.HashMap;
 import org.junit.Test;
 
 import usp.ime.line.ivprog.interpreter.DataFactory;
-import usp.ime.line.ivprog.interpreter.DataObject;
 import usp.ime.line.ivprog.interpreter.execution.Context;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPNumber;
 import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPValue;

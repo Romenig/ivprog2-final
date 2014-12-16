@@ -17,33 +17,37 @@ import usp.ime.line.ivprog.language.Messages;
 public class Context implements Cloneable {
 
 	private String functionID;
-	private HashMap bigDecimalMap;
+	private HashMap integerMap;
+	private HashMap doubleMap;
 	private HashMap stringMap;
 	private HashMap booleanMap;
 
 	public Context() {
-		bigDecimalMap = new HashMap();
+		integerMap = new HashMap();
+		doubleMap = new HashMap();
 		stringMap = new HashMap();
 		booleanMap = new HashMap();
 	}
 
-	private Context(HashMap nMap, HashMap sMap, HashMap bMap) {
-		bigDecimalMap = nMap;
+	private Context(HashMap intMap, HashMap dMap, HashMap sMap, HashMap bMap) {
+		integerMap = intMap;
+		doubleMap = dMap;
 		stringMap = sMap;
 		booleanMap = bMap;
 	}
 
+	//DOUBLE 
 	/**
-	 * Add a BigDecimal to the hashmap of bigDecimals.
+	 * Add a double to the hashmap of doubleValues.
 	 * 
 	 * @param key
-	 * @param bigDecimal
+	 * @param doubleValue
 	 * @return IVPError
 	 */
-	public IVPError addBigDecimal(String key, BigDecimal bigDecimal) {
+	public IVPError addDouble(String key, double doubleValue) {
 		IVPError e = null;
-		if (!bigDecimalMap.containsKey(key)) {
-			bigDecimalMap.put(key, bigDecimal);
+		if (!doubleMap.containsKey(key)) {
+			doubleMap.put(key, doubleValue);
 		} else {
 			e = new IVPError(Messages.getString("Context.keyExists"));
 		}
@@ -52,33 +56,78 @@ public class Context implements Cloneable {
 	}
 
 	/**
-	 * Get a bigDecimal object (integer or real) from the hashmap of
-	 * bigDecimals.
+	 * Get a doubleValue from the hashmap of doubleValues.
 	 * 
 	 * @param key
 	 * @return IVPError
 	 */
-	public BigDecimal getBigDecimal(String key) {
-		return (BigDecimal) bigDecimalMap.get(key);
+	public double getDouble(String key) {
+		return (double) doubleMap.get(key);
 	}
 
 	/**
-	 * Update the bigDecimal (integer or real) with the specified key.
+	 * Update the doubleValue with the specified key.
 	 * 
 	 * @param key
-	 * @param bigDecimal
+	 * @param doubleValue
 	 * @return IVPError
 	 */
-	public IVPError updateBigDecimal(String key, BigDecimal bigDecimal) {
+	public IVPError updateDouble(String key, double doubleValue) {
 		IVPError e = null;
-		if (bigDecimalMap.containsKey(key)) {
-			bigDecimalMap.put(key, bigDecimal);
+		if (doubleMap.containsKey(key)) {
+			doubleMap.put(key, doubleValue);
 		} else {
 			e = new IVPError(Messages.getString("Context.keyDoesNotExists"));
 		}
 		return e;
 	}
+	//---------------- INTEGER
+	/**
+	 * Add an int to the hashmap of integers.
+	 * 
+	 * @param key
+	 * @param integer
+	 * @return IVPError
+	 */
+	public IVPError addInt(String key, int integer) {
+		IVPError e = null;
+		if (!integerMap.containsKey(key)) {
+			integerMap.put(key, integer);
+		} else {
+			e = new IVPError(Messages.getString("Context.keyExists"));
+		}
 
+		return e;
+	}
+
+	/**
+	 * Get an integer from the hashmap of integers.
+	 * 
+	 * @param key
+	 * @return IVPError
+	 */
+	public int getInt(String key) {
+		return (int) integerMap.get(key);
+	}
+
+	/**
+	 * Update the integer with the specified key.
+	 * 
+	 * @param key
+	 * @param integer
+	 * @return IVPError
+	 */
+	public IVPError updateInt(String key, int integer) {
+		IVPError e = null;
+		if (integerMap.containsKey(key)) {
+			integerMap.put(key, integer);
+		} else {
+			e = new IVPError(Messages.getString("Context.keyDoesNotExists"));
+		}
+		return e;
+	}
+	
+	
 	/**
 	 * Add a string object to the hashmap of strings.
 	 * 
@@ -171,7 +220,7 @@ public class Context implements Cloneable {
 	 * The clone method will be used only during a recursive call.
 	 */
 	public Object clone() {
-		Context c = new Context((HashMap) bigDecimalMap.clone(), (HashMap) stringMap.clone(),
+		Context c = new Context((HashMap) integerMap.clone(),(HashMap) doubleMap.clone(), (HashMap) stringMap.clone(),
 		        (HashMap) booleanMap.clone());
 		return c;
 	}

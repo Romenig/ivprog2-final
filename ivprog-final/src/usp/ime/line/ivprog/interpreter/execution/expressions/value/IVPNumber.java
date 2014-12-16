@@ -12,19 +12,26 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 
 import usp.ime.line.ivprog.interpreter.DataFactory;
-import usp.ime.line.ivprog.interpreter.DataObject;
 import usp.ime.line.ivprog.interpreter.execution.Context;
 
 public class IVPNumber extends IVPValue {
 
 	/**
-	 * Updates the number value to the given value inside the given context.
-	 * 
+	 * Updates the integer value to the given value inside the given context.
 	 * @param context
 	 * @param ivpNumber
 	 */
-	public void updateValue(Context context, BigDecimal number) {
-		context.updateBigDecimal(getUniqueID(), number);
+	public void updateIntegerValue(Context context, int integer) {
+		context.updateInt(getUniqueID(), integer);
+	}
+	
+	/**
+	 * Updates the double value to the given value inside the given context.
+	 * @param context
+	 * @param ivpNumber
+	 */
+	public void updateIntegerValue(Context context, double doubleValue) {
+		context.updateDouble(getUniqueID(), doubleValue);
 	}
 
 	/**
@@ -38,8 +45,24 @@ public class IVPNumber extends IVPValue {
 	public IVPNumber add(IVPNumber number, Context context, DataFactory factory, HashMap map) {
 		IVPNumber result = factory.createIVPNumber();
 		map.put(result.getUniqueID(), result);
-		BigDecimal n = context.getBigDecimal(getUniqueID()).add(context.getBigDecimal(number.getUniqueID()));
-		context.addBigDecimal(result.getUniqueID(), n);
+		if(getValueType().equals(IVPValue.INTEGER_TYPE) && number.getValueType().equals(IVPValue.INTEGER_TYPE)){
+			int resultInt = context.getInt(getUniqueID()) + context.getInt(number.getUniqueID());
+			result.setValueType(IVPValue.INTEGER_TYPE);
+			context.addInt(result.getUniqueID(), resultInt);
+		}else{
+			double resultDouble = 0.0;
+			if(getValueType().equals(IVPValue.DOUBLE_TYPE) && number.getValueType().equals(IVPValue.DOUBLE_TYPE)){
+				resultDouble = context.getDouble(getUniqueID()) + context.getDouble(number.getUniqueID());
+			}else{
+				if(getValueType().equals(IVPValue.DOUBLE_TYPE)){
+					resultDouble = context.getDouble(getUniqueID()) + context.getInt(number.getUniqueID());
+				}else{
+					resultDouble = context.getInt(getUniqueID()) + context.getDouble(number.getUniqueID());
+				}
+			}
+			context.addDouble(result.getUniqueID(), resultDouble);
+			result.setValueType(IVPValue.DOUBLE_TYPE);
+		}
 		return result;
 	}
 
@@ -54,8 +77,22 @@ public class IVPNumber extends IVPValue {
 	public IVPNumber multiply(IVPNumber number, Context context, DataFactory factory, HashMap map) {
 		IVPNumber result = factory.createIVPNumber();
 		map.put(result.getUniqueID(), result);
-		BigDecimal n = context.getBigDecimal(getUniqueID()).multiply(context.getBigDecimal(number.getUniqueID()));
-		context.addBigDecimal(result.getUniqueID(), n);
+		if(getValueType().equals(IVPValue.INTEGER_TYPE) && number.getValueType().equals(IVPValue.INTEGER_TYPE)){
+			int resultInt = context.getInt(getUniqueID()) * context.getInt(number.getUniqueID());
+			context.addInt(result.getUniqueID(), resultInt);
+		}else{
+			double resultDouble = 0.0;
+			if(getValueType().equals(IVPValue.DOUBLE_TYPE) && number.getValueType().equals(IVPValue.DOUBLE_TYPE)){
+				resultDouble = context.getDouble(getUniqueID()) * context.getDouble(number.getUniqueID());
+			}else{
+				if(getValueType().equals(IVPValue.DOUBLE_TYPE)){
+					resultDouble = context.getDouble(getUniqueID()) * context.getInt(number.getUniqueID());
+				}else{
+					resultDouble = context.getInt(getUniqueID()) * context.getDouble(number.getUniqueID());
+				}
+			}
+			context.addDouble(result.getUniqueID(), resultDouble);
+		}
 		return result;
 	}
 
@@ -70,8 +107,25 @@ public class IVPNumber extends IVPValue {
 	public IVPNumber divide(IVPNumber number, Context context, DataFactory factory, HashMap map) {
 		IVPNumber result = factory.createIVPNumber();
 		map.put(result.getUniqueID(), result);
-		//BigDecimal n = context.getBigDecimal(getUniqueID()).divide(context.getBigDecimal(number.getUniqueID()));
-		//context.addBigDecimal(result.getUniqueID(), n);
+		if(getValueType().equals(IVPValue.INTEGER_TYPE) && number.getValueType().equals(IVPValue.INTEGER_TYPE)){
+			int resultInt = context.getInt(getUniqueID()) / context.getInt(number.getUniqueID());
+			result.setValueType(IVPValue.INTEGER_TYPE);
+			context.addInt(result.getUniqueID(), resultInt);
+		}else{
+			double resultDouble = 0.0;
+			if(getValueType().equals(IVPValue.DOUBLE_TYPE) && number.getValueType().equals(IVPValue.DOUBLE_TYPE)){
+				resultDouble = context.getDouble(getUniqueID()) / context.getDouble(number.getUniqueID());
+				result.setValueType(IVPValue.DOUBLE_TYPE);
+			}else{
+				if(getValueType().equals(IVPValue.DOUBLE_TYPE)){
+					resultDouble = context.getDouble(getUniqueID()) / context.getInt(number.getUniqueID());
+				}else{
+					resultDouble = context.getInt(getUniqueID()) / context.getDouble(number.getUniqueID());
+				}
+			}
+			result.setValueType(IVPValue.DOUBLE_TYPE);
+			context.addDouble(result.getUniqueID(), resultDouble);
+		}
 		return result;
 	}
 
@@ -86,8 +140,24 @@ public class IVPNumber extends IVPValue {
 	public IVPNumber subtract(IVPNumber number, Context context, DataFactory factory, HashMap map) {
 		IVPNumber result = factory.createIVPNumber();
 		map.put(result.getUniqueID(), result);
-		BigDecimal n = context.getBigDecimal(getUniqueID()).subtract(context.getBigDecimal(number.getUniqueID()));
-		context.addBigDecimal(result.getUniqueID(), n);
+		if(getValueType().equals(IVPValue.INTEGER_TYPE) && number.getValueType().equals(IVPValue.INTEGER_TYPE)){
+			int resultInt = context.getInt(getUniqueID()) - context.getInt(number.getUniqueID());
+			result.setValueType(IVPValue.INTEGER_TYPE);
+			context.addInt(result.getUniqueID(), resultInt);
+		}else{
+			double resultDouble = 0.0;
+			if(getValueType().equals(IVPValue.DOUBLE_TYPE) && number.getValueType().equals(IVPValue.DOUBLE_TYPE)){
+				resultDouble = context.getDouble(getUniqueID()) + context.getDouble(number.getUniqueID());
+			}else{
+				if(getValueType().equals(IVPValue.DOUBLE_TYPE)){
+					resultDouble = context.getDouble(getUniqueID()) + context.getInt(number.getUniqueID());
+				}else{
+					resultDouble = context.getInt(getUniqueID()) + context.getDouble(number.getUniqueID());
+				}
+			}
+			context.addDouble(result.getUniqueID(), resultDouble);
+			result.setValueType(IVPValue.DOUBLE_TYPE);
+		}
 		return result;
 	}
 
