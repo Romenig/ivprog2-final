@@ -35,8 +35,8 @@ public class SimpleDivisionTest {
 		a.setValueType(IVPValue.INTEGER_TYPE);
 		b.setValueType(IVPValue.INTEGER_TYPE);
 
-		c.addBigDecimal(a.getUniqueID(), new BigDecimal(10));
-		c.addBigDecimal(b.getUniqueID(), new BigDecimal(2));
+		c.addInt(a.getUniqueID(), 10);
+		c.addInt(b.getUniqueID(), 2);
 
 		Division division = factory.createDivision();
 		division.setExpressionA(a.getUniqueID());
@@ -50,7 +50,7 @@ public class SimpleDivisionTest {
 		IVPNumber result = (IVPNumber) division.evaluate(c, map, factory);
 
 		assertTrue(result.getValueType().equals(IVPValue.DOUBLE_TYPE));
-		assertTrue(c.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("5")) == 0);
+		assertTrue(c.getInt(result.getUniqueID()) == 5);
 	}
 
 	@Test
@@ -63,8 +63,8 @@ public class SimpleDivisionTest {
 		a.setValueType(IVPValue.INTEGER_TYPE);
 		b.setValueType(IVPValue.DOUBLE_TYPE);
 
-		c.addBigDecimal(a.getUniqueID(), new BigDecimal("6"));
-		c.addBigDecimal(b.getUniqueID(), new BigDecimal("1.5"));
+		c.addInt(a.getUniqueID(), 6);
+		c.addDouble(b.getUniqueID(), 1.5);
 
 		Division division = factory.createDivision();
 		division.setExpressionA(a.getUniqueID());
@@ -77,7 +77,7 @@ public class SimpleDivisionTest {
 
 		IVPNumber result = (IVPNumber) division.evaluate(c, map, factory);
 		assertTrue(result.getValueType().equals(IVPValue.DOUBLE_TYPE));
-		assertTrue(c.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("4")) == 0);
+		assertTrue(c.getInt(result.getUniqueID()) == 4);
 
 	}
 
@@ -91,8 +91,8 @@ public class SimpleDivisionTest {
 		b.setValueType(IVPValue.INTEGER_TYPE);
 		a.setValueType(IVPValue.DOUBLE_TYPE);
 
-		c.addBigDecimal(a.getUniqueID(), new BigDecimal("1.5"));
-		c.addBigDecimal(b.getUniqueID(), new BigDecimal(2));
+		c.addDouble(a.getUniqueID(), 1.5);
+		c.addInt(b.getUniqueID(), 2);
 
 		Division division = factory.createDivision();
 		division.setExpressionA(a.getUniqueID());
@@ -105,7 +105,7 @@ public class SimpleDivisionTest {
 
 		IVPNumber result = (IVPNumber) division.evaluate(c, map, factory);
 		assertTrue(result.getValueType().equals(IVPValue.DOUBLE_TYPE));
-		assertTrue(c.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("0.75")) == 0);
+		assertTrue(c.getDouble(result.getUniqueID()) == 0.75);
 	}
 
 	@Test
@@ -118,8 +118,8 @@ public class SimpleDivisionTest {
 		b.setValueType(IVPValue.DOUBLE_TYPE);
 		a.setValueType(IVPValue.DOUBLE_TYPE);
 
-		c.addBigDecimal(a.getUniqueID(), new BigDecimal("2.5"));
-		c.addBigDecimal(b.getUniqueID(), new BigDecimal("0.25"));
+		c.addDouble(a.getUniqueID(), 2.5);
+		c.addDouble(b.getUniqueID(), 0.25);
 
 		Division division = factory.createDivision();
 		division.setExpressionA(a.getUniqueID());
@@ -132,7 +132,7 @@ public class SimpleDivisionTest {
 
 		IVPNumber result = (IVPNumber) division.evaluate(c, map, factory);
 		assertTrue(result.getValueType().equals(IVPValue.DOUBLE_TYPE));
-		assertTrue(c.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("10")) == 0);
+		assertTrue(c.getDouble(result.getUniqueID()) == 10.0);
 
 	}
 }

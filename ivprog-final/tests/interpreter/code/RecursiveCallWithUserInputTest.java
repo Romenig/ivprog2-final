@@ -90,7 +90,7 @@ public class RecursiveCallWithUserInputTest {
 		input.evaluate(context, map, factory);
 		IVPNumber result = (IVPNumber) fatorial.evaluate(context, map, factory);
 		
-		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal(120)) == 0); 
+		assertTrue(context.getInt(result.getUniqueID()) == 120); 
 	}
 
 }

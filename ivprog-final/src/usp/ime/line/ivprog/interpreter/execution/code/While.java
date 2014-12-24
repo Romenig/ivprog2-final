@@ -38,7 +38,7 @@ public class While extends CodeComposite {
 	public Object evaluate(Context c, HashMap map, DataFactory factory) {
 		IVPBoolean b = (IVPBoolean) ((DataObject)map.get(loopConditionID)).evaluate(c, map, factory);
 		Function f = (Function) map.get(c.getFunctionID());
-		while (c.getBoolean(b.getUniqueID()).booleanValue()) {
+		while (c.getBoolean(b.getUniqueID())) {
 			for (int i = 0; i < children.size(); i += 1) {
 				DataObject component = (DataObject) map.get(children.get(i));
 				if(component instanceof Return){

@@ -80,7 +80,7 @@ public class ReturnTest {
 		f.addChild(r.getUniqueID());
 		
 		IVPNumber result = (IVPNumber) f.evaluate(context, map, factory);
-		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal(10)) == 0);
+		assertTrue(context.getInt(result.getUniqueID()) == 10);
 	}
 
 }

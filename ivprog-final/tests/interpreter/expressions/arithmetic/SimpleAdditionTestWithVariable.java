@@ -44,8 +44,8 @@ public class SimpleAdditionTestWithVariable {
 		b_var.setValueType(IVPValue.INTEGER_TYPE);
 		v.setVariableType(IVPValue.INTEGER_TYPE);
 
-		c.addBigDecimal(a.getUniqueID(), new BigDecimal(10));
-		c.addBigDecimal(b_var.getUniqueID(), new BigDecimal(3));
+		c.addInt(a.getUniqueID(), 10);
+		c.addInt(b_var.getUniqueID(), 3);
 
 		Addition addition = factory.createAddition();
 		addition.setExpressionA(a.getUniqueID());
@@ -59,7 +59,7 @@ public class SimpleAdditionTestWithVariable {
 
 		IVPNumber result = (IVPNumber) addition.evaluate(c, map, factory);
 		assertTrue(result.getValueType().equals(IVPValue.INTEGER_TYPE));
-		assertTrue(c.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("13")) == 0);
+		assertTrue(c.getInt(result.getUniqueID()) == 13);
 	}
 
 	@Test
@@ -75,8 +75,8 @@ public class SimpleAdditionTestWithVariable {
 		b_var.setValueType(IVPValue.DOUBLE_TYPE);
 		v.setVariableType(IVPValue.DOUBLE_TYPE);
 
-		c.addBigDecimal(a.getUniqueID(), new BigDecimal(10));
-		c.addBigDecimal(b_var.getUniqueID(), new BigDecimal("3.4313"));
+		c.addInt(a.getUniqueID(), 10);
+		c.addDouble(b_var.getUniqueID(), 3.4313);
 
 		Addition addition = factory.createAddition();
 		addition.setExpressionA(a.getUniqueID());
@@ -90,7 +90,7 @@ public class SimpleAdditionTestWithVariable {
 
 		IVPNumber result = (IVPNumber) addition.evaluate(c, map, factory);
 		assertTrue(result.getValueType().equals(IVPValue.DOUBLE_TYPE));
-		assertTrue(c.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("13.4313")) == 0);
+		assertTrue(c.getDouble(result.getUniqueID()) == 13.4313);
 
 	}
 
@@ -107,8 +107,8 @@ public class SimpleAdditionTestWithVariable {
 		a.setValueType(IVPValue.DOUBLE_TYPE);
 		v.setVariableType(IVPValue.INTEGER_TYPE);
 
-		c.addBigDecimal(a.getUniqueID(), new BigDecimal("3.4313"));
-		c.addBigDecimal(b_var.getUniqueID(), new BigDecimal(10));
+		c.addDouble(a.getUniqueID(), 3.4313);
+		c.addInt(b_var.getUniqueID(), 10);
 
 		Addition addition = factory.createAddition();
 		addition.setExpressionA(a.getUniqueID());
@@ -122,7 +122,7 @@ public class SimpleAdditionTestWithVariable {
 
 		IVPNumber result = (IVPNumber) addition.evaluate(c, map, factory);
 		assertTrue(result.getValueType().equals(IVPValue.DOUBLE_TYPE));
-		assertTrue(c.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("13.4313")) == 0);
+		assertTrue(c.getDouble(result.getUniqueID()) == 13.4313);
 	}
 
 	@Test
@@ -138,8 +138,8 @@ public class SimpleAdditionTestWithVariable {
 		a.setValueType(IVPValue.DOUBLE_TYPE);
 		v.setVariableType(IVPValue.DOUBLE_TYPE);
 
-		c.addBigDecimal(a.getUniqueID(), new BigDecimal("10.1111"));
-		c.addBigDecimal(b_var.getUniqueID(), new BigDecimal("3.4313"));
+		c.addDouble(a.getUniqueID(), 10.1111);
+		c.addDouble(b_var.getUniqueID(), 3.4313);
 
 		Addition addition = factory.createAddition();
 		addition.setExpressionA(a.getUniqueID());
@@ -154,6 +154,6 @@ public class SimpleAdditionTestWithVariable {
 		IVPNumber result = (IVPNumber) addition.evaluate(c, map, factory);
 
 		assertTrue(result.getValueType().equals(IVPValue.DOUBLE_TYPE));
-		assertTrue(c.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("13.5424")) == 0);
+		assertTrue(c.getDouble(result.getUniqueID()) == 13.5424);
 	}
 }

@@ -35,9 +35,9 @@ public class CompleteMultiplicationTest {
 		a.setValueType(IVPValue.DOUBLE_TYPE);
 		b.setValueType(IVPValue.INTEGER_TYPE);
 		c.setValueType(IVPValue.INTEGER_TYPE);
-		context.addBigDecimal(a.getUniqueID(), new BigDecimal("3.4313"));
-		context.addBigDecimal(b.getUniqueID(), new BigDecimal("10"));
-		context.addBigDecimal(c.getUniqueID(), new BigDecimal("2"));
+		context.addDouble(a.getUniqueID(), 3.4313);
+		context.addInt(b.getUniqueID(), 10);
+		context.addInt(c.getUniqueID(), 2);
 
 		Multiplication multiplication1 = factory.createMultiplication();
 		multiplication1.setExpressionA(a.getUniqueID());
@@ -57,7 +57,7 @@ public class CompleteMultiplicationTest {
 		// c * (a * b)
 		IVPNumber result = (IVPNumber) multiplication2.evaluate(context, map, factory);
 		assertTrue(result.getValueType().equals(IVPValue.DOUBLE_TYPE));
-		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("68.626")) == 0);
+		assertTrue(context.getDouble(result.getUniqueID()) == 68.626);
 
 	}
 
@@ -73,9 +73,9 @@ public class CompleteMultiplicationTest {
 		b.setValueType(IVPValue.INTEGER_TYPE);
 		c.setValueType(IVPValue.INTEGER_TYPE);
 
-		context.addBigDecimal(a.getUniqueID(), new BigDecimal("7"));
-		context.addBigDecimal(b.getUniqueID(), new BigDecimal("10"));
-		context.addBigDecimal(c.getUniqueID(), new BigDecimal("2"));
+		context.addInt(a.getUniqueID(), 7);
+		context.addInt(b.getUniqueID(), 10);
+		context.addInt(c.getUniqueID(), 2);
 
 		Multiplication multiplication1 = factory.createMultiplication();
 		multiplication1.setExpressionA(a.getUniqueID());
@@ -95,7 +95,7 @@ public class CompleteMultiplicationTest {
 		// c * (a * b)
 		IVPNumber result = (IVPNumber) multiplication2.evaluate(context, map, factory);
 		assertTrue(result.getValueType().equals(IVPValue.INTEGER_TYPE));
-		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("140")) == 0);
+		assertTrue(context.getInt(result.getUniqueID()) == 140);
 	}
 
 	@Test
@@ -112,10 +112,10 @@ public class CompleteMultiplicationTest {
 		c.setValueType(IVPValue.INTEGER_TYPE);
 		d.setValueType(IVPValue.INTEGER_TYPE);
 
-		context.addBigDecimal(a.getUniqueID(), new BigDecimal("7"));
-		context.addBigDecimal(b.getUniqueID(), new BigDecimal("10"));
-		context.addBigDecimal(c.getUniqueID(), new BigDecimal("2"));
-		context.addBigDecimal(d.getUniqueID(), new BigDecimal("2"));
+		context.addInt(a.getUniqueID(), 7);
+		context.addInt(b.getUniqueID(), 10);
+		context.addInt(c.getUniqueID(), 2);
+		context.addInt(d.getUniqueID(), 2);
 
 		Multiplication multiplication1 = factory.createMultiplication();
 		multiplication1.setExpressionA(a.getUniqueID());
@@ -141,7 +141,7 @@ public class CompleteMultiplicationTest {
 		// ((a * b) * (c * d))
 		IVPNumber result = (IVPNumber) multiplication3.evaluate(context, map, factory);
 		assertTrue(result.getValueType().equals(IVPValue.INTEGER_TYPE));
-		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("280")) == 0);
+		assertTrue(context.getInt(result.getUniqueID()) == 280);
 	}
 
 }

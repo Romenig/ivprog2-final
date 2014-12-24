@@ -37,15 +37,15 @@ public class ForTest {
 
 		IVPValue startingValue = factory.createIVPNumber();
 		startingValue.setValueType(IVPValue.INTEGER_TYPE);
-		context.addBigDecimal(startingValue.getUniqueID(), new BigDecimal(0));
+		context.addInt(startingValue.getUniqueID(), 0);
 
 		IVPValue one = factory.createIVPNumber();
 		one.setValueType(IVPValue.INTEGER_TYPE);
-		context.addBigDecimal(one.getUniqueID(), new BigDecimal(1));
+		context.addInt(one.getUniqueID(), 1);
 
 		IVPValue n_times = factory.createIVPNumber();
 		n_times.setValueType(IVPValue.INTEGER_TYPE);
-		context.addBigDecimal(n_times.getUniqueID(), new BigDecimal(5));
+		context.addInt(n_times.getUniqueID(), 5);
 
 		IVPVariable v = factory.createIVPVariable();
 		v.setVariableType(IVPValue.INTEGER_TYPE);
@@ -75,7 +75,7 @@ public class ForTest {
 		myFor.evaluate(context, map, factory);
 
 		IVPNumber result = (IVPNumber) v.evaluate(context, map, factory);
-		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal(5)) == 0);
+		assertTrue(context.getInt(result.getUniqueID()) == 5);
 	}
 
 	@Test
@@ -87,19 +87,19 @@ public class ForTest {
 		
 		IVPValue startingValue = factory.createIVPNumber();
 		startingValue.setValueType(IVPValue.INTEGER_TYPE);
-		context.addBigDecimal(startingValue.getUniqueID(), new BigDecimal(0));
+		context.addInt(startingValue.getUniqueID(), 0);
 
 		IVPValue one = factory.createIVPNumber();
 		one.setValueType(IVPValue.INTEGER_TYPE);
-		context.addBigDecimal(one.getUniqueID(), new BigDecimal(1));
+		context.addInt(one.getUniqueID(), 1);
 
 		IVPValue indexValue = factory.createIVPNumber();
 		indexValue.setValueType(IVPValue.INTEGER_TYPE);
-		context.addBigDecimal(indexValue.getUniqueID(), new BigDecimal(1));
+		context.addInt(indexValue.getUniqueID(), 1);
 
 		IVPValue n_times = factory.createIVPNumber();
 		n_times.setValueType(IVPValue.INTEGER_TYPE);
-		context.addBigDecimal(n_times.getUniqueID(), new BigDecimal(5));
+		context.addInt(n_times.getUniqueID(), 5);
 
 		IVPVariable v = factory.createIVPVariable();
 		v.setVariableType(IVPValue.INTEGER_TYPE);
@@ -136,9 +136,9 @@ public class ForTest {
 		f.evaluate(context, map, factory);
 
 		IVPNumber result = (IVPNumber) v.evaluate(context, map, factory);
-		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal(5)) == 0);
+		assertTrue(context.getInt(result.getUniqueID()) == 5);
 		result = (IVPNumber) indexVar.evaluate(context, map, factory);
-		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal(6)) == 0);
+		assertTrue(context.getInt(result.getUniqueID()) == 6);
 	}
 
 	@Test
@@ -150,23 +150,23 @@ public class ForTest {
 
 		IVPValue lowerBound = factory.createIVPNumber();
 		lowerBound.setValueType(IVPValue.INTEGER_TYPE);
-		context.addBigDecimal(lowerBound.getUniqueID(), new BigDecimal(0));
+		context.addInt(lowerBound.getUniqueID(), 0);
 
 		IVPValue upperBound = factory.createIVPNumber();
 		upperBound.setValueType(IVPValue.INTEGER_TYPE);
-		context.addBigDecimal(upperBound.getUniqueID(), new BigDecimal(5));
+		context.addInt(upperBound.getUniqueID(), 5);
 
 		IVPValue increment = factory.createIVPNumber();
 		increment.setValueType(IVPValue.INTEGER_TYPE);
-		context.addBigDecimal(increment.getUniqueID(), new BigDecimal(1));
+		context.addInt(increment.getUniqueID(), 1);
 
 		IVPValue indexStartingValue = factory.createIVPNumber();
 		indexStartingValue.setValueType(IVPValue.INTEGER_TYPE);
-		context.addBigDecimal(indexStartingValue.getUniqueID(), new BigDecimal(0));
+		context.addInt(indexStartingValue.getUniqueID(), 0);
 
 		IVPValue one = factory.createIVPNumber();
 		one.setValueType(IVPValue.INTEGER_TYPE);
-		context.addBigDecimal(one.getUniqueID(), new BigDecimal(1));
+		context.addInt(one.getUniqueID(), 1);
 
 		IVPVariable v = factory.createIVPVariable();
 		v.setVariableType(IVPValue.INTEGER_TYPE);
@@ -205,9 +205,9 @@ public class ForTest {
 		f.evaluate(context, map, factory);
 
 		IVPNumber result = (IVPNumber) v.evaluate(context, map, factory);
-		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal(6)) == 0);
+		assertTrue(context.getInt(result.getUniqueID()) == 6);
 		result = (IVPNumber) indexVar.evaluate(context, map, factory);
-		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal(5)) == 0);
+		assertTrue(context.getInt(result.getUniqueID()) == 5);
 	}
 
 }

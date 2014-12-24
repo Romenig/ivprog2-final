@@ -101,7 +101,7 @@ public class IVPString extends IVPValue {
 	public IVPNumber strlen(Context c, DataFactory factory) {
 		IVPNumber result = factory.createIVPNumber();
 		result.setValueType(IVPValue.INTEGER_TYPE);
-		c.addBigDecimal(result.getUniqueID(), new BigDecimal(c.getString(getUniqueID()).length()));
+		c.addInt(result.getUniqueID(), c.getString(getUniqueID()).length());
 		return result;
 	}
 
@@ -117,7 +117,7 @@ public class IVPString extends IVPValue {
 	public IVPNumber searchSubstring(IVPString sub, Context c, DataFactory factory) {
 		IVPNumber result = factory.createIVPNumber();
 		result.setValueType(IVPValue.INTEGER_TYPE);
-		c.addBigDecimal(result.getUniqueID(), new BigDecimal(c.getString(getUniqueID()).indexOf(c.getString(sub.getUniqueID()))));
+		c.addInt(result.getUniqueID(), c.getString(getUniqueID()).indexOf(c.getString(sub.getUniqueID())));
 		return result;
 	}
 

@@ -23,8 +23,8 @@ public class ContextErrorMethods {
 	@Test
 	public void verifyNumberErrorMessages() {
 		Context c = new Context();
-		IVPError e1 = c.addBigDecimal("key1", new BigDecimal(10));
-		IVPError e2 = c.addBigDecimal("key1", new BigDecimal(11));
+		IVPError e1 = c.addInt("key1", 10);
+		IVPError e2 = c.addInt("key1", 11);
 		assertTrue(e2.getErrorMessage().equals(Messages.getString("Context.keyExists")));
 		assertTrue(e1 == null);
 	}

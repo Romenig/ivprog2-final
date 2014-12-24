@@ -38,8 +38,8 @@ public class ComparisonGreaterThanOrEqualTo {
 		a.setValueType(IVPValue.INTEGER_TYPE);
 		b.setValueType(IVPValue.INTEGER_TYPE);
 
-		c.addBigDecimal(a.getUniqueID(), new BigDecimal(30));
-		c.addBigDecimal(b.getUniqueID(), new BigDecimal(3));
+		c.addInt(a.getUniqueID(), 30);
+		c.addInt(b.getUniqueID(), 3);
 
 		HashMap map = new HashMap();
 		map.put(a.getUniqueID(), a);
@@ -48,7 +48,7 @@ public class ComparisonGreaterThanOrEqualTo {
 
 		IVPBoolean result = (IVPBoolean) gteq.evaluate(c, map, factory);
 		assertTrue(c.getBoolean(result.getUniqueID()));
-		b.updateValue(c, new BigDecimal(30));
+		b.updateIntegerValue(c, 30);
 		result = (IVPBoolean) gteq.evaluate(c, map, factory);
 		assertTrue(c.getBoolean(result.getUniqueID()));
 
@@ -67,8 +67,8 @@ public class ComparisonGreaterThanOrEqualTo {
 		a.setValueType(IVPValue.DOUBLE_TYPE);
 		b.setValueType(IVPValue.DOUBLE_TYPE);
 
-		c.addBigDecimal(a.getUniqueID(), new BigDecimal(3.0002));
-		c.addBigDecimal(b.getUniqueID(), new BigDecimal(3.0001));
+		c.addDouble(a.getUniqueID(), 3.0002);
+		c.addDouble(b.getUniqueID(), 3.0001);
 
 		HashMap map = new HashMap();
 		map.put(a.getUniqueID(), a);
@@ -77,7 +77,7 @@ public class ComparisonGreaterThanOrEqualTo {
 
 		IVPBoolean result = (IVPBoolean) gteq.evaluate(c, map, factory);
 		assertTrue(c.getBoolean(result.getUniqueID()));
-		b.updateValue(c, new BigDecimal(3.0002));
+		b.updateDoubleValue(c, 3.0002);
 		result = (IVPBoolean) gteq.evaluate(c, map, factory);
 		assertTrue(c.getBoolean(result.getUniqueID()));
 	}
@@ -95,8 +95,8 @@ public class ComparisonGreaterThanOrEqualTo {
 		a.setValueType(IVPValue.DOUBLE_TYPE);
 		b.setValueType(IVPValue.INTEGER_TYPE);
 
-		c.addBigDecimal(a.getUniqueID(), new BigDecimal(3.0001));
-		c.addBigDecimal(b.getUniqueID(), new BigDecimal(3));
+		c.addDouble(a.getUniqueID(), 3.0001);
+		c.addInt(b.getUniqueID(), 3);
 
 		HashMap map = new HashMap();
 		map.put(a.getUniqueID(), a);
@@ -105,7 +105,7 @@ public class ComparisonGreaterThanOrEqualTo {
 
 		IVPBoolean result = (IVPBoolean) gteq.evaluate(c, map, factory);
 		assertTrue(c.getBoolean(result.getUniqueID()));
-		b.updateValue(c, new BigDecimal(2));
+		b.updateIntegerValue(c, 2);
 		result = (IVPBoolean) gteq.evaluate(c, map, factory);
 		assertTrue(c.getBoolean(result.getUniqueID()));
 	}

@@ -33,8 +33,8 @@ public class SimpleMultiplicationTest {
 
 		a.setValueType(IVPValue.INTEGER_TYPE);
 		b.setValueType(IVPValue.INTEGER_TYPE);
-		c.addBigDecimal(a.getUniqueID(), new BigDecimal(10));
-		c.addBigDecimal(b.getUniqueID(), new BigDecimal(3));
+		c.addInt(a.getUniqueID(), 10);
+		c.addInt(b.getUniqueID(), 3);
 
 		Multiplication multiplication = factory.createMultiplication();
 		multiplication.setExpressionA(a.getUniqueID());
@@ -47,7 +47,7 @@ public class SimpleMultiplicationTest {
 
 		IVPNumber result = (IVPNumber) multiplication.evaluate(c, map, factory);
 		assertTrue(result.getValueType().equals(IVPValue.INTEGER_TYPE));
-		assertTrue(c.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("30")) == 0);
+		assertTrue(c.getInt(result.getUniqueID()) == 30);
 	}
 
 	@Test
@@ -59,8 +59,8 @@ public class SimpleMultiplicationTest {
 
 		a.setValueType(IVPValue.INTEGER_TYPE);
 		b.setValueType(IVPValue.DOUBLE_TYPE);
-		c.addBigDecimal(a.getUniqueID(), new BigDecimal(10));
-		c.addBigDecimal(b.getUniqueID(), new BigDecimal("3.4313"));
+		c.addInt(a.getUniqueID(), 10);
+		c.addDouble(b.getUniqueID(), 3.4313);
 
 		Multiplication multiplication = factory.createMultiplication();
 		multiplication.setExpressionA(a.getUniqueID());
@@ -72,7 +72,7 @@ public class SimpleMultiplicationTest {
 		map.put(b.getUniqueID(), b);
 
 		IVPNumber result = (IVPNumber) multiplication.evaluate(c, map, factory);
-		assertTrue(c.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("34.313")) == 0);
+		assertTrue(c.getDouble(result.getUniqueID()) == 34.313);
 
 	}
 
@@ -85,8 +85,8 @@ public class SimpleMultiplicationTest {
 
 		b.setValueType(IVPValue.INTEGER_TYPE);
 		a.setValueType(IVPValue.DOUBLE_TYPE);
-		c.addBigDecimal(b.getUniqueID(), new BigDecimal(10));
-		c.addBigDecimal(a.getUniqueID(), new BigDecimal("3.4313"));
+		c.addInt(b.getUniqueID(), 10);
+		c.addDouble(a.getUniqueID(), 3.4313);
 
 		Multiplication multiplication = factory.createMultiplication();
 		multiplication.setExpressionA(a.getUniqueID());
@@ -98,7 +98,7 @@ public class SimpleMultiplicationTest {
 		map.put(b.getUniqueID(), b);
 		IVPNumber result = (IVPNumber) multiplication.evaluate(c, map, factory);
 		assertTrue(result.getValueType().equals(IVPValue.DOUBLE_TYPE));
-		assertTrue(c.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("34.313")) == 0);
+		assertTrue(c.getDouble(result.getUniqueID()) == 34.313);
 	}
 
 	@Test
@@ -110,8 +110,8 @@ public class SimpleMultiplicationTest {
 
 		b.setValueType(IVPValue.DOUBLE_TYPE);
 		a.setValueType(IVPValue.DOUBLE_TYPE);
-		c.addBigDecimal(b.getUniqueID(), new BigDecimal("3.4313"));
-		c.addBigDecimal(a.getUniqueID(), new BigDecimal("10.1111"));
+		c.addDouble(b.getUniqueID(), 3.4313);
+		c.addDouble(a.getUniqueID(), 10.1111);
 
 		Multiplication multiplication = factory.createMultiplication();
 		multiplication.setExpressionA(a.getUniqueID());
@@ -124,7 +124,7 @@ public class SimpleMultiplicationTest {
 
 		IVPNumber result = (IVPNumber) multiplication.evaluate(c, map, factory);
 		assertTrue(result.getValueType().equals(IVPValue.DOUBLE_TYPE));
-		assertTrue(c.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("34.69421743")) == 0);
+		assertTrue(c.getDouble(result.getUniqueID()) == 34.69421743);
 	}
 
 }

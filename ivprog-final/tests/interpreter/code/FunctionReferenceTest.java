@@ -98,7 +98,7 @@ public class FunctionReferenceTest {
 		
 		IVPNumber result2 = (IVPNumber) result.evaluate(context, map, factory);
 		
-		assertTrue(context.getBigDecimal(result2.getUniqueID()).compareTo(new BigDecimal(10)) == 0);
+		assertTrue(context.getInt(result2.getUniqueID())== 10);
 	}
 	
 }

@@ -36,11 +36,11 @@ public class AttributionLineTest {
 
 		IVPNumber n1 = factory.createIVPNumber();
 		n1.setValueType(IVPValue.INTEGER_TYPE);
-		c.addBigDecimal(n1.getUniqueID(), new BigDecimal("10"));
+		c.addInt(n1.getUniqueID(), 10);
 
 		IVPNumber n2 = factory.createIVPNumber();
 		n2.setValueType(IVPValue.INTEGER_TYPE);
-		c.addBigDecimal(n2.getUniqueID(), new BigDecimal("31"));
+		c.addInt(n2.getUniqueID(), 31);
 
 		IVPVariable v = factory.createIVPVariable();
 		v.setVariableType(IVPValue.INTEGER_TYPE);
@@ -58,9 +58,9 @@ public class AttributionLineTest {
 		map.put(n2.getUniqueID(), n2);
 		map.put(attLine.getUniqueID(), attLine);
 
-		assertTrue(c.getBigDecimal(v.getValueID()).compareTo(new BigDecimal("10")) == 0);
+		assertTrue(c.getInt(v.getValueID()) == 10);
 		attLine.evaluate(c, map, factory);
-		assertTrue(c.getBigDecimal(v.getValueID()).compareTo(new BigDecimal("31")) == 0);
+		assertTrue(c.getInt(v.getValueID()) == 31);
 	}
 
 	@Test
@@ -70,11 +70,11 @@ public class AttributionLineTest {
 
 		IVPNumber n1 = factory.createIVPNumber();
 		n1.setValueType(IVPValue.DOUBLE_TYPE);
-		c.addBigDecimal(n1.getUniqueID(), new BigDecimal("10.37"));
+		c.addDouble(n1.getUniqueID(), 10.37);
 
 		IVPNumber n2 = factory.createIVPNumber();
 		n2.setValueType(IVPValue.DOUBLE_TYPE);
-		c.addBigDecimal(n2.getUniqueID(), new BigDecimal("31.33333"));
+		c.addDouble(n2.getUniqueID(), 31.33333);
 
 		IVPVariable v = factory.createIVPVariable();
 		v.setVariableType(IVPValue.DOUBLE_TYPE);
@@ -92,9 +92,9 @@ public class AttributionLineTest {
 		map.put(n2.getUniqueID(), n2);
 		map.put(attLine.getUniqueID(), attLine);
 
-		assertTrue(c.getBigDecimal(v.getValueID()).compareTo(new BigDecimal("10.37")) == 0);
+		assertTrue(c.getDouble(v.getValueID()) == 10.37);
 		attLine.evaluate(c, map, factory);
-		assertTrue(c.getBigDecimal(v.getValueID()).compareTo(new BigDecimal("31.33333")) == 0);
+		assertTrue(c.getDouble(v.getValueID()) == 31.33333);
 	}
 
 	@Test
@@ -250,11 +250,11 @@ public class AttributionLineTest {
 
 		IVPNumber n1 = factory.createIVPNumber();
 		n1.setValueType(IVPValue.INTEGER_TYPE);
-		c.addBigDecimal(n1.getUniqueID(), new BigDecimal("10"));
+		c.addInt(n1.getUniqueID(), 10);
 
 		IVPNumber n2 = factory.createIVPNumber();
 		n2.setValueType(IVPValue.INTEGER_TYPE);
-		c.addBigDecimal(n2.getUniqueID(), new BigDecimal("31"));
+		c.addInt(n2.getUniqueID(), 31);
 
 		IVPVariable v = factory.createIVPVariable();
 		v.setVariableType(IVPValue.INTEGER_TYPE);
@@ -277,9 +277,9 @@ public class AttributionLineTest {
 		map.put(n2.getUniqueID(), n2);
 		map.put(attLine.getUniqueID(), attLine);
 
-		assertTrue(c.getBigDecimal(v.getValueID()).compareTo(new BigDecimal("10")) == 0);
+		assertTrue(c.getInt(v.getValueID())== 10);
 		attLine.evaluate(c, map, factory);
-		assertTrue(c.getBigDecimal(v.getValueID()).compareTo(new BigDecimal("41")) == 0);
+		assertTrue(c.getInt(v.getValueID()) == 41);
 	}
 
 }

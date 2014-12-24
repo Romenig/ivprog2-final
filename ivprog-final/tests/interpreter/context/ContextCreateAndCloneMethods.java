@@ -24,12 +24,12 @@ public class ContextCreateAndCloneMethods {
 	public void verifyValues() {
 		Context c = new Context();
 
-		IVPError e1 = c.addBigDecimal("key1", new BigDecimal(10));
-		IVPError e2 = c.addBigDecimal("key2", new BigDecimal(11));
+		IVPError e1 = c.addInt("key1", 10);
+		IVPError e2 = c.addInt("key2", 11);
 		IVPError e3 = c.addString("key3", "Hello, world!");
-		IVPError e4 = c.addBoolean("key4", new Boolean("true"));
+		IVPError e4 = c.addBoolean("key4", true);
 
-		assertTrue((new BigDecimal(10)).equals(c.getBigDecimal("key1")) && (new BigDecimal(11)).equals(c.getBigDecimal("key2"))
+		assertTrue((10 == c.getInt("key1")) && ( 11 == c.getInt("key2"))
 		        && "Hello, world!".equals(c.getString("key3")) && c.getBoolean("key4"));
 
 	}
@@ -39,11 +39,11 @@ public class ContextCreateAndCloneMethods {
 		Context c = new Context();
 		IVPError e1 = c.addBoolean("key1", new Boolean("true"));
 		IVPError e2 = c.addString("key2", "Hello, world 2!");
-		IVPError e3 = c.addBigDecimal("key3", new BigDecimal("4"));
+		IVPError e3 = c.addInt("key3", 4);
 		Context c2 = (Context) c.clone();
-		assertTrue(c.getBoolean("key1").equals(c2.getBoolean("key1")));
+		assertTrue(c.getBoolean("key1") && (c2.getBoolean("key1")));
 		assertTrue(c.getString("key2").equals(c2.getString("key2")));
-		assertTrue(c.getBigDecimal("key3").equals(c2.getBigDecimal("key3")));
+		assertTrue(c.getInt("key3") == (c2.getInt("key3")));
 	}
 
 }

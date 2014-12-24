@@ -22,9 +22,9 @@ public class ContextUpdateMethods {
 	@Test
 	public void verifyUpdateNumber() {
 		Context c = new Context();
-		IVPError e1 = c.addBigDecimal("key1", new BigDecimal("4"));
-		IVPError e2 = c.updateBigDecimal("key1", new BigDecimal("5"));
-		assertTrue(c.getBigDecimal("key1").equals(new BigDecimal("5")));
+		IVPError e1 = c.addInt("key1", 4);
+		IVPError e2 = c.updateInt("key1", 5);
+		assertTrue(c.getInt("key1") == 5);
 	}
 
 	@Test
@@ -40,7 +40,7 @@ public class ContextUpdateMethods {
 		Context c = new Context();
 		IVPError e1 = c.addBoolean("key1", new Boolean("true"));
 		IVPError e2 = c.updateBoolean("key1", new Boolean("false"));
-		assertTrue(c.getBoolean("key1").equals(new Boolean("false")));
+		assertTrue(c.getBoolean("key1") && false);
 	}
 
 }

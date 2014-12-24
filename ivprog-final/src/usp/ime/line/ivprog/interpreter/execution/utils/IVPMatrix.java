@@ -47,8 +47,8 @@ public class IVPMatrix extends DataObject {
 	public void setSize(String nCol, String nLin, Context c) {
 		this.nColID = nCol;
 		this.nLinID = nLin;
-		int col = c.getBigDecimal(nCol).intValue();
-		int lin = c.getBigDecimal(nLin).intValue();
+		int col = c.getInt(nCol);
+		int lin = c.getInt(nLin);
 		matrixRepresentation = new String[lin][col];
 		for (int i = 0; i < lin; i++) {
 			for (int j = 0; j < col; j++) {
@@ -84,8 +84,8 @@ public class IVPMatrix extends DataObject {
 	public String isEmpty(DataFactory factory, Context c, HashMap map) {
 		IVPBoolean isEmpty = factory.createIVPBoolean();
 		boolean test = true;
-		int col = c.getBigDecimal(nColID).intValue();
-		int lin = c.getBigDecimal(nLinID).intValue();
+		int col = c.getInt(nColID);
+		int lin = c.getInt(nLinID);
 		for (int i = 0; i < lin; i++) {
 			for (int j = 0; j < col; j++) {
 				if (matrixRepresentation[i][j] != IVPValue.NULL) {
@@ -104,8 +104,8 @@ public class IVPMatrix extends DataObject {
 	 * @return the last element on that place
 	 */
 	public Object addElement(String lin, String col, Context context, String elementID) {
-		int line = context.getBigDecimal(lin).intValue();
-		int column = context.getBigDecimal(col).intValue();
+		int line = context.getInt(lin);
+		int column = context.getInt(col);
 		String lastElement = matrixRepresentation[line][column];
 		matrixRepresentation[line][column] = elementID;
 		return lastElement;
@@ -118,8 +118,8 @@ public class IVPMatrix extends DataObject {
 	 * @return
 	 */
 	public Object getElement(String lin, String col, Context context) {
-		int line = context.getBigDecimal(lin).intValue();
-		int column = context.getBigDecimal(col).intValue();
+		int line = context.getInt(lin);
+		int column = context.getInt(col);
 		return matrixRepresentation[line][column];
 	}
 
@@ -129,8 +129,8 @@ public class IVPMatrix extends DataObject {
 	 * @return
 	 */
 	public String removeElement(String lin, String col, Context context) {
-		int line = context.getBigDecimal(lin).intValue();
-		int column = context.getBigDecimal(col).intValue();
+		int line = context.getInt(lin);
+		int column = context.getInt(col);
 		String removed = matrixRepresentation[line][column];
 		matrixRepresentation[line][column] = IVPValue.NULL;
 		return removed;

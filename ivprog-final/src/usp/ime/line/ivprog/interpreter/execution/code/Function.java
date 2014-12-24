@@ -71,8 +71,10 @@ public class Function extends CodeComposite {
 	 * @param map
 	 */
 	public void addConstant(IVPValue constant, String constantValue, Context context, HashMap map) {
-		if (constant.getValueType().equals(IVPValue.INTEGER_TYPE) || constant.getValueType().equals(IVPValue.DOUBLE_TYPE)) {
-			context.addBigDecimal(constant.getUniqueID(), new BigDecimal(constantValue));
+		if (constant.getValueType().equals(IVPValue.INTEGER_TYPE)) {
+			context.addInt(constant.getUniqueID(), new Integer(constantValue).intValue());
+		} else if(constant.getValueType().equals(IVPValue.DOUBLE_TYPE)){
+			context.addDouble(constant.getUniqueID(), new Double(constantValue).doubleValue());
 		} else if (constant.getValueType().equals(IVPValue.STRING_TYPE)) {
 			context.addString(constant.getUniqueID(), constantValue);
 		} else if (constant.getValueType().equals(IVPValue.BOOLEAN_TYPE)) {
@@ -92,9 +94,12 @@ public class Function extends CodeComposite {
 	 */
 	public void addVariable(IVPVariable variable, String value, Context context, HashMap map, DataFactory factory) {
 		IVPValue varValue = null;
-		if (variable.getVariableType().equals(IVPValue.INTEGER_TYPE) || variable.getVariableType().equals(IVPValue.DOUBLE_TYPE)) {
+		if (variable.getVariableType().equals(IVPValue.INTEGER_TYPE)){
 			varValue = factory.createIVPNumber();
-			context.addBigDecimal(varValue.getUniqueID(), new BigDecimal(value));
+			context.addInt(varValue.getUniqueID(), new Integer(value).intValue());
+		} else if (variable.getVariableType().equals(IVPValue.DOUBLE_TYPE)){
+			varValue = factory.createIVPNumber();
+			context.addDouble(varValue.getUniqueID(), new Double(value).doubleValue());
 		} else if (variable.getVariableType().equals(IVPValue.STRING_TYPE)) {
 			varValue = factory.createIVPString();
 			context.addString(varValue.getUniqueID(), value);
@@ -154,10 +159,10 @@ public class Function extends CodeComposite {
     	IVPValue value = null;
     	if(type.equals(IVPValue.INTEGER_TYPE)){
     		value = factory.createIVPNumber();
-    		c.addBigDecimal(value.getUniqueID(), new BigDecimal(IVPValue.DEFAULT_INTEGER));
+    		c.addInt(value.getUniqueID(), new Integer(IVPValue.DEFAULT_INTEGER).intValue());
     	}else if(type.equals(IVPValue.DOUBLE_TYPE)){
     		value = factory.createIVPNumber();
-    		c.addBigDecimal(value.getUniqueID(), new BigDecimal(IVPValue.DEFAULT_DOUBLE));
+    		c.addDouble(value.getUniqueID(), new Double(IVPValue.DEFAULT_DOUBLE).doubleValue());
     	}else if(type.equals(IVPValue.STRING_TYPE)){
     		value = factory.createIVPString();
     		c.addString(value.getUniqueID(), IVPValue.DEFAULT_STRING);

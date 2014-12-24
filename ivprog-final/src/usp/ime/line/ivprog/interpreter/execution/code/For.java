@@ -46,7 +46,7 @@ public class For extends CodeComposite {
 		Function f = (Function) map.get(c.getFunctionID());
 		if (executionMethod.equals(FOR_N_TIMES)) {
 			upperValue = (IVPValue) ((DataObject)map.get(upperBound)).evaluate(c, map, factory);
-			int upperInt = c.getBigDecimal(upperValue.getUniqueID()).intValue();
+			int upperInt = c.getInt(upperValue.getUniqueID());
 			for (int i = 0; i < upperInt; i++) {
 				for (int j = 0; j < children.size(); j++) {
 					DataObject component = (DataObject) map.get(children.get(j));
@@ -65,7 +65,7 @@ public class For extends CodeComposite {
 			upperValue = (IVPValue) ((DataObject)map.get(upperBound)).evaluate(c, map, factory);
 			indexVariable = (IVPVariable) map.get(index);
 			IVPNumber indexValue = (IVPNumber) ((DataObject)map.get(indexVariable.getValueID())).evaluate(c, map, factory);
-			int upperInt = c.getBigDecimal(upperValue.getUniqueID()).intValue();
+			int upperInt = c.getInt(upperValue.getUniqueID());
 			for (int i = 0; i < upperInt; i++) {
 				for (int j = 0; j < children.size(); j++) {
 					DataObject component = (DataObject) map.get(children.get(j));
@@ -79,7 +79,7 @@ public class For extends CodeComposite {
 					}
 					component.evaluate(c, map, factory);
 				}
-				indexValue.updateValue(c, new BigDecimal(c.getBigDecimal(indexValue.getUniqueID()).intValue() + 1));
+				indexValue.updateIntegerValue(c, c.getInt(indexValue.getUniqueID())+1);
 			}
 		} else { // COMPLETE
 			upperValue = (IVPValue) ((DataObject)map.get(upperBound)).evaluate(c, map, factory);
@@ -87,9 +87,9 @@ public class For extends CodeComposite {
 			incrementValue = (IVPValue) ((DataObject)map.get(incrementValue)).evaluate(c, map, factory);
 			indexVariable = (IVPVariable) map.get(index);
 			IVPNumber indexValue = (IVPNumber) ((DataObject)map.get(indexVariable.getValueID())).evaluate(c, map, factory);
-			int upperInt = c.getBigDecimal(upperValue.getUniqueID()).intValue();
-			int lowerInt = c.getBigDecimal(lowerValue.getUniqueID()).intValue();
-			int incrementInt = c.getBigDecimal(incrementValue.getUniqueID()).intValue();
+			int upperInt = c.getInt(upperValue.getUniqueID());
+			int lowerInt = c.getInt(lowerValue.getUniqueID());
+			int incrementInt = c.getInt(incrementValue.getUniqueID());
 			for (int i = lowerInt; i < upperInt; i += incrementInt) {
 				for (int j = 0; j < children.size(); j++) {
 					DataObject component = (DataObject) map.get(children.get(j));
@@ -103,9 +103,9 @@ public class For extends CodeComposite {
 					}
 					component.evaluate(c, map, factory);
 				}
-				indexValue.updateValue(c, new BigDecimal(c.getBigDecimal(indexValue.getUniqueID()).intValue() + incrementInt));
+				indexValue.updateIntegerValue(c, c.getInt(indexValue.getUniqueID())+1);
 				incrementValue = (IVPValue) ((DataObject)map.get(incrementValue)).evaluate(c, map, factory);
-				incrementInt = c.getBigDecimal(incrementValue.getUniqueID()).intValue();
+				incrementInt = c.getInt(incrementValue.getUniqueID());
 			}
 		}
 		return null;

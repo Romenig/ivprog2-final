@@ -31,13 +31,13 @@ public class CreateIVPValue {
 		Context context = new Context();
 		DataFactory factory = new DataFactory();
 		IVPNumber number = factory.createIVPNumber();
-		context.addBigDecimal(number.getUniqueID(), new BigDecimal("1"));
+		context.addInt(number.getUniqueID(), 1);
 		number.setValueType(IVPValue.INTEGER_TYPE);
-		number.updateValue(context, new BigDecimal(5));
+		number.updateIntegerValue(context, 5);
 
 		assertTrue(number instanceof IVPValue && number instanceof IVPNumber);
 		assertTrue(number.getValueType().equals(IVPValue.INTEGER_TYPE));
-		assertTrue(context.getBigDecimal(number.getUniqueID()).compareTo(new BigDecimal(5)) == 0);
+		assertTrue(context.getInt(number.getUniqueID()) == 5);
 	}
 
 	@Test
@@ -45,13 +45,13 @@ public class CreateIVPValue {
 		Context context = new Context();
 		DataFactory factory = new DataFactory();
 		IVPNumber number = factory.createIVPNumber();
-		context.addBigDecimal(number.getUniqueID(), new BigDecimal("1"));
+		context.addDouble(number.getUniqueID(), 1.0);
 		number.setValueType(IVPValue.DOUBLE_TYPE);
-		number.updateValue(context, new BigDecimal(5.0));
+		number.updateDoubleValue(context, 5.0);
 
 		assertTrue(number instanceof IVPValue && number instanceof IVPNumber);
 		assertTrue(number.getValueType().equals(IVPValue.DOUBLE_TYPE));
-		assertTrue(context.getBigDecimal(number.getUniqueID()).compareTo(new BigDecimal(5.0)) == 0);
+		assertTrue(context.getDouble(number.getUniqueID()) == 5.0);
 	}
 
 	@Test
@@ -66,7 +66,7 @@ public class CreateIVPValue {
 
 		assertTrue(bool instanceof IVPValue && bool instanceof IVPBoolean);
 		assertTrue(bool.getValueType().equals(IVPValue.BOOLEAN_TYPE));
-		assertTrue(context.getBoolean(bool.getUniqueID()).equals(new Boolean("false")));
+		assertTrue(context.getBoolean(bool.getUniqueID()) && false);
 	}
 
 	@Test

@@ -37,9 +37,9 @@ public class CompleteSubtractionTest {
 		a.setValueType(IVPValue.DOUBLE_TYPE);
 		b.setValueType(IVPValue.INTEGER_TYPE);
 		c.setValueType(IVPValue.INTEGER_TYPE);
-		context.addBigDecimal(a.getUniqueID(), new BigDecimal("3.4313"));
-		context.addBigDecimal(b.getUniqueID(), new BigDecimal("10"));
-		context.addBigDecimal(c.getUniqueID(), new BigDecimal("2"));
+		context.addDouble(a.getUniqueID(), 3.4313);
+		context.addInt(b.getUniqueID(), 10);
+		context.addInt(c.getUniqueID(), 2);
 
 		Subtraction subtraction1 = factory.createSubtraction();
 		subtraction1.setExpressionA(a.getUniqueID());
@@ -59,7 +59,8 @@ public class CompleteSubtractionTest {
 		// c - (a - b)
 		IVPNumber result = (IVPNumber) subtraction2.evaluate(context, map, factory);
 		assertTrue(result.getValueType().equals(IVPValue.DOUBLE_TYPE));
-		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("8.5687")) == 0);
+		System.out.println(context.getDouble(result.getUniqueID()));
+		assertTrue(context.getDouble(result.getUniqueID()) == 8.5687);
 
 	}
 
@@ -75,9 +76,9 @@ public class CompleteSubtractionTest {
 		b.setValueType(IVPValue.INTEGER_TYPE);
 		c.setValueType(IVPValue.INTEGER_TYPE);
 
-		context.addBigDecimal(a.getUniqueID(), new BigDecimal("7"));
-		context.addBigDecimal(b.getUniqueID(), new BigDecimal("10"));
-		context.addBigDecimal(c.getUniqueID(), new BigDecimal("2"));
+		context.addInt(a.getUniqueID(), 7);
+		context.addInt(b.getUniqueID(), 10);
+		context.addInt(c.getUniqueID(), 2);
 
 		Subtraction subtraction1 = factory.createSubtraction();
 		subtraction1.setExpressionA(a.getUniqueID());
@@ -97,7 +98,7 @@ public class CompleteSubtractionTest {
 		// c - (a - b)
 		IVPNumber result = (IVPNumber) subtraction2.evaluate(context, map, factory);
 		assertTrue(result.getValueType().equals(IVPValue.INTEGER_TYPE));
-		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("5")) == 0);
+		assertTrue(context.getInt(result.getUniqueID()) == 5);
 	}
 
 	@Test
@@ -114,10 +115,10 @@ public class CompleteSubtractionTest {
 		c.setValueType(IVPValue.INTEGER_TYPE);
 		d.setValueType(IVPValue.INTEGER_TYPE);
 
-		context.addBigDecimal(a.getUniqueID(), new BigDecimal("7"));
-		context.addBigDecimal(b.getUniqueID(), new BigDecimal("10"));
-		context.addBigDecimal(c.getUniqueID(), new BigDecimal("2"));
-		context.addBigDecimal(d.getUniqueID(), new BigDecimal("2"));
+		context.addInt(a.getUniqueID(), 7);
+		context.addInt(b.getUniqueID(), 10);
+		context.addInt(c.getUniqueID(), 2);
+		context.addInt(d.getUniqueID(), 2);
 
 		Subtraction subtraction1 = factory.createSubtraction();
 		subtraction1.setExpressionA(a.getUniqueID());
@@ -143,7 +144,7 @@ public class CompleteSubtractionTest {
 		// ((a - b) - (c - d))
 		IVPNumber result = (IVPNumber) subtraction3.evaluate(context, map, factory);
 		assertTrue(result.getValueType().equals(IVPValue.INTEGER_TYPE));
-		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("-3")) == 0);
+		assertTrue(context.getInt(result.getUniqueID()) == -3);
 	}
 
 }

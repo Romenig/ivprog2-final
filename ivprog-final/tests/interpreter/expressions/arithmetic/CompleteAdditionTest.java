@@ -37,9 +37,9 @@ public class CompleteAdditionTest {
 		a.setValueType(IVPValue.DOUBLE_TYPE);
 		b.setValueType(IVPValue.INTEGER_TYPE);
 		c.setValueType(IVPValue.INTEGER_TYPE);
-		context.addBigDecimal(a.getUniqueID(), new BigDecimal("3.4313"));
-		context.addBigDecimal(b.getUniqueID(), new BigDecimal("10"));
-		context.addBigDecimal(c.getUniqueID(), new BigDecimal("2"));
+		context.addDouble(a.getUniqueID(), 3.4313);
+		context.addInt(b.getUniqueID(), 10);
+		context.addInt(c.getUniqueID(), 2);
 
 		Addition addition1 = factory.createAddition();
 		addition1.setExpressionA(a.getUniqueID());
@@ -59,7 +59,7 @@ public class CompleteAdditionTest {
 		// c + (a + b)
 		IVPNumber result = (IVPNumber) addition2.evaluate(context, map, factory);
 		assertTrue(result.getValueType().equals(IVPValue.DOUBLE_TYPE));
-		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("15.4313")) == 0);
+		assertTrue(context.getDouble(result.getUniqueID()) == 15.4313);
 	}
 
 	@Test
@@ -74,9 +74,9 @@ public class CompleteAdditionTest {
 		b.setValueType(IVPValue.INTEGER_TYPE);
 		c.setValueType(IVPValue.INTEGER_TYPE);
 
-		context.addBigDecimal(a.getUniqueID(), new BigDecimal("7"));
-		context.addBigDecimal(b.getUniqueID(), new BigDecimal("10"));
-		context.addBigDecimal(c.getUniqueID(), new BigDecimal("2"));
+		context.addInt(a.getUniqueID(), 7);
+		context.addInt(b.getUniqueID(), 10);
+		context.addInt(c.getUniqueID(), 2);
 
 		Addition addition1 = factory.createAddition();
 		addition1.setExpressionA(a.getUniqueID());
@@ -96,7 +96,7 @@ public class CompleteAdditionTest {
 		// c + (a + b)
 		IVPNumber result = (IVPNumber) addition2.evaluate(context, map, factory);
 		assertTrue(result.getValueType().equals(IVPValue.INTEGER_TYPE));
-		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("19")) == 0);
+		assertTrue(context.getInt(result.getUniqueID()) == 19);
 	}
 
 	@Test
@@ -113,10 +113,10 @@ public class CompleteAdditionTest {
 		c.setValueType(IVPValue.INTEGER_TYPE);
 		d.setValueType(IVPValue.INTEGER_TYPE);
 
-		context.addBigDecimal(a.getUniqueID(), new BigDecimal("7"));
-		context.addBigDecimal(b.getUniqueID(), new BigDecimal("10"));
-		context.addBigDecimal(c.getUniqueID(), new BigDecimal("2"));
-		context.addBigDecimal(d.getUniqueID(), new BigDecimal("2"));
+		context.addInt(a.getUniqueID(), 7);
+		context.addInt(b.getUniqueID(), 10);
+		context.addInt(c.getUniqueID(), 2);
+		context.addInt(d.getUniqueID(), 2);
 
 		Addition addition1 = factory.createAddition();
 		addition1.setExpressionA(a.getUniqueID());
@@ -142,7 +142,7 @@ public class CompleteAdditionTest {
 		// ((a + b) + (c + d))
 		IVPNumber result = (IVPNumber) addition3.evaluate(context, map, factory);
 		assertTrue(result.getValueType().equals(IVPValue.INTEGER_TYPE));
-		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("21")) == 0);
+		assertTrue(context.getInt(result.getUniqueID()) == 21);
 	}
 
 }

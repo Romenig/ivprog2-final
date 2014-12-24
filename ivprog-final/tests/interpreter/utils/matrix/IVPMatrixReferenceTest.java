@@ -48,11 +48,11 @@ public class IVPMatrixReferenceTest {
 		line.setValueType(IVPValue.INTEGER_TYPE);
 		column.setValueType(IVPValue.INTEGER_TYPE);
 
-		context.addBigDecimal(size.getUniqueID(), new BigDecimal(3));
-		context.addBigDecimal(a.getUniqueID(), new BigDecimal(1));
-		context.addBigDecimal(b.getUniqueID(), new BigDecimal(2));
-		context.addBigDecimal(line.getUniqueID(), new BigDecimal(0));
-		context.addBigDecimal(column.getUniqueID(), new BigDecimal(0));
+		context.addInt(size.getUniqueID(), 3);
+		context.addInt(a.getUniqueID(), 1);
+		context.addInt(b.getUniqueID(), 2);
+		context.addInt(line.getUniqueID(), 0);
+		context.addInt(column.getUniqueID(), 0);
 
 		matrix.setSize(size.getUniqueID(), size.getUniqueID(), context);
 		matrix.setType(IVPValue.INTEGER_TYPE);
@@ -80,7 +80,7 @@ public class IVPMatrixReferenceTest {
 
 		IVPNumber result = (IVPNumber) ref.evaluate(context, map, factory);
 
-		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal(3)) == 0);
+		assertTrue(context.getInt(result.getUniqueID()) == 3);
 
 	}
 
@@ -95,23 +95,23 @@ public class IVPMatrixReferenceTest {
 
 		IVPNumber line = factory.createIVPNumber();
 		line.setValueType(IVPValue.INTEGER_TYPE);
-		context.addBigDecimal(line.getUniqueID(), new BigDecimal(0));
+		context.addInt(line.getUniqueID(), 0);
 
 		IVPNumber column = factory.createIVPNumber();
 		column.setValueType(IVPValue.INTEGER_TYPE);
-		context.addBigDecimal(column.getUniqueID(), new BigDecimal(0));
+		context.addInt(column.getUniqueID(), 0);
 
 		IVPNumber n1 = factory.createIVPNumber();
 		n1.setValueType(IVPValue.INTEGER_TYPE);
-		context.addBigDecimal(n1.getUniqueID(), new BigDecimal(1));
+		context.addInt(n1.getUniqueID(), 1);
 
 		IVPNumber position = factory.createIVPNumber();
 		position.setValueType(IVPValue.INTEGER_TYPE);
-		context.addBigDecimal(position.getUniqueID(), new BigDecimal(2));
+		context.addInt(position.getUniqueID(), 2);
 
 		IVPNumber size = factory.createIVPNumber();
 		size.setValueType(IVPValue.INTEGER_TYPE);
-		context.addBigDecimal(size.getUniqueID(), new BigDecimal(10));
+		context.addInt(size.getUniqueID(), 10);
 
 		var.setValueID(n1.getUniqueID());
 		var.setVariableType(IVPValue.INTEGER_TYPE);
@@ -139,11 +139,11 @@ public class IVPMatrixReferenceTest {
 
 		IVPNumber result = (IVPNumber) var.evaluate(context, map, factory);
 
-		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal(1)) == 0);
-		n1.updateValue(context, new BigDecimal(3));
+		assertTrue(context.getInt(result.getUniqueID()) == 1);
+		n1.updateIntegerValue(context, 3);
 		attLine.evaluate(context, map, factory);
 		result = (IVPNumber) var.evaluate(context, map, factory);
-		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal(3)) == 0);
+		assertTrue(context.getInt(result.getUniqueID()) == 3);
 	}
 
 }

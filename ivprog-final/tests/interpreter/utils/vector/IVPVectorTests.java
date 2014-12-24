@@ -37,7 +37,7 @@ public class IVPVectorTests {
 		size.setValueType(IVPValue.INTEGER_TYPE);
 		vect.setType(IVPValue.INTEGER_TYPE);
 
-		context.addBigDecimal(size.getUniqueID(), new BigDecimal("3"));
+		context.addInt(size.getUniqueID(), 3);
 
 		HashMap map = new HashMap();
 		map.put(vect.getUniqueID(), vect);
@@ -46,7 +46,7 @@ public class IVPVectorTests {
 		vect.setSize(size.getUniqueID(), context);
 
 		assertTrue(vect.getType().equals(IVPValue.INTEGER_TYPE));
-		assertTrue(context.getBigDecimal(vect.getSize()).intValue() == 3);
+		assertTrue(context.getInt(vect.getSize()) == 3);
 		assertTrue(context.getBoolean(vect.isEmpty(factory, context, map)));
 	}
 
@@ -66,19 +66,19 @@ public class IVPVectorTests {
 		b.setValueType(IVPValue.INTEGER_TYPE);
 		c.setValueType(IVPValue.INTEGER_TYPE);
 		index.setValueType(IVPValue.INTEGER_TYPE);
-		context.addBigDecimal(index.getUniqueID(), new BigDecimal("0"));
-		context.addBigDecimal(a.getUniqueID(), new BigDecimal("3"));
-		context.addBigDecimal(b.getUniqueID(), new BigDecimal("10"));
-		context.addBigDecimal(c.getUniqueID(), new BigDecimal("2"));
-		context.addBigDecimal(size.getUniqueID(), new BigDecimal("10"));
+		context.addInt(index.getUniqueID(), 0);
+		context.addInt(a.getUniqueID(), 3);
+		context.addInt(b.getUniqueID(), 10);
+		context.addInt(c.getUniqueID(), 2);
+		context.addInt(size.getUniqueID(), 10);
 
 		vect.setSize(size.getUniqueID(), context);
 
 		vect.setType(IVPValue.INTEGER_TYPE);
 
-		vect.add(new BigDecimal(0), a.getUniqueID());
-		vect.add(new BigDecimal(1), b.getUniqueID());
-		vect.add(new BigDecimal(2), c.getUniqueID());
+		vect.add(0, a.getUniqueID());
+		vect.add(1, b.getUniqueID());
+		vect.add(2, c.getUniqueID());
 
 		HashMap map = new HashMap();
 		map.put(a.getUniqueID(), a);
@@ -88,18 +88,18 @@ public class IVPVectorTests {
 		map.put(vect.getUniqueID(), vect);
 
 		assertTrue(vect.getType().equals(IVPValue.INTEGER_TYPE));
-		assertTrue(context.getBigDecimal(vect.getSize()).intValue() == 10);
+		assertTrue(context.getInt(vect.getSize()) == 10);
 		assertFalse(context.getBoolean(vect.isEmpty(factory, context, map)));
 
 		IVPNumber result1 = (IVPNumber) map.get(vect.get(index.getUniqueID(), context));
-		index.updateValue(context, new BigDecimal(1));
+		index.updateIntegerValue(context, 1);
 		IVPNumber result2 = (IVPNumber) map.get(vect.get(index.getUniqueID(), context));
-		index.updateValue(context, new BigDecimal(2));
+		index.updateIntegerValue(context, 2);
 		IVPNumber result3 = (IVPNumber) map.get(vect.get(index.getUniqueID(), context));
 
-		assertTrue(context.getBigDecimal(result1.getUniqueID()).compareTo(new BigDecimal("3")) == 0);
-		assertTrue(context.getBigDecimal(result2.getUniqueID()).compareTo(new BigDecimal("10")) == 0);
-		assertTrue(context.getBigDecimal(result3.getUniqueID()).compareTo(new BigDecimal("2")) == 0);
+		assertTrue(context.getInt(result1.getUniqueID()) == 3);
+		assertTrue(context.getInt(result2.getUniqueID()) == 10);
+		assertTrue(context.getInt(result3.getUniqueID()) == 2);
 
 	}
 
@@ -122,19 +122,19 @@ public class IVPVectorTests {
 		one.setValueType(IVPValue.INTEGER_TYPE);
 		index.setValueType(IVPValue.INTEGER_TYPE);
 
-		context.addBigDecimal(one.getUniqueID(), new BigDecimal("1"));
-		context.addBigDecimal(a.getUniqueID(), new BigDecimal("3"));
-		context.addBigDecimal(b.getUniqueID(), new BigDecimal("10"));
-		context.addBigDecimal(c.getUniqueID(), new BigDecimal("2"));
-		context.addBigDecimal(size.getUniqueID(), new BigDecimal("10"));
-		context.addBigDecimal(index.getUniqueID(), new BigDecimal("0"));
+		context.addInt(one.getUniqueID(), 1);
+		context.addInt(a.getUniqueID(), 3);
+		context.addInt(b.getUniqueID(), 10);
+		context.addInt(c.getUniqueID(), 2);
+		context.addInt(size.getUniqueID(),10);
+		context.addInt(index.getUniqueID(), 0);
 
 		vect.setSize(size.getUniqueID(), context);
 		vect.setType(IVPValue.INTEGER_TYPE);
 
-		vect.add(new BigDecimal(0), a.getUniqueID());
-		vect.add(new BigDecimal(1), b.getUniqueID());
-		vect.add(new BigDecimal(2), c.getUniqueID());
+		vect.add(0, a.getUniqueID());
+		vect.add(1, b.getUniqueID());
+		vect.add(2, c.getUniqueID());
 
 		HashMap map = new HashMap();
 		map.put(a.getUniqueID(), a);
@@ -145,21 +145,21 @@ public class IVPVectorTests {
 		map.put(index.getUniqueID(), index);
 
 		assertTrue(vect.getType().equals(IVPValue.INTEGER_TYPE));
-		assertTrue(context.getBigDecimal(vect.getSize()).intValue() == 10);
+		assertTrue(context.getInt(vect.getSize()) == 10);
 		assertFalse(context.getBoolean(vect.isEmpty(factory, context, map)));
 
 		IVPNumber result1 = (IVPNumber) map.get(vect.get(index.getUniqueID(), context));
-		index.updateValue(context, new BigDecimal(1));
+		index.updateIntegerValue(context, 1);
 		IVPNumber result2 = (IVPNumber) map.get(vect.get(index.getUniqueID(), context));
-		index.updateValue(context, new BigDecimal(2));
+		index.updateIntegerValue(context, 2);
 		IVPNumber result3 = (IVPNumber) map.get(vect.get(index.getUniqueID(), context));
 
-		assertTrue(context.getBigDecimal(result1.getUniqueID()).compareTo(new BigDecimal("3")) == 0);
-		assertTrue(context.getBigDecimal(result2.getUniqueID()).compareTo(new BigDecimal("10")) == 0);
-		assertTrue(context.getBigDecimal(result3.getUniqueID()).compareTo(new BigDecimal("2")) == 0);
+		assertTrue(context.getInt(result1.getUniqueID()) == 3);
+		assertTrue(context.getInt(result2.getUniqueID()) == 10);
+		assertTrue(context.getInt(result3.getUniqueID()) == 2);
 
 		String removed = vect.remove(one.getUniqueID(), context);
-		index.updateValue(context, new BigDecimal(1));
+		index.updateIntegerValue(context, 1);
 		assertTrue(removed.equals(b.getUniqueID()));
 		assertTrue(vect.get(index.getUniqueID(), context).equals(IVPValue.NULL));
 	}

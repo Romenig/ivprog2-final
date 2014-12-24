@@ -39,15 +39,15 @@ public class WhileTest {
 
 		IVPValue startingValue = factory.createIVPNumber();
 		startingValue.setValueType(IVPValue.INTEGER_TYPE);
-		context.addBigDecimal(startingValue.getUniqueID(), new BigDecimal(0));
+		context.addInt(startingValue.getUniqueID(), 0);
 
 		IVPValue maximumValue = factory.createIVPNumber();
 		maximumValue.setValueType(IVPValue.INTEGER_TYPE);
-		context.addBigDecimal(maximumValue.getUniqueID(), new BigDecimal(9));
+		context.addInt(maximumValue.getUniqueID(), 9);
 
 		IVPValue one = factory.createIVPNumber();
 		one.setValueType(IVPValue.INTEGER_TYPE);
-		context.addBigDecimal(one.getUniqueID(), new BigDecimal(1));
+		context.addInt(one.getUniqueID(), 1);
 
 		IVPVariable v = factory.createIVPVariable();
 		v.setVariableType(IVPValue.INTEGER_TYPE);
@@ -82,7 +82,7 @@ public class WhileTest {
 
 		IVPNumber result = (IVPNumber) v.evaluate(context, map, factory);
 
-		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal(10)) == 0);
+		assertTrue(context.getInt(result.getUniqueID()) == 10);
 	}
 
 }

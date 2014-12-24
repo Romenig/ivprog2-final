@@ -8,7 +8,6 @@
  */
 package usp.ime.line.ivprog.interpreter.execution;
 
-import java.math.BigDecimal;
 import java.util.HashMap;
 
 import usp.ime.line.ivprog.interpreter.error.IVPError;
@@ -146,7 +145,7 @@ public class Context implements Cloneable {
 	}
 
 	/**
-	 * Get a String object from the hashmap of strings.
+	 * Get a String from the hashmap of strings.
 	 * 
 	 * @param key
 	 * @return IVPError
@@ -173,13 +172,13 @@ public class Context implements Cloneable {
 	}
 
 	/**
-	 * Add a Boolean object to the hashmap of booleans.
+	 * Add a boolean to the hashmap of booleans.
 	 * 
 	 * @param key
 	 * @param b
 	 * @return IVPError
 	 */
-	public IVPError addBoolean(String key, Boolean b) {
+	public IVPError addBoolean(String key, boolean b) {
 		IVPError e = null;
 		if (!booleanMap.containsKey(key)) {
 			booleanMap.put(key, b);
@@ -190,13 +189,13 @@ public class Context implements Cloneable {
 	}
 
 	/**
-	 * Get a Boolean object from the hashmap of booleans.
+	 * Get a boolean from the hashmap of booleans.
 	 * 
 	 * @param key
 	 * @return IVPError
 	 */
-	public Boolean getBoolean(String key) {
-		return (Boolean) booleanMap.get(key);
+	public boolean getBoolean(String key) {
+		return (boolean) booleanMap.get(key);
 	}
 
 	/**
@@ -206,7 +205,7 @@ public class Context implements Cloneable {
 	 * @param b
 	 * @return IVPError
 	 */
-	public IVPError updateBoolean(String key, Boolean b) {
+	public IVPError updateBoolean(String key, boolean b) {
 		IVPError e = null;
 		if (booleanMap.containsKey(key)) {
 			booleanMap.put(key, b);

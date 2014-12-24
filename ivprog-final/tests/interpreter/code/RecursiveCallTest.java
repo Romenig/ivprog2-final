@@ -42,7 +42,7 @@ public class RecursiveCallTest {
 		fatorial.setFunctionReturnType(IVPValue.INTEGER_TYPE);
 		fatorial.addArgument(IVPValue.INTEGER_TYPE, context, map, factory);
 		IVPNumber argu = (IVPNumber) map.get(fatorial.getArgument(0));
-		argu.updateValue(context, new BigDecimal(5));
+		argu.updateIntegerValue(context, 8);
 		map.put(fatorial.getUniqueID(), fatorial);
 		
 		Return r1 = factory.createReturn();
@@ -85,7 +85,7 @@ public class RecursiveCallTest {
 		
 		IVPNumber result = (IVPNumber) fatorial.evaluate(context, map, factory);
 		
-		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal(120)) == 0); 
+		assertTrue(context.getInt(result.getUniqueID()) == 120); 
 	}
 
 }

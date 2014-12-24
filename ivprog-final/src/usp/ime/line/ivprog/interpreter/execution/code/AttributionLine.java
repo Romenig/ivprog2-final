@@ -64,10 +64,14 @@ public class AttributionLine extends DataObject {
 		IVPValue copy = null;
 		if (value instanceof IVPNumber) {
 			copy = factory.createIVPNumber();
-			c.addBigDecimal(copy.getUniqueID(), new BigDecimal(c.getBigDecimal(value.getUniqueID()).toString()));
+			if(value.getValueType().equals(IVPValue.INTEGER_TYPE)){
+				c.addInt(copy.getUniqueID(), c.getInt(value.getUniqueID()));
+			}else{
+				c.addDouble(copy.getUniqueID(), c.getDouble(value.getUniqueID()));
+			}
 		} else if (value instanceof IVPBoolean) {
 			copy = factory.createIVPNumber();
-			c.addBoolean(copy.getUniqueID(), new Boolean(c.getBoolean(value.getUniqueID()).toString()));
+			c.addBoolean(copy.getUniqueID(), c.getBoolean(value.getUniqueID()));
 		} else {
 			copy = factory.createIVPString();
 			c.addString(copy.getUniqueID(), new String(c.getString(value.getUniqueID())));

@@ -22,7 +22,7 @@ public class IVPBoolean extends IVPValue {
 	 * @param context
 	 * @param bool
 	 */
-	public void updateValue(Context context, Boolean bool) {
+	public void updateValue(Context context, boolean bool) {
 		context.updateBoolean(getUniqueID(), bool);
 	}
 
@@ -32,7 +32,7 @@ public class IVPBoolean extends IVPValue {
 	 */
 	public IVPBoolean and(IVPBoolean b2, Context context, DataFactory factory) {
 		IVPBoolean result = factory.createIVPBoolean();
-		Boolean res = new Boolean(context.getBoolean(getUniqueID()).booleanValue() && context.getBoolean(b2.getUniqueID()).booleanValue());
+		Boolean res = new Boolean(context.getBoolean(getUniqueID()) && context.getBoolean(b2.getUniqueID()));
 		context.addBoolean(result.getUniqueID(), res);
 		return result;
 	}
@@ -45,7 +45,7 @@ public class IVPBoolean extends IVPValue {
 	 */
 	public IVPBoolean or(IVPBoolean b2, Context context, DataFactory factory) {
 		IVPBoolean result = factory.createIVPBoolean();
-		Boolean res = new Boolean(context.getBoolean(getUniqueID()).booleanValue() || context.getBoolean(b2.getUniqueID()).booleanValue());
+		Boolean res = new Boolean(context.getBoolean(getUniqueID()) || context.getBoolean(b2.getUniqueID()));
 		context.addBoolean(result.getUniqueID(), res);
 		return result;
 	}
@@ -62,7 +62,7 @@ public class IVPBoolean extends IVPValue {
 	 */
 	public IVPBoolean ivpEqualTo(IVPValue v, Context c, HashMap map, DataFactory factory) {
 		IVPBoolean result = factory.createIVPBoolean();
-		Boolean booleanResult = new Boolean(c.getBoolean(getUniqueID()).booleanValue() == c.getBoolean(v.getUniqueID()).booleanValue());
+		Boolean booleanResult = new Boolean(c.getBoolean(getUniqueID()) == c.getBoolean(v.getUniqueID()));
 		c.addBoolean(result.getUniqueID(), booleanResult);
 		return result;
 	}
@@ -79,7 +79,7 @@ public class IVPBoolean extends IVPValue {
 	 */
 	public IVPBoolean ivpNotEqualTo(IVPValue v, Context c, HashMap map, DataFactory factory) {
 		IVPBoolean result = factory.createIVPBoolean();
-		Boolean booleanResult = new Boolean(c.getBoolean(getUniqueID()).booleanValue() != c.getBoolean(v.getUniqueID()).booleanValue());
+		Boolean booleanResult = new Boolean(c.getBoolean(getUniqueID()) != c.getBoolean(v.getUniqueID()));
 		c.addBoolean(result.getUniqueID(), booleanResult);
 		return result;
 	}

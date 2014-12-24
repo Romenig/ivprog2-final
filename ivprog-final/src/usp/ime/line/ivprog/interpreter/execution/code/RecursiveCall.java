@@ -40,14 +40,18 @@ public class RecursiveCall extends DataObject {
 		for(int i = 0; i < arguments.size(); i++){
 			IVPValue value = (IVPValue) ((DataObject)map.get(arguments.get(i))).evaluate(updated, map, factory);
 			IVPValue argument = (IVPValue) map.get(function.getArgument(i));
-			if(argument.getValueType().equals(IVPValue.INTEGER_TYPE) || argument.getValueType().equals(IVPValue.DOUBLE_TYPE)){
-				((IVPNumber)argument).updateValue(updated, updated.getBigDecimal(value.getUniqueID()));
+			if(argument.getValueType().equals(IVPValue.INTEGER_TYPE) ){
+				((IVPNumber)argument).updateIntegerValue(updated, updated.getInt(value.getUniqueID()));
+			}else if(argument.getValueType().equals(IVPValue.DOUBLE_TYPE)){
+				((IVPNumber)argument).updateDoubleValue(updated, updated.getDouble(value.getUniqueID()));
 			}
 			map.put(value.getUniqueID(), value);
 		}
 		IVPValue returningValue = (IVPValue) ((DataObject)map.get(functionID)).evaluate(updated, map, factory);
-		if(returningValue.getValueType().equals(IVPValue.INTEGER_TYPE) || returningValue.equals(IVPValue.DOUBLE_TYPE)){
-			c.addBigDecimal(returningValue.getUniqueID(), updated.getBigDecimal(returningValue.getUniqueID()));
+		if(returningValue.getValueType().equals(IVPValue.INTEGER_TYPE)){
+			c.addInt(returningValue.getUniqueID(), updated.getInt(returningValue.getUniqueID()));
+		}else if(returningValue.equals(IVPValue.DOUBLE_TYPE)){
+			c.addDouble(returningValue.getUniqueID(), updated.getDouble(returningValue.getUniqueID()));
 		}
 		return returningValue;
 	}

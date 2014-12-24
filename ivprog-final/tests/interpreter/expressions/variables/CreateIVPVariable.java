@@ -34,7 +34,7 @@ public class CreateIVPVariable {
 
 		IVPNumber n = factory.createIVPNumber();
 		n.setValueType(IVPValue.INTEGER_TYPE);
-		c.addBigDecimal(n.getUniqueID(), new BigDecimal("10"));
+		c.addInt(n.getUniqueID(), 10);
 
 		IVPVariable v = factory.createIVPVariable();
 		v.setVariableType(IVPValue.INTEGER_TYPE);
@@ -45,7 +45,7 @@ public class CreateIVPVariable {
 		map.put(n.getUniqueID(), n);
 
 		IVPNumber result = (IVPNumber) v.evaluate(c, map, factory);
-		assertTrue(c.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("10")) == 0);
+		assertTrue(c.getInt(result.getUniqueID()) == 10);
 	}
 
 	@Test
@@ -55,7 +55,7 @@ public class CreateIVPVariable {
 
 		IVPNumber n = factory.createIVPNumber();
 		n.setValueType(IVPValue.DOUBLE_TYPE);
-		c.addBigDecimal(n.getUniqueID(), new BigDecimal("10.5"));
+		c.addDouble(n.getUniqueID(), 10.5);
 
 		IVPVariable v = factory.createIVPVariable();
 		v.setVariableType(IVPValue.DOUBLE_TYPE);
@@ -66,7 +66,7 @@ public class CreateIVPVariable {
 		map.put(n.getUniqueID(), n);
 
 		IVPNumber result = (IVPNumber) v.evaluate(c, map, factory);
-		assertTrue(c.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("10.5")) == 0);
+		assertTrue(c.getDouble(result.getUniqueID()) == 10.5);
 	}
 
 	@Test

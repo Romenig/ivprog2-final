@@ -55,7 +55,7 @@ public class IVPVectorReference extends DataObject {
 
 	public Object setElementIntoVector(String valueID, Context c, HashMap map, DataFactory factory) {
 		IVPVector v = (IVPVector) map.get(vectorID);
-		v.add(c.getBigDecimal(positionID), valueID);
+		v.add(c.getInt(positionID), valueID);
 		return null;
 	}
 

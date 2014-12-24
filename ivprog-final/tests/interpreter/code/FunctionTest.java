@@ -78,7 +78,7 @@ public class FunctionTest {
 		f.evaluate(context, map, factory);
 
 		IVPNumber result = (IVPNumber) v.evaluate(context, map, factory);
-		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal(10)) == 0);
+		assertTrue(context.getInt(result.getUniqueID()) == 10);
 	}
 	
 }

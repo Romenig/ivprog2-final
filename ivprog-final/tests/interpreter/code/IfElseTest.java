@@ -38,19 +38,19 @@ public class IfElseTest {
 
 		IVPNumber leftValue = factory.createIVPNumber();
 		leftValue.setValueType(IVPValue.INTEGER_TYPE);
-		context.addBigDecimal(leftValue.getUniqueID(), new BigDecimal(0));
+		context.addInt(leftValue.getUniqueID(), 0);
 
 		IVPNumber comparisonValue = factory.createIVPNumber();
 		comparisonValue.setValueType(IVPValue.INTEGER_TYPE);
-		context.addBigDecimal(comparisonValue.getUniqueID(), new BigDecimal(10));
+		context.addInt(comparisonValue.getUniqueID(), 10);
 
 		IVPNumber value1 = factory.createIVPNumber();
 		value1.setValueType(IVPValue.INTEGER_TYPE);
-		context.addBigDecimal(value1.getUniqueID(), new BigDecimal(1));
+		context.addInt(value1.getUniqueID(), 1);
 
 		IVPNumber value2 = factory.createIVPNumber();
 		value2.setValueType(IVPValue.INTEGER_TYPE);
-		context.addBigDecimal(value2.getUniqueID(), new BigDecimal(2));
+		context.addInt(value2.getUniqueID(), 2);
 
 		IVPVariable v = factory.createIVPVariable();
 		v.setVariableType(IVPValue.INTEGER_TYPE);
@@ -88,13 +88,13 @@ public class IfElseTest {
 		ifElse.evaluate(context, map, factory);
 
 		IVPNumber result = (IVPNumber) v.evaluate(context, map, factory);
-		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal(1)) == 0);
+		assertTrue(context.getInt(result.getUniqueID()) == 1);
 
-		leftValue.updateValue(context, new BigDecimal(20));
+		leftValue.updateIntegerValue(context, 20);
 		ifElse.evaluate(context, map, factory);
 
 		result = (IVPNumber) v.evaluate(context, map, factory);
-		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal(2)) == 0);
+		assertTrue(context.getInt(result.getUniqueID()) == 2);
 
 	}
 
@@ -107,19 +107,19 @@ public class IfElseTest {
 
 		IVPNumber leftValue = factory.createIVPNumber();
 		leftValue.setValueType(IVPValue.INTEGER_TYPE);
-		context.addBigDecimal(leftValue.getUniqueID(), new BigDecimal(0));
+		context.addInt(leftValue.getUniqueID(), 0);
 
 		IVPNumber comparisonValue = factory.createIVPNumber();
 		comparisonValue.setValueType(IVPValue.INTEGER_TYPE);
-		context.addBigDecimal(comparisonValue.getUniqueID(), new BigDecimal(10));
+		context.addInt(comparisonValue.getUniqueID(), 10);
 
 		IVPNumber value1 = factory.createIVPNumber();
 		value1.setValueType(IVPValue.INTEGER_TYPE);
-		context.addBigDecimal(value1.getUniqueID(), new BigDecimal(1));
+		context.addInt(value1.getUniqueID(), 1);
 
 		IVPNumber value2 = factory.createIVPNumber();
 		value2.setValueType(IVPValue.INTEGER_TYPE);
-		context.addBigDecimal(value2.getUniqueID(), new BigDecimal(2));
+		context.addInt(value2.getUniqueID(), 2);
 
 		IVPVariable v = factory.createIVPVariable();
 		v.setVariableType(IVPValue.INTEGER_TYPE);
@@ -159,7 +159,7 @@ public class IfElseTest {
 
 		IVPNumber result = (IVPNumber) v.evaluate(context, map, factory);
 		// After removing the attLine1, the result must be 2.
-		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal(1)) == 0);
+		assertTrue(context.getInt(result.getUniqueID()) == 1);
 
 	}
 
@@ -172,19 +172,19 @@ public class IfElseTest {
 
 		IVPNumber leftValue = factory.createIVPNumber();
 		leftValue.setValueType(IVPValue.INTEGER_TYPE);
-		context.addBigDecimal(leftValue.getUniqueID(), new BigDecimal(0));
+		context.addInt(leftValue.getUniqueID(), 0);
 
 		IVPNumber comparisonValue = factory.createIVPNumber();
 		comparisonValue.setValueType(IVPValue.INTEGER_TYPE);
-		context.addBigDecimal(comparisonValue.getUniqueID(), new BigDecimal(10));
+		context.addInt(comparisonValue.getUniqueID(), 10);
 
 		IVPNumber value1 = factory.createIVPNumber();
 		value1.setValueType(IVPValue.INTEGER_TYPE);
-		context.addBigDecimal(value1.getUniqueID(), new BigDecimal(1));
+		context.addInt(value1.getUniqueID(), 1);
 
 		IVPNumber value2 = factory.createIVPNumber();
 		value2.setValueType(IVPValue.INTEGER_TYPE);
-		context.addBigDecimal(value2.getUniqueID(), new BigDecimal(2));
+		context.addInt(value2.getUniqueID(), 2);
 
 		IVPVariable v = factory.createIVPVariable();
 		v.setVariableType(IVPValue.INTEGER_TYPE);
@@ -224,7 +224,7 @@ public class IfElseTest {
 		IVPNumber result = (IVPNumber) v.evaluate(context, map, factory);
 
 		// After removing the attLine1, the result must be 2.
-		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal(2)) == 0);
+		assertTrue(context.getInt(result.getUniqueID()) == 2);
 
 	}
 
@@ -237,19 +237,19 @@ public class IfElseTest {
 
 		IVPNumber leftValue = factory.createIVPNumber();
 		leftValue.setValueType(IVPValue.INTEGER_TYPE);
-		context.addBigDecimal(leftValue.getUniqueID(), new BigDecimal(20));
+		context.addInt(leftValue.getUniqueID(), 20);
 
 		IVPNumber comparisonValue = factory.createIVPNumber();
 		comparisonValue.setValueType(IVPValue.INTEGER_TYPE);
-		context.addBigDecimal(comparisonValue.getUniqueID(), new BigDecimal(10));
+		context.addInt(comparisonValue.getUniqueID(), 10);
 
 		IVPNumber value1 = factory.createIVPNumber();
 		value1.setValueType(IVPValue.INTEGER_TYPE);
-		context.addBigDecimal(value1.getUniqueID(), new BigDecimal(1));
+		context.addInt(value1.getUniqueID(), 1);
 
 		IVPNumber value2 = factory.createIVPNumber();
 		value2.setValueType(IVPValue.INTEGER_TYPE);
-		context.addBigDecimal(value2.getUniqueID(), new BigDecimal(2));
+		context.addInt(value2.getUniqueID(), 2);
 
 		IVPVariable v = factory.createIVPVariable();
 		v.setVariableType(IVPValue.INTEGER_TYPE);
@@ -291,7 +291,7 @@ public class IfElseTest {
 		IVPNumber result = (IVPNumber) v.evaluate(context, map, factory);
 
 		// After removing the attLine1, the result must be 2.
-		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal(2)) == 0);
+		assertTrue(context.getInt(result.getUniqueID()) == 2);
 
 	}
 

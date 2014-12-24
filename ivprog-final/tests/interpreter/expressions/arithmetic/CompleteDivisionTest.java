@@ -36,9 +36,9 @@ public class CompleteDivisionTest {
 		b.setValueType(IVPValue.INTEGER_TYPE);
 		c.setValueType(IVPValue.INTEGER_TYPE);
 
-		context.addBigDecimal(a.getUniqueID(), new BigDecimal("3.4313"));
-		context.addBigDecimal(b.getUniqueID(), new BigDecimal("10"));
-		context.addBigDecimal(c.getUniqueID(), new BigDecimal("2"));
+		context.addDouble(a.getUniqueID(), 3.4313);
+		context.addInt(b.getUniqueID(), 10);
+		context.addInt(c.getUniqueID(), 2);
 
 		Division division1 = factory.createDivision();
 		division1.setExpressionA(a.getUniqueID());
@@ -59,7 +59,7 @@ public class CompleteDivisionTest {
 
 		IVPNumber result = (IVPNumber) division2.evaluate(context, map, factory);
 		assertTrue(result.getValueType().equals(IVPValue.DOUBLE_TYPE));
-		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("5.828694663830035")) == 0);
+		assertTrue(context.getDouble(result.getUniqueID()) == 5.828694663830035);
 	}
 
 	@Test
@@ -74,9 +74,9 @@ public class CompleteDivisionTest {
 		b.setValueType(IVPValue.INTEGER_TYPE);
 		c.setValueType(IVPValue.INTEGER_TYPE);
 
-		context.addBigDecimal(a.getUniqueID(), new BigDecimal("7"));
-		context.addBigDecimal(b.getUniqueID(), new BigDecimal("10"));
-		context.addBigDecimal(c.getUniqueID(), new BigDecimal("2"));
+		context.addInt(a.getUniqueID(), 7);
+		context.addInt(b.getUniqueID(), 10);
+		context.addInt(c.getUniqueID(), 2);
 
 		Division division1 = factory.createDivision();
 		division1.setExpressionA(a.getUniqueID());
@@ -96,7 +96,7 @@ public class CompleteDivisionTest {
 		// c / (a / b)
 		IVPNumber result = (IVPNumber) division2.evaluate(context, map, factory);
 		assertTrue(result.getValueType().equals(IVPValue.DOUBLE_TYPE));
-		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("2.857142857142857")) == 0);
+		assertTrue(context.getDouble(result.getUniqueID()) == 2.857142857142857);
 	}
 
 	@Test
@@ -113,10 +113,10 @@ public class CompleteDivisionTest {
 		c.setValueType(IVPValue.INTEGER_TYPE);
 		d.setValueType(IVPValue.INTEGER_TYPE);
 
-		context.addBigDecimal(a.getUniqueID(), new BigDecimal("7"));
-		context.addBigDecimal(b.getUniqueID(), new BigDecimal("10"));
-		context.addBigDecimal(c.getUniqueID(), new BigDecimal("2"));
-		context.addBigDecimal(d.getUniqueID(), new BigDecimal("2"));
+		context.addInt(a.getUniqueID(), 7);
+		context.addInt(b.getUniqueID(), 10);
+		context.addInt(c.getUniqueID(), 2);
+		context.addInt(d.getUniqueID(), 2);
 
 		Division division1 = factory.createDivision();
 		division1.setExpressionA(a.getUniqueID());
@@ -142,7 +142,7 @@ public class CompleteDivisionTest {
 		// ((a / b) / (c / d))
 		IVPNumber result = (IVPNumber) division3.evaluate(context, map, factory);
 		assertTrue(result.getValueType().equals(IVPValue.DOUBLE_TYPE));
-		assertTrue(context.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("0.7")) == 0);
+		assertTrue(context.getDouble(result.getUniqueID()) == 0.7);
 	}
 
 }

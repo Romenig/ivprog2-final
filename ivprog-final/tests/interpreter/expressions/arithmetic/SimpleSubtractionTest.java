@@ -35,8 +35,8 @@ public class SimpleSubtractionTest {
 		a.setValueType(IVPValue.INTEGER_TYPE);
 		b.setValueType(IVPValue.INTEGER_TYPE);
 
-		c.addBigDecimal(a.getUniqueID(), new BigDecimal(10));
-		c.addBigDecimal(b.getUniqueID(), new BigDecimal(3));
+		c.addInt(a.getUniqueID(), 10);
+		c.addInt(b.getUniqueID(), 3);
 
 		Subtraction subtraction = factory.createSubtraction();
 		subtraction.setExpressionA(a.getUniqueID());
@@ -49,7 +49,7 @@ public class SimpleSubtractionTest {
 
 		IVPNumber result = (IVPNumber) subtraction.evaluate(c, map, factory);
 		assertTrue(result.getValueType().equals(IVPValue.INTEGER_TYPE));
-		assertTrue(c.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("7")) == 0);
+		assertTrue(c.getInt(result.getUniqueID()) == 7);
 	}
 
 	@Test
@@ -62,8 +62,8 @@ public class SimpleSubtractionTest {
 		a.setValueType(IVPValue.INTEGER_TYPE);
 		b.setValueType(IVPValue.DOUBLE_TYPE);
 
-		c.addBigDecimal(a.getUniqueID(), new BigDecimal(10));
-		c.addBigDecimal(b.getUniqueID(), new BigDecimal("3.4313"));
+		c.addInt(a.getUniqueID(), 10);
+		c.addDouble(b.getUniqueID(), 3.4313);
 
 		Subtraction subtraction = factory.createSubtraction();
 		subtraction.setExpressionA(a.getUniqueID());
@@ -76,7 +76,7 @@ public class SimpleSubtractionTest {
 
 		IVPNumber result = (IVPNumber) subtraction.evaluate(c, map, factory);
 		assertTrue(result.getValueType().equals(IVPValue.DOUBLE_TYPE));
-		assertTrue(c.getBigDecimal(result.getUniqueID()).equals(new BigDecimal("6.5687")));
+		assertTrue(c.getDouble(result.getUniqueID()) == 6.5687);
 
 	}
 
@@ -90,8 +90,8 @@ public class SimpleSubtractionTest {
 		b.setValueType(IVPValue.INTEGER_TYPE);
 		a.setValueType(IVPValue.DOUBLE_TYPE);
 
-		c.addBigDecimal(a.getUniqueID(), new BigDecimal("3.4313"));
-		c.addBigDecimal(b.getUniqueID(), new BigDecimal(10));
+		c.addDouble(a.getUniqueID(), 3.4313);
+		c.addInt(b.getUniqueID(), 10);
 
 		Subtraction subtraction = factory.createSubtraction();
 		subtraction.setExpressionA(a.getUniqueID());
@@ -104,7 +104,7 @@ public class SimpleSubtractionTest {
 
 		IVPNumber result = (IVPNumber) subtraction.evaluate(c, map, factory);
 		assertTrue(result.getValueType().equals(IVPValue.DOUBLE_TYPE));
-		assertTrue(c.getBigDecimal(result.getUniqueID()).equals(new BigDecimal("-6.5687")));
+		assertTrue(c.getDouble(result.getUniqueID()) == -6.5687);
 	}
 
 	@Test
@@ -117,8 +117,8 @@ public class SimpleSubtractionTest {
 		b.setValueType(IVPValue.DOUBLE_TYPE);
 		a.setValueType(IVPValue.DOUBLE_TYPE);
 
-		c.addBigDecimal(a.getUniqueID(), new BigDecimal("10.1111"));
-		c.addBigDecimal(b.getUniqueID(), new BigDecimal("3.4313"));
+		c.addDouble(a.getUniqueID(), 10.1111);
+		c.addDouble(b.getUniqueID(), 3.4313);
 
 		Subtraction subtraction = factory.createSubtraction();
 		subtraction.setExpressionA(a.getUniqueID());
@@ -131,7 +131,7 @@ public class SimpleSubtractionTest {
 
 		IVPNumber result = (IVPNumber) subtraction.evaluate(c, map, factory);
 		assertTrue(result.getValueType().equals(IVPValue.DOUBLE_TYPE));
-		assertTrue(c.getBigDecimal(result.getUniqueID()).equals(new BigDecimal("6.6798")));
+		assertTrue(c.getDouble(result.getUniqueID()) == 6.6798);
 
 	}
 }

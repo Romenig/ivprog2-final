@@ -44,8 +44,8 @@ public class IVPVector extends DataObject {
 	 */
 	public void setSize(String sizeID, Context c) {
 		this.sizeID = sizeID;
-		vectorRepresentation = new String[c.getBigDecimal(sizeID).intValue()];
-		for (int i = 0; i < c.getBigDecimal(sizeID).intValue(); i++) {
+		vectorRepresentation = new String[c.getInt(sizeID)];
+		for (int i = 0; i < c.getInt(sizeID); i++) {
 			vectorRepresentation[i] = IVPValue.NULL;
 		}
 	}
@@ -99,12 +99,12 @@ public class IVPVector extends DataObject {
 	/**
 	 * Add element to the specified position.
 	 * 
-	 * @param bigDecimal
+	 * @param i
 	 * @param uniqueID
 	 */
-	public Object add(BigDecimal bigDecimal, String uniqueID) {
-		String lastElement = vectorRepresentation[bigDecimal.intValue()];
-		vectorRepresentation[bigDecimal.intValue()] = uniqueID;
+	public Object add(int i, String uniqueID) {
+		String lastElement = vectorRepresentation[i];
+		vectorRepresentation[i] = uniqueID;
 		return lastElement;
 	}
 
@@ -115,7 +115,7 @@ public class IVPVector extends DataObject {
 	 * @return
 	 */
 	public Object get(String uniqueID, Context context) {
-		int index = context.getBigDecimal(uniqueID).intValue();
+		int index = context.getInt(uniqueID);
 		return vectorRepresentation[index];
 	}
 
@@ -125,7 +125,7 @@ public class IVPVector extends DataObject {
 	 * @return
 	 */
 	public String remove(String uniqueID, Context context) {
-		int index = context.getBigDecimal(uniqueID).intValue();
+		int index = context.getInt(uniqueID);
 		String removed = vectorRepresentation[index];
 		vectorRepresentation[index] = IVPValue.NULL;
 		return removed;

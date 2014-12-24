@@ -34,7 +34,7 @@ public class UserInput extends DataObject {
     		
     		theValue = JDialogReadInteger.getInstance().getValue();
     		IVPNumber number = (IVPNumber) map.get(valueID);
-    		number.updateValue(c, new BigDecimal(theValue));
+    		number.updateIntegerValue(c, new Integer(theValue).intValue());
     	}else if(type.equals(IVPValue.DOUBLE_TYPE)){
     		
     	}else if(type.equals(IVPValue.STRING_TYPE)){

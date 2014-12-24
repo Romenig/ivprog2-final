@@ -87,7 +87,7 @@ public class StringOperations {
 
 		IVPNumber result = (IVPNumber) string.evaluate(c, map, factory);
 		assertTrue(result.getValueType().equals(IVPValue.INTEGER_TYPE));
-		assertTrue(c.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("26")) == 0);
+		assertTrue(c.getInt(result.getUniqueID()) == 26);
 	}
 
 	@Test
@@ -110,7 +110,7 @@ public class StringOperations {
 		map.put(contains.getUniqueID(), contains);
 
 		IVPNumber result = (IVPNumber) contains.evaluate(c, map, factory);
-		assertTrue(c.getBigDecimal(result.getUniqueID()).compareTo(new BigDecimal("10")) == 0);
+		assertTrue(c.getInt(result.getUniqueID()) == 10);
 	}
 
 }
