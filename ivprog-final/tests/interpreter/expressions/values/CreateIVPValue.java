@@ -66,7 +66,7 @@ public class CreateIVPValue {
 
 		assertTrue(bool instanceof IVPValue && bool instanceof IVPBoolean);
 		assertTrue(bool.getValueType().equals(IVPValue.BOOLEAN_TYPE));
-		assertTrue(context.getBoolean(bool.getUniqueID()) && false);
+		assertTrue(context.getBoolean(bool.getUniqueID()) == false);
 	}
 
 	@Test

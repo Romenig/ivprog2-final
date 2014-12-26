@@ -84,8 +84,7 @@ public class RecursiveCallTest {
 		recursion.addParameter(0, sub.getUniqueID());
 		
 		IVPNumber result = (IVPNumber) fatorial.evaluate(context, map, factory);
-		
-		assertTrue(context.getInt(result.getUniqueID()) == 120); 
+		assertTrue(context.getInt(result.getUniqueID()) == 40320); 
 	}
 
 }

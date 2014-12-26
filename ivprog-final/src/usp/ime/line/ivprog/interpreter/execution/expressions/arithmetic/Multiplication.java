@@ -46,11 +46,6 @@ public class Multiplication extends Expression {
 		IVPNumber v1 = (IVPNumber) ((DataObject)map.get(expA)).evaluate(c, map, factory);
 		IVPNumber v2 = (IVPNumber) ((DataObject)map.get(expB)).evaluate(c, map, factory);
 		IVPNumber result = v1.multiply(v2, c, factory, map);
-		if (v1.getValueType() == IVPValue.DOUBLE_TYPE || v2.getValueType() == IVPValue.DOUBLE_TYPE) {
-			result.setValueType(IVPValue.DOUBLE_TYPE);
-		} else {
-			result.setValueType(IVPValue.INTEGER_TYPE);
-		}
 		return result;
 	}
 

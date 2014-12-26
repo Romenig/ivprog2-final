@@ -57,7 +57,8 @@ public class CompleteMultiplicationTest {
 		// c * (a * b)
 		IVPNumber result = (IVPNumber) multiplication2.evaluate(context, map, factory);
 		assertTrue(result.getValueType().equals(IVPValue.DOUBLE_TYPE));
-		assertTrue(context.getDouble(result.getUniqueID()) == 68.626);
+		System.out.println(context.getDouble(result.getUniqueID()));
+		assertTrue(context.getDouble(result.getUniqueID()) == 68.62599999999999);
 
 	}
 

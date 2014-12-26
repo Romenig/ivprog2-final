@@ -49,7 +49,7 @@ public class SimpleDivisionTest {
 
 		IVPNumber result = (IVPNumber) division.evaluate(c, map, factory);
 
-		assertTrue(result.getValueType().equals(IVPValue.DOUBLE_TYPE));
+		assertTrue(result.getValueType().equals(IVPValue.INTEGER_TYPE));
 		assertTrue(c.getInt(result.getUniqueID()) == 5);
 	}
 
@@ -77,7 +77,7 @@ public class SimpleDivisionTest {
 
 		IVPNumber result = (IVPNumber) division.evaluate(c, map, factory);
 		assertTrue(result.getValueType().equals(IVPValue.DOUBLE_TYPE));
-		assertTrue(c.getInt(result.getUniqueID()) == 4);
+		assertTrue(c.getDouble(result.getUniqueID()) == 4.0);
 
 	}
 

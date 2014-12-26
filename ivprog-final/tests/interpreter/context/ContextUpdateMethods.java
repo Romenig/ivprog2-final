@@ -38,9 +38,9 @@ public class ContextUpdateMethods {
 	@Test
 	public void verifyUpdateBoolean() {
 		Context c = new Context();
-		IVPError e1 = c.addBoolean("key1", new Boolean("true"));
-		IVPError e2 = c.updateBoolean("key1", new Boolean("false"));
-		assertTrue(c.getBoolean("key1") && false);
+		IVPError e1 = c.addBoolean("key1", true);
+		IVPError e2 = c.updateBoolean("key1", false);
+		assertTrue(c.getBoolean("key1") == false);
 	}
 
 }

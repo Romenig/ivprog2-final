@@ -80,6 +80,7 @@ public class IVPNumber extends IVPValue {
 		if(getValueType().equals(IVPValue.INTEGER_TYPE) && number.getValueType().equals(IVPValue.INTEGER_TYPE)){
 			int resultInt = context.getInt(getUniqueID()) * context.getInt(number.getUniqueID());
 			context.addInt(result.getUniqueID(), resultInt);
+			result.setValueType(IVPValue.INTEGER_TYPE);
 		}else{
 			double resultDouble = 0.0;
 			if(getValueType().equals(IVPValue.DOUBLE_TYPE) && number.getValueType().equals(IVPValue.DOUBLE_TYPE)){
@@ -91,6 +92,7 @@ public class IVPNumber extends IVPValue {
 					resultDouble = context.getInt(getUniqueID()) * context.getDouble(number.getUniqueID());
 				}
 			}
+			result.setValueType(IVPValue.DOUBLE_TYPE);
 			context.addDouble(result.getUniqueID(), resultDouble);
 		}
 		return result;

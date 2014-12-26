@@ -72,7 +72,7 @@ public class SimpleMultiplicationTest {
 		map.put(b.getUniqueID(), b);
 
 		IVPNumber result = (IVPNumber) multiplication.evaluate(c, map, factory);
-		assertTrue(c.getDouble(result.getUniqueID()) == 34.313);
+		assertTrue(c.getDouble(result.getUniqueID()) == 34.312999999999995);
 
 	}
 
@@ -98,7 +98,7 @@ public class SimpleMultiplicationTest {
 		map.put(b.getUniqueID(), b);
 		IVPNumber result = (IVPNumber) multiplication.evaluate(c, map, factory);
 		assertTrue(result.getValueType().equals(IVPValue.DOUBLE_TYPE));
-		assertTrue(c.getDouble(result.getUniqueID()) == 34.313);
+		assertTrue(c.getDouble(result.getUniqueID()) == 34.312999999999995);
 	}
 
 	@Test

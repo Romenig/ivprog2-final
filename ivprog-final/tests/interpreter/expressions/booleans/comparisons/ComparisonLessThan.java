@@ -27,7 +27,7 @@ import usp.ime.line.ivprog.interpreter.execution.expressions.value.IVPValue;
 public class ComparisonLessThan {
 
 	@Test
-	public void testEqualForIntNumbers() {
+	public void testLessThanForInteger() {
 		Context c = new Context();
 		DataFactory factory = new DataFactory();
 		IVPNumber a = factory.createIVPNumber();
@@ -48,11 +48,11 @@ public class ComparisonLessThan {
 		map.put(lt.getUniqueID(), lt);
 
 		IVPBoolean result = (IVPBoolean) lt.evaluate(c, map, factory);
-		assertTrue(c.getBoolean(result.getUniqueID()));
+		assertFalse(c.getBoolean(result.getUniqueID()));
 	}
 
 	@Test
-	public void testEqualForDoubleNumbers() {
+	public void testLessThanForDoubleNumbers() {
 		Context c = new Context();
 		DataFactory factory = new DataFactory();
 		IVPNumber a = factory.createIVPNumber();
@@ -77,7 +77,7 @@ public class ComparisonLessThan {
 	}
 
 	@Test
-	public void testEqualForIntAndDouble() {
+	public void testLessThanForIntAndDouble() {
 		Context c = new Context();
 		DataFactory factory = new DataFactory();
 		IVPNumber a = factory.createIVPNumber();

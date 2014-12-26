@@ -46,7 +46,6 @@ public class Division extends Expression {
 		IVPNumber v1 = (IVPNumber) ((DataObject)map.get(expA)).evaluate(c, map, factory);
 		IVPNumber v2 = (IVPNumber) ((DataObject)map.get(expB)).evaluate(c, map, factory);
 		IVPNumber result = v1.divide(v2, c, factory, map);
-		result.setValueType(IVPValue.DOUBLE_TYPE);
 		return result;
 	}
 

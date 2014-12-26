@@ -59,7 +59,6 @@ public class CompleteSubtractionTest {
 		// c - (a - b)
 		IVPNumber result = (IVPNumber) subtraction2.evaluate(context, map, factory);
 		assertTrue(result.getValueType().equals(IVPValue.DOUBLE_TYPE));
-		System.out.println(context.getDouble(result.getUniqueID()));
 		assertTrue(context.getDouble(result.getUniqueID()) == 8.5687);
 
 	}

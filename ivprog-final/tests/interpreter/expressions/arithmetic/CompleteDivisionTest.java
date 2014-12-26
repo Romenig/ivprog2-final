@@ -83,8 +83,8 @@ public class CompleteDivisionTest {
 		division1.setExpressionB(b.getUniqueID());
 
 		Division division2 = factory.createDivision();
-		division2.setExpressionA(c.getUniqueID());
-		division2.setExpressionB(division1.getUniqueID());
+		division2.setExpressionA(division1.getUniqueID());
+		division2.setExpressionB(c.getUniqueID());
 
 		HashMap map = new HashMap();
 		map.put(division1.getUniqueID(), division1);
@@ -95,8 +95,8 @@ public class CompleteDivisionTest {
 		// division2(c / division1(a / b))
 		// c / (a / b)
 		IVPNumber result = (IVPNumber) division2.evaluate(context, map, factory);
-		assertTrue(result.getValueType().equals(IVPValue.DOUBLE_TYPE));
-		assertTrue(context.getDouble(result.getUniqueID()) == 2.857142857142857);
+		assertTrue(result.getValueType().equals(IVPValue.INTEGER_TYPE));
+		assertTrue(context.getInt(result.getUniqueID()) == 0);
 	}
 
 	@Test
@@ -141,8 +141,8 @@ public class CompleteDivisionTest {
 		// division3(division1(a / b) / division2(c / d))
 		// ((a / b) / (c / d))
 		IVPNumber result = (IVPNumber) division3.evaluate(context, map, factory);
-		assertTrue(result.getValueType().equals(IVPValue.DOUBLE_TYPE));
-		assertTrue(context.getDouble(result.getUniqueID()) == 0.7);
+		assertTrue(result.getValueType().equals(IVPValue.INTEGER_TYPE));
+		assertTrue(context.getInt(result.getUniqueID()) == 0);
 	}
 
 }

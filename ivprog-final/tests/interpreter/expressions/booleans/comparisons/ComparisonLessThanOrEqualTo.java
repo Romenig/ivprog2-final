@@ -107,7 +107,7 @@ public class ComparisonLessThanOrEqualTo {
 		assertFalse(c.getBoolean(result.getUniqueID()));
 		b.updateDoubleValue(c, 3.0001);
 		result = (IVPBoolean) lt.evaluate(c, map, factory);
-		assertTrue(c.getBoolean(result.getUniqueID()));
+		assertFalse(c.getBoolean(result.getUniqueID()));
 	}
 
 }

@@ -76,7 +76,7 @@ public class SimpleAdditionTest {
 
 		IVPNumber result = (IVPNumber) addition.evaluate(c, map, factory);
 		assertTrue(result.getValueType().equals(IVPValue.DOUBLE_TYPE));
-		assertTrue(c.getInt(result.getUniqueID()) == 13.4313);
+		assertTrue(c.getDouble(result.getUniqueID()) == 13.4313);
 	}
 
 	@Test
@@ -103,7 +103,7 @@ public class SimpleAdditionTest {
 
 		IVPNumber result = (IVPNumber) addition.evaluate(c, map, factory);
 		assertTrue(result.getValueType().equals(IVPValue.DOUBLE_TYPE));
-		assertTrue(c.getInt(result.getUniqueID()) == 13.4313);
+		assertTrue(c.getDouble(result.getUniqueID()) == 13.4313);
 	}
 
 	@Test
